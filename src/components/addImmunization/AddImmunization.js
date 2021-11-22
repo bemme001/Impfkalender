@@ -8,6 +8,8 @@ class AddImmunization extends React.Component {
     this.state = {
       showPopUp: false
     };
+
+    this.switchPopUp = this.switchPopUp.bind(this);
   }
 
   switchPopUp() {
@@ -19,11 +21,11 @@ class AddImmunization extends React.Component {
   render() {
     return(
       <div className='add_immunization'>
-        <button className='add_immunization_button' onClick={this.switchPopUp.bind(this)}>
+        <button className='add_immunization_button' onClick={this.switchPopUp}>
           Impfung hinzufügen
         </button>
         {this.state.showPopUp
-          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp.bind(this)}/>
+          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp}/>
           : null}
         {/*<Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>*/}
       </div>
