@@ -1,0 +1,178 @@
+Patienten (Name | Link) und ihre Immunisierungen (Errger | Link)
+Der Link bei Liste liefert alle Immunisierungen zu einer Person in einen JSON
+
++- Dr. Holiday, I am | http://hapi.fhir.org/baseR4/Practitioner/2691497
+|
++- Müller, Sabine | https://hapi.fhir.org/baseR4/Patient/2691490
+|	+- Rotaviren | https://hapi.fhir.org/baseR4/Immunization/2691498
+|	+- Tetanus | https://hapi.fhir.org/baseR4/Immunization/2691499
+|	+- Diphtherie | https://hapi.fhir.org/baseR4/Immunization/2691500
+|	+- Pertussis | https://hapi.fhir.org/baseR4/Immunization/2691501
+|	+- Hibb – H. influenzae Typ b | 
+|	+- Poliomyelitis | https://hapi.fhir.org/baseR4/Immunization/2691502
+|	+- Hepatitis B | https://hapi.fhir.org/baseR4/Immunization/2691503
+|	+- Pneumokokken | 
+|	+- Meningokokken C | 
+|	+- Masern | 
+|	+- Mumps, Röteln | 
+|	+- Varizellen | 
+|	+- HPV – Humane Papillomviren | 
+|	+- Herpes zoster  | 
+|	+- Influenza | 
+|	+- Liste: https://hapi.fhir.org/baseR4/Immunization?identifier=urn:uuid:6d7fea63c34a40f698b9ba34e5ea13b1
+|
++- Schmidt, Michael | 
+|	+- Masern | 
+|	+- Tetanus | 
+|	+- Hepatitis B | 
+|	+- Influenza | 
+|	+- Masern | 
+|	+- Liste: 
+|
++- Scheider, Birgit | 
+|	+- Tetanus | 
+|	+- Hepatitis B | 
+|	+- Liste: 
+|
+| ab hier noch nicht angelegt
++- Fischer, Thomas | 
+|	+- Diphtherie | 
+|	+- Tetanus | 
+|	+- Masern | 
+|	+- Mumps, Röteln | 
+|	+- Rotaviren | 
+|	+- Liste: 
+|
++- Becker, Karin | 
+|	+- Tetanus | 
+|	+- Pneumokokken | 
+|	+- Diphtherie | 
+|	+- Mumps, Röteln | 
+|	+- Liste: 
+
+
+
+
+
+
+curl installieren: https://help.ubidots.com/en/articles/2165289-learn-how-to-install-run-curl-on-windows-macosx-linux
+
+Wie man exemplarisch mit dem command-line tool curl Ressourcen anlegen kann:
+
+curl -v -X POST --header "Content-Type: application/fhir+json" --data '{
+  "resourceType": "Patient",
+  "name": [ {
+      "family": "insertSurname",
+      "given": "insertForeName"
+  } ],
+  "gender": "male",
+  "birthDate": "2000-01-01"
+}' https://hapi.fhir.org/baseR4/Patient/
+
+
+Der Server schickt dann eine Response mit der automatisch vergebenen ID, die mann dann
+an den Link anfügen kann. So kann man sich dann dann die Ressource z.B. im Browser anschauen.
+
+
+
+
+
+
+
+Ein Beispiel wie ich einen Patienten und eine Immunisierung angelegt habe (kann man so übernehmen, wenn man die values ändert):
+
+curl -v -X POST --header "Content-Type: application/fhir+json" --data '{
+  "resourceType" : "Patient",
+  "identifier" : [ {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:6d7fea63c34a40f698b9ba34e5ea13b1"
+  } ], 
+  "name": [ {
+    "use": "official",
+    "text": "Sabine Müller",
+    "family": "Müller",
+    "given": [ "Sabine" ]
+  } ],
+  "telecom": [ {
+    "value": "0170486930787"
+  } ],
+  "gender" : "female",
+  "birthDate": "1952-08-26",
+  "address" : [ { 
+    "text": "Berliner Straße 10, 49647 Germany",
+    "line": "Berliner Straße 10",
+    "city": "München",
+    "postalCode": "49647",
+    "country": "Germany"
+  } ]
+}' https://hapi.fhir.org/baseR4/Patient/
+
+--> https://hapi.fhir.org/baseR4/Patient/2691490
+
+
+
+
+
+curl -v -X POST --header "Content-Type: application/fhir+json" --data '{
+  "resourceType": "Immunization",
+  "identifier": [ {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:6d7fea63c34a40f698b9ba34e5ea13b1"
+  } ],
+  "status": "completed",
+  "vaccineCode": {
+    "coding": [ {
+      "system": "http://hl7.org/fhir/valueset-vaccine-code.html",
+      "code": "GNHEP"
+    } ],
+    "text": "Hepatitis B"
+  },
+  "patient": {
+    "reference": "Patient/2691490"
+  },
+  "occurrenceDateTime": "1953-05-26",
+  "site": {
+    "coding": [ {
+      "system": "https://www.hl7.org/fhir/v3/ActSite/cs.html",
+      "code": "RA"
+    } ],
+    "text": "right arm"
+  },
+  "route": {
+    "coding": [ {
+      "system": "https://www.hl7.org/fhir/v3/RouteOfAdministration/cs.html",
+      "code": "IM"
+    } ],
+    "text": "Injection, intramuscular"
+  },
+  "doseQuantity": {
+    "value": 5,
+    "system": "http://unitsofmeasure.org",
+    "code": "mL"
+  },
+  "performer": [ {
+    "actor": {
+      "reference": "Practitioner/2691497"
+    }
+  } ],
+  "note": [ {
+    "text": "routine"
+  } ],
+  "reasonCode": [ {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "429060002"
+    } ]
+  } ],
+  "protocolApplied": [ {
+      "targetDisease": [ {
+          "coding": [ {
+              "system": "http://snomed.info/sct",
+              "code": "1"
+          } ]
+      } ],
+      "doseNumberString": "1"
+  } ]
+}' https://hapi.fhir.org/baseR4/Immunization/
+
+--> https://hapi.fhir.org/baseR4/Immunization/2691503
