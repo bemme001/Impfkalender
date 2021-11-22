@@ -7,17 +7,18 @@ import Immunization from './immunization'
 class Popup extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {value: 'Erreger'};
     this.Immun = new Immunization();
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendData = this.sendData.bind(this);
   }
 
   sendData() {
     //TODO Daten aus Formular in this.Immun füllen
     console.log("test");
     //PostImmunization(this.Immun.create)
-    this.state = {value: 'Erreger'};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
