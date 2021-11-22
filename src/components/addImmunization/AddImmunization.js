@@ -1,23 +1,36 @@
 import React, { useState } from 'react';
 import Popup from "./Popup";
+import popup from "./Popup.css";
 
-
-function AddImmunization(){
-  const [showPopUp, setShowPopUp] = useState(false)
-
-  const switchPopUp = () => {
-    setShowPopUp(currentState => !currentState);
+class AddImmunization extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showPopUp: false
+    };
   }
 
-  return(
-    <div className='pop_up'>
-      <button className='addImmunizationButton' onClick={switchPopUp}>
-        Impfung hinzufügen
-      </button>
-      {showPopUp ? <Popup showPopUp={showPopUp} switchPopUp={switchPopUp}/> : null}
-      {/*<Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>*/}
-    </div>
-  );
+  switchPopUp() {
+    this.setState({
+      showPopUp: !this.state.showPopUp
+    });
+  }
+
+  render() {
+    return(
+      <div className='add_immunization'>
+        <button className='add_immunization_button' onClick={this.switchPopUp.bind(this)}>
+          Impfung hinzufügen
+        </button>
+        {this.state.showPopUp
+          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp.bind(this)}/>
+          : null}
+        {/*<Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>*/}
+      </div>
+    );
+  }
 }
 
 export default AddImmunization;
+
+
