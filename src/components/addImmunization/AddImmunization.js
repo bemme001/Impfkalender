@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Popup from "./Popup";
-import popup from "./Popup.css";
+// import popup from "./Popup.css";
 
 class AddImmunization extends React.Component {
   constructor() {
