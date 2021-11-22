@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useQuerry } from "react-query";
+import { useQuery } from "react-query";
 
 export const postData = async (json) =>
     await axios
@@ -7,5 +7,6 @@ export const postData = async (json) =>
         .then((res) => res.data);
 
 export const postImmunization = (json) =>
-    useQuerry(["Immunization", json], () => postData(json));
+    useQuery(["Immunization", json], () => postData(json));
 
+export default postImmunization;
