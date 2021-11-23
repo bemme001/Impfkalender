@@ -62,7 +62,6 @@ class Popup extends React.Component {
   handleSubmit(event) {
     //TODO Daten aus Formular in this.Immun füllen
     this.immunization.toString()
-    //event.preventDefault();
     let json = this.immunization.create()
     let result = postImmunization(json)
     //console.log(result);
@@ -98,11 +97,7 @@ class Popup extends React.Component {
             <br/>
             <input type='date' name='date' onChange={this.handleChange}/>
             <br/>
-            <select name='site' onChange={this.handleChange}>
-              <option value=""></option>
-              <option value="LA">Linker Arm</option>
-              <option value="RA">Rechter Arm</option>
-            </select>
+            <input type='text' name='site' onChange={this.handleChange}/>
             <br/>
             <input type='submit' className='submit_button' value='Speichern'/>
           </form>
