@@ -7,18 +7,17 @@ class Popup extends React.Component {
   constructor(props) {
     super(props);
     this.immunization = new Immunization(props.uuid, props.pid, props.perf);
-
+    this.immunization.note = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-/*     this.immunization.vaccine = '58';
+    this.immunization.vaccine = '58';
     this.immunization.status = 'completed';
     this.immunization.site = 'LA';
     this.immunization.route = 'GINGINJ';
     this.immunization.dose = 0.5;
     this.immunization.note = 'test';
     this.immunization.reason = '429060002';
-    this.immunization.disease = 'Rotaviren';
-    this.immunization.immun = 'G2'; */
+    this.immunization.immun = 'G2';
   }
 
   handleChange(event) {

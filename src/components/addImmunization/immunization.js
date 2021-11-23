@@ -1,15 +1,14 @@
 export default class Immunization {
-    constructor(uuid, pid, perf, vaccine, status, date, site, route, dose, note, reason, disease, immun){
+    constructor(uuid, pid, perf, vaccine, status, date, site, dose, note, reason, disease, immun){
         this.uuid     = uuid;          // Identifier des Patienten
         this.pid      = pid;           // ID des Patienten im System
+        this.perf     = perf;          // ID des Arztes
         this.vaccine  = vaccine;       // Code des Impfstoffes (siehe System)
         this.status   = status;        // Status der Impfung (enum completed, entered-in-error, not-done)
         this.date     = date;          // Datum der Impfung
         this.site     = site;          // Impfstelle
-        this.route    = route;         // Impfroute
-        this.dose     = dose;          // Dosis der Impfung (in ml)
-        this.perf     = perf;          // ID des Arztes
-        this.note     = note;          // Bemerkung
+        this.dose     = dose;          // Dosis der Impfung (in ml)  
+        this.note     = note;     // Bemerkung
         this.reason   = reason;        // Impfgrund
         this.disease  = disease;       // Erreger
         this.immun    = immun;         // Immunisierungsgrad (bsp. G2)
