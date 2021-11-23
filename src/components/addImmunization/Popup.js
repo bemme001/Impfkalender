@@ -1,68 +1,59 @@
 import React from "react";
 // import popup from "./Popup.css";
 import Immunization from './immunization'
-//import postImmunization from '../../hooks/postImmunization'
+import { postImmunization } from '../../hooks/postImmunization'
 
 class Popup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      uuid: this.props.uuid,
-      pid: this.props.pid,
-      vaccine: '',
-      status: '',
-      date: '',
-      site: '',
-      route: '',
-      dose: '',
-      practitioner: '',
-      note: '',
-      reason: '',
-      disease: '',
-      immun: ''
-    };
-    this.immunization = new Immunization();
+    this.immunization = new Immunization(props.uuid, props.pid, props.perf);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+/*     this.immunization.vaccine = '58';
+    this.immunization.status = 'completed';
+    this.immunization.site = 'LA';
+    this.immunization.route = 'GINGINJ';
+    this.immunization.dose = 0.5;
+    this.immunization.note = 'test';
+    this.immunization.reason = '429060002';
+    this.immunization.disease = 'Rotaviren';
+    this.immunization.immun = 'G2'; */
   }
 
   handleChange(event) {
-    //console.log(event.target.value);
-    //switch(event.target)
     switch(event.target.name){
       case 'vaccine':
-        this.setState({vaccine: event.target.value});
+        this.immunization.vaccine = event.target.value;
         break;
       case 'status':
-        this.setState({status: event.target.value});
+        this.immunization.status = event.target.value;
         break;
       case 'date':
-        this.setState({date: event.target.value});
+        this.immunization.date = event.target.value;
         break;
       case 'site':
-        this.setState({site: event.target.value});
+        this.immunization.site = event.target.value;
         break;
       case 'route':
-        this.setState({route: event.target.value});
+        this.immunization.route = event.target.value;
         break;
       case 'dose':
-        this.setState({dose: event.target.value});
-        break;
-      case 'practitioner':
-        this.setState({practitioner: event.target.value});
+        this.immunization.dose = event.target.value;
         break;
       case 'note':
-        this.setState({note: event.target.value});
+        this.immunization.note = event.target.value;
         break;
       case 'reason':
-        this.setState({reason: event.target.value});
+        this.immunization.reason = event.target.value;
         break;
       case 'disease':
-        this.setState({disease: event.target.value});
+        this.immunization.disease = event.target.value;
         break;
       case 'immun':
-        this.setState({immun: event.target.value});
+        this.immunization.immun = event.target.value;
+        break;
+      default:
         break;
     }
     //console.log(this.state.vaccine);
@@ -70,22 +61,13 @@ class Popup extends React.Component {
 
   handleSubmit(event) {
     //TODO Daten aus Formular in this.Immun füllen
-    console.log(this.state.uuid);
-    console.log(this.state.pid);
-    console.log(this.state.vaccine);
-    console.log(this.state.status);
-    console.log(this.state.date);
-    console.log(this.state.site);
-    console.log(this.state.route);
-    console.log(this.state.dose);
-    console.log(this.state.practitioner);
-    console.log(this.state.note);
-    console.log(this.state.reason);
-    console.log(this.state.disease);
-    console.log(this.state.immun);
+    this.immunization.toString()
     //event.preventDefault();
-    //let result = PostImmunization(this.Immun.create)
+    let json = this.immunization.create()
+    let result = postImmunization(json)
     //console.log(result);
+    console.log(json);
+    console.log(result);
 
     this.props.switchPopUp();
   }
@@ -103,21 +85,20 @@ class Popup extends React.Component {
         </div>
         <div className='popup_form'>
           <form onSubmit={this.handleSubmit}>
-            <select name='vaccine' value={this.state.vaccine} onChange={this.handleChange}>
-              <option value="" disabled selected hidden>Erreger</option>
-              <option value="covid-19">Covid-19</option>
-              <option value="influenza">Influenza</option>
+            <select name='disease' defaultValue={"Erreger"} onChange={this.handleChange}>
+              <option value="Erreger" disabled hidden>Erreger</option>
+              { this.immunization.diseaseData.map( (x, y) => <option key={y}>{x}</option>) }
             </select>
             <br/>
-            <select name='status' value={this.state.status} onChange={this.handleChange}>
-              <option value=""></option>
+            <select name='status' defaultValue={"Status"} onChange={this.handleChange}>
+              <option value="Status" disabled hidden>Status</option>
               <option value="completed">Completed</option>
               <option value="uncompleted">Uncompleted</option>
             </select>
             <br/>
-            <input type='date' name='date' value={this.state.date} onChange={this.handleChange}/>
+            <input type='date' name='date' onChange={this.handleChange}/>
             <br/>
-            <select name='site' value={this.state.site} onChange={this.handleChange}>
+            <select name='site' onChange={this.handleChange}>
               <option value=""></option>
               <option value="LA">Linker Arm</option>
               <option value="RA">Rechter Arm</option>

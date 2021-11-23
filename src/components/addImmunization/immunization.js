@@ -1,21 +1,26 @@
 export default class Immunization {
-    constructor(uuid, pid, vaccine, status, date, site, route, dose, pract, note, reason, disease, immun){
+    constructor(uuid, pid, perf, vaccine, status, date, site, route, dose, note, reason, disease, immun){
         this.uuid     = uuid;          // Identifier des Patienten
         this.pid      = pid;           // ID des Patienten im System
         this.vaccine  = vaccine;       // Code des Impfstoffes (siehe System)
         this.status   = status;        // Status der Impfung (enum completed, entered-in-error, not-done)
         this.date     = date;          // Datum der Impfung
-        this.site     = site;          // Code der Impfstelle (siehe System)
-        this.route    = route;         // Code der Impfroute (siehe System)
+        this.site     = site;          // Impfstelle
+        this.route    = route;         // Impfroute
         this.dose     = dose;          // Dosis der Impfung (in ml)
-        this.pract    = pract;         // ID des Arztes
+        this.perf     = perf;          // ID des Arztes
         this.note     = note;          // Bemerkung
-        this.reason   = reason;        // Code für Impfgrund (siehe System)
-        this.disease  = disease;       // Code des Erregers (siehe System)
+        this.reason   = reason;        // Impfgrund
+        this.disease  = disease;       // Erreger
         this.immun    = immun;         // Immunisierungsgrad (bsp. G2)
-        }
+        this.diseaseData = [
+          "Diphtherie", "Hepatitis B", "Hibb – H. influenzae Typ b", "Influenza", "Masern",
+          "Meningokokken C", "Herpes zoster", "HPV – Humane Papillomviren", "Mumps, Röteln", "Pertussis",
+          "Pneumokokken", "Poliomyelitis", "Rotaviren", "Tetanus", "Varizellen"
+      ];
+    };
     create = () => {                   // returns: JSON gefühlt mit den Daten des Objektes
-        return `{
+        return JSON.parse(`{
             "resourceType": "Immunization",
             "identifier": [ {
               "system": "urn:ietf:rfc:3986",
@@ -23,55 +28,52 @@ export default class Immunization {
             } ],
             "status": "${this.status}",
             "vaccineCode": {
-              "coding": [ {
-                "system": "http://hl7.org/fhir/valueset-vaccine-code.html",
-                "code": "${this.vaccine}"
-              } ]
+              "text": "${this.vaccine}"
             },
             "patient": {
               "reference": "Patient/${this.pid}"
             },
             "occurrenceDateTime": "${this.date}",
             "site": {
-              "coding": [ {
-                "system": "https://www.hl7.org/fhir/v3/ActSite/cs.html",
-                "code": "${this.site}"
-              } ]
-            },
-            "route": {
-              "coding": [ {
-                "system": "https://www.hl7.org/fhir/v3/RouteOfAdministration/cs.html",
-                "code": "${this.route}"
-              } ]
+              "text": "${this.site}"
             },
             "doseQuantity": {
               "value": ${this.dose},
               "system": "http://unitsofmeasure.org",
               "code": "mL"
             },
-            "performer": [ {
+            "performer": {
               "actor": {
-                "reference": "Practitioner/${this.prac}"
+                "reference": "${this.perf}"
               }
-            } ],
-            "note": [ {
+            },
+            "note": {
               "text": "${this.note}"
-            } ],
-            "reasonCode": [ {
-              "coding": [ {
-                "system": "http://snomed.info/sct",
-                "code": "${this.reason}"
-              } ]
-            } ],
-            "protocolApplied": [ {
-                "targetDisease": [ {
-                    "coding": [ {
-                        "system": "http://snomed.info/sct",
-                        "code": "${this.disease}",
-                    } ]
-                } ],
+            },
+            "reasonCode": {
+              "text": "${this.reason}"
+            },
+            "protocolApplied": {
+                "targetDisease": {
+                  "text": "${this.disease}"
+                },
                 "doseNumberString": "${this.immun}"
-            } ]
-          }`
-    }
+            }
+          }`);
+    };
+    toString = () => {
+      console.log(this.uuid)
+      console.log(this.pid)
+      console.log(this.vaccine)
+      console.log(this.status)
+      console.log(this.date)
+      console.log(this.site)
+      console.log(this.route)
+      console.log(this.dose)
+      console.log(this.perf)
+      console.log(this.note)
+      console.log(this.reason)
+      console.log(this.disease)
+      console.log(this.immun)
+  };
 }

@@ -1,12 +1,8 @@
 import axios from "axios";
-import { useQuery } from "react-query";
 
-export const postData = async (json) =>
+export const postImmunization = async (json) =>
     await axios
-        .post("https://hapi.fhir.org/base4/Immunization", json)
+        .post("https://hapi.fhir.org/baseR4/Immunization", json, {
+            "ContentType": "application/fhir+json;charset=utf-8"
+        })
         .then((res) => res.data);
-
-export const postImmunization = (json) =>
-    useQuery(["Immunization", json], () => postData(json));
-
-export default postImmunization;
