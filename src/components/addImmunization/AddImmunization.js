@@ -1,6 +1,5 @@
 import React from 'react';
 import Popup from "./Popup";
-// import popup from "./Popup.css";
 
 class AddImmunization extends React.Component {
   constructor(props) {
@@ -28,7 +27,6 @@ class AddImmunization extends React.Component {
           ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp}
                    uuid={this.props.uuid} pid={this.props.pid} perf={this.props.perf}/>
           : null}
-        {/*<Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>*/}
       </div>
     );
   }
