@@ -25,7 +25,8 @@ class AddImmunization extends React.Component {
           Impfung hinzufügen
         </button>
         {this.state.showPopUp
-          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp}/>
+          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp}
+                   uuid={this.props.uuid} pid={this.props.pid}/>
           : null}
         {/*<Popup showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>*/}
       </div>

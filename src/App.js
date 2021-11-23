@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <AddImmunization/>
+        <AddImmunization uuid='123456789' pid='12345'/>
       </header>
     </div>
   );
