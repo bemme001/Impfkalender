@@ -34,9 +34,6 @@ class Popup extends React.Component {
       case 'site':
         this.immunization.site = event.target.value;
         break;
-      case 'route':
-        this.immunization.route = event.target.value;
-        break;
       case 'dose':
         this.immunization.dose = event.target.value;
         break;
@@ -88,15 +85,34 @@ class Popup extends React.Component {
               { this.immunization.diseaseData.map( (x, y) => <option key={y}>{x}</option>) }
             </select>
             <br/>
+            <input type='text' placeholder='Impfstoff' name='vaccine' onChange={this.handleChange}/>
+            <br/>
             <select name='status' defaultValue={"Status"} onChange={this.handleChange}>
               <option value="Status" disabled hidden>Status</option>
-              <option value="completed">Completed</option>
-              <option value="uncompleted">Uncompleted</option>
+              <option value="completed">Abgeschlossen</option>
+              <option value="uncompleted">Unvollendet</option>
             </select>
             <br/>
-            <input type='date' name='date' onChange={this.handleChange}/>
+            <select name='immun' defaultValue={"Immunisierungsgrad"} onChange={this.handleChange}>
+              <option value="Immunisierungsgrad" disabled hidden>Immunisierungsgrad</option>
+              <option value="G1">Grundimmunisierung 1</option>
+              <option value="G2">Grundimmunisierung 2</option>
+              <option value="G3">Grundimmunisierung 3</option>
+              <option value="A1">Auffrischimpfung 1</option>
+              <option value="A2">Auffrischimpfung 2</option>
+              <option value="A3">Auffrischimpfung 3</option>
+              <option value="S">Standardimpfung</option>
+            </select>
             <br/>
-            <input type='text' name='site' onChange={this.handleChange}/>
+            <input type='date' placeholder={new Date()} name='date' onChange={this.handleChange}/>
+            <br/>
+            <input type='text' placeholder='Impfstelle' name='site' onChange={this.handleChange}/>
+            <br/>
+            <input type='text' placeholder='Dosis in ml' pattern="[0-9]+((.|,)[0-9]+)?" name='dose' onChange={this.handleChange}/>
+            <br/>
+            <input type='text' placeholder='Impfgrund' name='reason' onChange={this.handleChange}/>
+            <br/>
+            <input type='text' placeholder='Notiz' name='note' onChange={this.handleChange}/>
             <br/>
             <input type='submit' className='submit_button' value='Speichern'/>
           </form>

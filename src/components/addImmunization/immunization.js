@@ -16,7 +16,7 @@ export default class Immunization {
           "Diphtherie", "Hepatitis B", "Hibb – H. influenzae Typ b", "Influenza", "Masern",
           "Meningokokken C", "Herpes zoster", "HPV – Humane Papillomviren", "Mumps, Röteln", "Pertussis",
           "Pneumokokken", "Poliomyelitis", "Rotaviren", "Tetanus", "Varizellen"
-      ];
+        ];
     };
     create = () => {                   // returns: JSON gefühlt mit den Daten des Objektes
         return JSON.parse(`{
