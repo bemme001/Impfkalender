@@ -8,7 +8,7 @@ export default class Immunization {
         this.date     = date;          // Datum der Impfung
         this.site     = site;          // Impfstelle
         this.dose     = dose;          // Dosis der Impfung (in ml)  
-        this.note     = note;     // Bemerkung
+        this.note     = note;          // Bemerkung
         this.reason   = reason;        // Impfgrund
         this.disease  = disease;       // Erreger
         this.immun    = immun;         // Immunisierungsgrad (bsp. G2)
@@ -67,7 +67,6 @@ export default class Immunization {
       console.log(this.status)
       console.log(this.date)
       console.log(this.site)
-      console.log(this.route)
       console.log(this.dose)
       console.log(this.perf)
       console.log(this.note)
