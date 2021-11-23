@@ -1,23 +1,13 @@
 import React from "react";
-// import popup from "./Popup.css";
 import Immunization from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
 
 class Popup extends React.Component {
   constructor(props) {
     super(props);
-    this.immunization = new Immunization(props.uuid, props.pid, props.perf);
-    this.immunization.note = "";
+    this.immunization = new Immunization(props.uuid, props.pid, props.perf, "", "");
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.immunization.vaccine = '58';
-    this.immunization.status = 'completed';
-    this.immunization.site = 'LA';
-    this.immunization.route = 'GINGINJ';
-    this.immunization.dose = 0.5;
-    this.immunization.note = 'test';
-    this.immunization.reason = '429060002';
-    this.immunization.immun = 'G2';
   }
 
   handleChange(event) {
@@ -52,15 +42,11 @@ class Popup extends React.Component {
       default:
         break;
     }
-    //console.log(this.state.vaccine);
   }
 
   handleSubmit(event) {
-    this.immunization.toString()
-    let json = this.immunization.create()
-    let result = postImmunization(json)
-    console.log(json);
-    console.log(result);
+    let json = this.immunization.create();
+    postImmunization(json);
 
     this.props.switchPopUp();
   }
@@ -69,9 +55,6 @@ class Popup extends React.Component {
     return (
       <div className="popup">
         <div className='popup_button'>
-          {/*<button onClick={this.props.switchPopUp}>
-            Speichern
-          </button>*/}
           <button onClick={this.props.switchPopUp}>
             Abbrechen
           </button>
@@ -111,7 +94,7 @@ class Popup extends React.Component {
             <br/>
             <input type='text' placeholder='Impfgrund' name='reason' onChange={this.handleChange}/>
             <br/>
-            <input type='text' placeholder='Notiz' name='note' onChange={this.handleChange}/>
+            <input type='text' placeholder='Bemerkung' name='note' onChange={this.handleChange}/>
             <br/>
             <input type='submit' className='submit_button' value='Speichern' />
           </form>
