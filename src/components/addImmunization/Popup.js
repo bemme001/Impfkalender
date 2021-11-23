@@ -12,7 +12,7 @@ class Popup extends React.Component {
       vaccine: '',
       status: ''
     };
-    this.Immun = new Immunization();
+    this.immunization = new Immunization();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +26,9 @@ class Popup extends React.Component {
       case 'vaccine':
         this.setState({vaccine: event.target.value});
         break;
-      case '':
+      case 'status':
+        this.setState({status: event.target.value});
+        break;
     }
     //console.log(this.state.vaccine);
   }
@@ -34,7 +36,8 @@ class Popup extends React.Component {
   handleSubmit(event) {
     //TODO Daten aus Formular in this.Immun füllen
     console.log(this.state.vaccine);
-    event.preventDefault();
+    console.log(this.state.status);
+    //event.preventDefault();
     //let result = PostImmunization(this.Immun.create)
     //console.log(result);
     this.props.switchPopUp();
@@ -58,7 +61,14 @@ class Popup extends React.Component {
               <option value="covid-19">Covid-19</option>
               <option value="influenza">Influenza</option>
             </select>
-            <input type='submit' value='Speichern'/>
+            <br/>
+            <select name='status' value={this.state.value} onChange={this.handleChange}>
+              <option value=""></option>
+              <option value="completed">Completed</option>
+              <option value="uncompleted">Uncompleted</option>
+            </select>
+            <br/>
+            <input type='submit' className='submit_button' value='Speichern'/>
           </form>
         </div>
       </div>
