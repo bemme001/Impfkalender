@@ -15,7 +15,7 @@ const SrTableDescription = () => {
 
       <Col sm={3}>
         <p className="fs-7">
-          <span style={{fontWeight: 'bold'}}>Erläuterungen</span><br />
+          <span className="fw-bold">Erläuterungen</span><br />
           <span className="fw-bold">G</span> Grundimmunisierung<br />
           (in bis zu 3 Teilimpfungen G1 – G3)<br />
           <span className="fw-bold">A</span> Auffrischimpfung<br />

@@ -1,3 +1,4 @@
+/* * * * * * * * * * * * * *    Colors   * * * * * * * * * * * * * */
 .bg-blue {
   background-color: #aac0df !important;
 }
@@ -22,7 +23,8 @@
   background-color: #f4dc98 !important;
 }
 
-/* * * * * * * * */
+
+/* * * * * * * * * *    Stiko Recommendation Table    * * * * * * * * */
 #SRTable .comment {
   font-size: 0.9rem;
   color: white;
@@ -32,6 +34,15 @@
 #SRTable td {
   text-align: center;
 }
+
+#SRTable > thead {
+  position: sticky;
+  top:0;
+}
+/*#SRTable > thead > th {
+  position: sticky;
+  top:0;
+}*/
 
 .border-gray {
   border-color: #d6d6d6 !important;
@@ -53,3 +64,5 @@ th {
 .fs-7 {
   font-size: 0.7rem !important;
 }
+
+/* * * * * * * * * * * * * * *    ...    * * * * * * * * * * * * * */

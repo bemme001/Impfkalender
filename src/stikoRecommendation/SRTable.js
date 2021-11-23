@@ -5,55 +5,57 @@ import './SR.css';
 const SRTable = () => {
   return (
     <Col>
-      <Table bordered id="SRTable">
-        <tbody>
+      <Table bordered id="SRTable" className="align-middle">
+        <thead className="align-middle">
         <tr className="text-center">
           <th scope="row" rowSpan={3} style={{borderRight: '1px solid #0d6efd'}}>Impfung</th>
-          <td className="border border-primary">Alter in Wochen</td>
-          <td colSpan={9} className="border border-primary">Alter in Monaten</td>
-          <td className="w-1 border-right-blue"/>
-          <td colSpan={11} className="border border-primary">Alter in Jahren</td>
+          <th className="border border-primary">Alter in Wochen</th>
+          <th colSpan={9} className="border border-primary">Alter in Monaten</th>
+          <th className="w-1 border-right-blue"/>
+          <th colSpan={11} className="border border-primary">Alter in Jahren</th>
         </tr>
         <tr className="border border-primary text-center">
-          <td>6</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5-10</td>
-          <td>11*</td>
-          <td>12</td>
-          <td>13-14</td>
-          <td>15</td>
-          <td>16-23</td>
-          <td className="border border-white w-1 border-right-blue"/>
-          <td>2-4</td>
-          <td>5-6</td>
-          <td>7-8</td>
-          <td colSpan={2}>9-14</td>
-          <td>15-16</td>
-          <td>17</td>
-          <td>ab 18</td>
-          <td colSpan={2}>ab 60</td>
+          <th>6</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5-10</th>
+          <th>11*</th>
+          <th>12</th>
+          <th>13-14</th>
+          <th>15</th>
+          <th>16-23</th>
+          <th className="border border-white w-1 border-right-blue"/>
+          <th>2-4</th>
+          <th>5-6</th>
+          <th>7-8</th>
+          <th colSpan={2}>9-14</th>
+          <th>15-16</th>
+          <th>17</th>
+          <th>ab 18</th>
+          <th colSpan={2}>ab 60</th>
         </tr>
         <tr className="border border-primary text-center">
-          <td/>
-          <td/>
-          <td colSpan={2}>U4</td>
-          <td>U5</td>
-          <td colSpan={2}>U6</td>
-          <td/>
-          <td/>
-          <td>U7</td>
-          <td className="border border-white w-1 border-right-blue"/>
-          <td>U7a/U8</td>
-          <td>U9</td>
-          <td>U10</td>
-          <td colSpan={2}>U11/J1</td>
-          <td/>
-          <td>J2</td>
-          <td/>
-          <td colSpan={2}/>
+          <th/>
+          <th/>
+          <th colSpan={2}>U4</th>
+          <th>U5</th>
+          <th colSpan={2}>U6</th>
+          <th/>
+          <th/>
+          <th>U7</th>
+          <th className="border border-white w-1 border-right-blue"/>
+          <th>U7a/U8</th>
+          <th>U9</th>
+          <th>U10</th>
+          <th colSpan={2}>U11/J1</th>
+          <th/>
+          <th>J2</th>
+          <th/>
+          <th colSpan={2}/>
         </tr>
+        </thead>
+        <tbody>
         <tr className="border border-white">
           <th scope="row" className="border border-gray">Rotaviren</th>
           <td colSpan={2} className="bg-blue">G1 <span className="comment">a</span></td>
