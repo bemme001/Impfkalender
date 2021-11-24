@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Immunization from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
-import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
+import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Popup = (props) => {
   let immunization = new Immunization(props.uuid, props.pid, props.perf, "", "");
@@ -100,28 +101,122 @@ const Popup = (props) => {
         </form>
       </div>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Impfung hinzufügen
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="lg">
+      <Modal show={show} onHide={handleClose} size="xl">
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-              <Form.Label column sm={2}>
+            {/* Erreger */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
                 Erreger
               </Form.Label>
-              <Col sm={10}>
-                <Form.Select aria-label="Default select example">
-                  <option value="Erreger" disabled selected hidden>Erreger</option>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Select aria-label="Erreger-Auswahl" onChange={handleChange}>
+                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
                   {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
-                </Form.Select>              </Col>
+                </Form.Select>
+              </Col>
             </Form.Group>
 
+            {/* Impfstoff */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Impfstoff
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Control type="text" placeholder="Impfstoff eingeben" onChange={handleChange} />
+              </Col>
+            </Form.Group>
+
+            {/* Status */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Status
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Select aria-label="Status der Impfung" onChange={handleChange}>
+                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
+                  <option value="Abgeschlossen">Abgeschlossen</option>
+                  <option value="Unvollendet">Unvollendet</option>
+                </Form.Select>
+              </Col>
+            </Form.Group>
+
+            {/* Immunisierungsgrad */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Immununisierungsgrad
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Select aria-label="Immunisierungsgrad" onChange={handleChange}>
+                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
+                  <option value="Immunisierungsgrad" disabled hidden>Immunisierungsgrad</option>
+                  <option value="G1">Grundimmunisierung 1</option>
+                  <option value="G2">Grundimmunisierung 2</option>
+                  <option value="G3">Grundimmunisierung 3</option>
+                  <option value="A1">Auffrischimpfung 1</option>
+                  <option value="A2">Auffrischimpfung 2</option>
+                  <option value="A3">Auffrischimpfung 3</option>
+                  <option value="S">Standardimpfung</option>
+                </Form.Select>
+              </Col>
+            </Form.Group>
+
+            {/* Date Picker */}
+
+            {/* Impfstelle */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Impfstelle
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Control type="text" placeholder="Impfstelle eingeben" onChange={handleChange} />
+              </Col>
+            </Form.Group>
+
+            {/* Dosis in ml */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Dosis in ml
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Control type="text" placeholder="Dosis eingeben" onChange={handleChange} />
+              </Col>
+            </Form.Group>
+
+            {/* Impfgrund */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Impfgrund
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Control type="text" placeholder="Impfgrund eingeben" onChange={handleChange} />
+              </Col>
+            </Form.Group>
+
+            {/* Bemerkung */}
+            <FloatingLabel>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Bemerkung
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+              <Form.Control
+                as="textarea"
+                placeholder="Bemerkungen hier eingeben"
+                style={{ height: '100px' }}
+              />
+              </Col>
+              </Form.Group>
+            </FloatingLabel>
+
             <Button variant="primary" type="submit">
-              Submit
+              Speichern
             </Button>
             <Button variant="danger" type="button" onClick={handleClose} className="mx-2">
               Abbrechen
