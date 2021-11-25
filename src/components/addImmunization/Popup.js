@@ -5,16 +5,45 @@ import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Popup = (props) => {
+  //const [ errors, setErrors ] = useState({});
+
   let immunization = new Immunization(props.uuid, props.pid, props.perf, "", "");
 
-  const handleSubmit = (event) => {
-    let json = immunization.create();
-    postImmunization(json);
+  {/*
+  const findFormErrors = () => {
+    const newErrors = {}
+    //if(immunization.date == null) newErrors.date = 'Bitte wählen Sie ein Datum aus.';
 
+    console.log(newErrors);
+    return newErrors;
+  }
+  */}
+
+  const handleSubmit = (event) => {
+    //event.preventDefault();
+    //const newErrors = findFormErrors();
+    console.log(immunization.toString());
+
+    let json = immunization.create();
+    console.log(json);
+    postImmunization(json);
     props.switchPopUp();
+
+    {/*
+    if ( Object.keys(newErrors).length > 0 ) {
+      setErrors(newErrors);
+    } else {
+      let json = immunization.create();
+      postImmunization(json);
+      props.switchPopUp();
+    }
+    */}
   }
 
   const handleChange = (event) => {
+    //immunization[event.target.name] = event.target.value;
+    console.log('testtestetst');
+    console.log(event);
     switch (event.target.name) {
       case 'vaccine':
         immunization.vaccine = event.target.value;
@@ -46,6 +75,13 @@ const Popup = (props) => {
       default:
         break;
     }
+
+    {/*
+    if(!!errors[event.target.name]){
+      console.log('errors');
+      setErrors({...errors, [event.target.name]: null});
+    }
+    */}
   }
 
   return (
@@ -62,8 +98,8 @@ const Popup = (props) => {
                 Erreger
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Erreger-Auswahl"
-                              defaultValue="Bitte auswählen" onChange={handleChange}>
+                <Form.Select aria-label="Erreger-Auswahl" name="disease"
+                              defaultValue="Bitte auswählen" onChange={handleChange} >
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
                 </Form.Select>
@@ -76,7 +112,7 @@ const Popup = (props) => {
                 Impfstoff
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfstoff eingeben"
+                <Form.Control type="text" name="vaccine" placeholder="Impfstoff eingeben"
                               onChange={handleChange} />
               </Col>
             </Form.Group>
@@ -87,8 +123,8 @@ const Popup = (props) => {
                 Status
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Status der Impfung" defaultValue="Bitte auswählen"
-                             onChange={handleChange}>
+                <Form.Select aria-label="Status der Impfung" name="status"
+                             defaultValue="Bitte auswählen" onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="Abgeschlossen">Abgeschlossen</option>
                   <option value="Unvollendet">Unvollendet</option>
@@ -103,7 +139,7 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Select aria-label="Immunisierungsgrad" defaultValue="Bitte auswählen"
-                             onChange={handleChange}>
+                             name="immun" onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="G1">Grundimmunisierung 1</option>
                   <option value="G2">Grundimmunisierung 2</option>
@@ -123,7 +159,14 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="date" placeholder={new Date()}
-                            onChange={handleChange} required />
+                            onChange={handleChange} name="date" />
+                {/*
+                isInvalid={ !!errors.date }
+                <Form.Control.Feedback type="invalid">
+                  {errors.date}
+                </Form.Control.Feedback>
+                */}
+
               </Col>
             </Form.Group>
 
@@ -134,7 +177,7 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="text" placeholder="Impfstelle eingeben"
-                              onChange={handleChange} required />
+                              onChange={handleChange} name="site" />
               </Col>
             </Form.Group>
 
@@ -145,7 +188,7 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="text" placeholder="Dosis eingeben" pattern="[0-9]+((.|,)[0-9]+)?"
-                              onChange={handleChange} required/>
+                              onChange={handleChange} name="dose"/>
               </Col>
             </Form.Group>
 
@@ -156,7 +199,7 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="text" placeholder="Impfgrund eingeben"
-                              onChange={handleChange} />
+                              onChange={handleChange} name="reason"/>
               </Col>
             </Form.Group>
 
@@ -167,13 +210,15 @@ const Popup = (props) => {
                 Bemerkung
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-              <Form.Control
-                as="textarea"
-                placeholder="Bemerkungen hier eingeben"
-                style={{ height: '100px' }}
-              />
+                <Form.Control
+                  as="textarea"
+                  placeholder="Bemerkungen hier eingeben"
+                  style={{ height: '100px' }}
+                  onChange={handleChange}
+                  name="note"
+                />
               </Col>
-              </Form.Group>
+            </Form.Group>
             </FloatingLabel>
 
             <Button variant="primary" type="submit">

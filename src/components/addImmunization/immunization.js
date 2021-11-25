@@ -37,7 +37,7 @@ export default class Immunization {
               "text": "${this.site}"
             },
             "doseQuantity": {
-              "value": ${this.dose},
+              "value": "${this.dose}",
               "system": "http://unitsofmeasure.org",
               "code": "mL"
             },
