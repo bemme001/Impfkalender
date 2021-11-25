@@ -5,31 +5,24 @@ import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Popup = (props) => {
-  //const [ errors, setErrors ] = useState({});
+  const [ errors, setErrors ] = useState({});
+  const [immunization, setImmunization] = useState(
+    new Immunization(props.uuid, props.pid, props.perf, "", "")
+  );
+  //let immunization = new Immunization(props.uuid, props.pid, props.perf, "", "");
 
-  let immunization = new Immunization(props.uuid, props.pid, props.perf, "", "");
-
-  {/*
   const findFormErrors = () => {
-    const newErrors = {}
-    //if(immunization.date == null) newErrors.date = 'Bitte wählen Sie ein Datum aus.';
-
-    console.log(newErrors);
+    const newErrors = {};
+    //if(immunization.disease == null) newErrors.disease = "Bitte wählen Sie einen Erreger aus";
+    if(immunization.date == undefined) newErrors.date = "Bitte wählen Sie ein Datum aus.";
+    console.log(immunization.date);
     return newErrors;
   }
-  */}
 
   const handleSubmit = (event) => {
-    //event.preventDefault();
-    //const newErrors = findFormErrors();
-    console.log(immunization.toString());
+    event.preventDefault();
+    const newErrors = findFormErrors();
 
-    let json = immunization.create();
-    console.log(json);
-    postImmunization(json);
-    props.switchPopUp();
-
-    {/*
     if ( Object.keys(newErrors).length > 0 ) {
       setErrors(newErrors);
     } else {
@@ -37,51 +30,18 @@ const Popup = (props) => {
       postImmunization(json);
       props.switchPopUp();
     }
-    */}
   }
 
   const handleChange = (event) => {
+    setImmunization({...immunization, [event.target.name]: event.target.value});
     //immunization[event.target.name] = event.target.value;
-    console.log('testtestetst');
-    console.log(event);
-    switch (event.target.name) {
-      case 'vaccine':
-        immunization.vaccine = event.target.value;
-        break;
-      case 'status':
-        immunization.status = event.target.value;
-        break;
-      case 'date':
-        immunization.date = event.target.value;
-        break;
-      case 'site':
-        immunization.site = event.target.value;
-        break;
-      case 'dose':
-        immunization.dose = event.target.value;
-        break;
-      case 'note':
-        immunization.note = event.target.value;
-        break;
-      case 'reason':
-        immunization.reason = event.target.value;
-        break;
-      case 'disease':
-        immunization.disease = event.target.value;
-        break;
-      case 'immun':
-        immunization.immun = event.target.value;
-        break;
-      default:
-        break;
-    }
+    console.log("ttes" + immunization.date);
 
-    {/*
     if(!!errors[event.target.name]){
-      console.log('errors');
+      console.log(errors);
       setErrors({...errors, [event.target.name]: null});
+      console.log(errors);
     }
-    */}
   }
 
   return (
@@ -126,8 +86,8 @@ const Popup = (props) => {
                 <Form.Select aria-label="Status der Impfung" name="status"
                              defaultValue="Bitte auswählen" onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
-                  <option value="Abgeschlossen">Abgeschlossen</option>
-                  <option value="Unvollendet">Unvollendet</option>
+                  <option value="completed">Abgeschlossen</option>
+                  <option value="not-done">Unvollendet</option>
                 </Form.Select>
               </Col>
             </Form.Group>
@@ -159,13 +119,11 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="date" placeholder={new Date()}
-                            onChange={handleChange} name="date" />
-                {/*
-                isInvalid={ !!errors.date }
+                            onChange={handleChange} name="date" isInvalid={ !!errors.date }/>
+
                 <Form.Control.Feedback type="invalid">
                   {errors.date}
                 </Form.Control.Feedback>
-                */}
 
               </Col>
             </Form.Group>
@@ -177,7 +135,7 @@ const Popup = (props) => {
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="text" placeholder="Impfstelle eingeben"
-                              onChange={handleChange} name="site" />
+                              onChange={handleChange} name="site"/>
               </Col>
             </Form.Group>
 
