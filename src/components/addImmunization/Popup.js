@@ -14,7 +14,7 @@ const Popup = (props) => {
   const findFormErrors = () => {
     const newErrors = {};
     //if(immunization.disease == null) newErrors.disease = "Bitte wählen Sie einen Erreger aus";
-    if(immunization.date == undefined) newErrors.date = "Bitte wählen Sie ein Datum aus.";
+    if(immunization.date === undefined) newErrors.date = "Bitte wählen Sie ein Datum aus.";
     console.log(immunization.date);
     return newErrors;
   }
