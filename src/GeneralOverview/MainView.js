@@ -35,7 +35,7 @@ export default function MainView() {
                                     </Dropdown.Menu>
                                 </Dropdown>
                                 </div>  
-                  
+
                                 <AgeTiles range="60+" /> 
                                 <AgeTiles range="18-60" /> 
                                 <AgeTiles range="17" /> 
@@ -58,10 +58,18 @@ export default function MainView() {
                                     <Row className="equal px-4">
                                         
                                         <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
+                                        <Col ><VaccinationTiles title  ="Covid-19" VacType="G1"/></Col>
+                                        <Col > <VaccinationTiles title  ="Masern" VacType="G1"/></Col>
+                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
+                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" /></Col> 
+                                    </Row>
+                                    <Row className="equal px-4">
+                                        
+                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
                                         <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
                                         <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-
-
+                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
+                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
                                     </Row>
                                 </Container>
                             </Card.Body>
