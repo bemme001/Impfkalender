@@ -48,64 +48,11 @@ const Popup = (props) => {
     }
   }
 
-  //const [show, setShow] = useState(false);
-
-  //const handleClose = () => setShow(false);
-  //const handleShow = () => setShow(show => !show);
-
   return (
     <div className="popup">
-      {/*
-      <div className='popup_button'>
-        <button onClick={props.switchPopUp}>
-          Abbrechen
-        </button>
-      </div>
-      <div className='popup_form'>
-        <form onSubmit={handleSubmit}>
-          <select name='disease' defaultValue={"Erreger"} onChange={handleChange} required>
-            <option value="Erreger" disabled hidden>Erreger</option>
-            {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
-          </select>
-          <br />
-          <input type='text' placeholder='Impfstoff' name='vaccine' onChange={handleChange} required />
-          <br />
-          <select name='status' defaultValue={"Status"} onChange={handleChange} required>
-            <option value="Status" disabled hidden>Status</option>
-            <option value="completed">Abgeschlossen</option>
-            <option value="not-done">Unvollendet</option>
-          </select>
-          <br />
-          <select name='immun' defaultValue={"Immunisierungsgrad"} onChange={handleChange} required>
-            <option value="Immunisierungsgrad" disabled hidden>Immunisierungsgrad</option>
-            <option value="G1">Grundimmunisierung 1</option>
-            <option value="G2">Grundimmunisierung 2</option>
-            <option value="G3">Grundimmunisierung 3</option>
-            <option value="A1">Auffrischimpfung 1</option>
-            <option value="A2">Auffrischimpfung 2</option>
-            <option value="A3">Auffrischimpfung 3</option>
-            <option value="S">Standardimpfung</option>
-          </select>
-          <br />
-          <input type='date' placeholder={new Date()} name='date' onChange={handleChange} required />
-          <br />
-          <input type='text' placeholder='Impfstelle' name='site' onChange={handleChange} required />
-          <br />
-          <input type='text' placeholder='Dosis in ml' pattern="[0-9]+((.|,)[0-9]+)?" name='dose'
-            onChange={handleChange} required />
-          <br />
-          <input type='text' placeholder='Impfgrund' name='reason' onChange={handleChange} />
-          <br />
-          <input type='text' placeholder='Bemerkung' name='note' onChange={handleChange} />
-          <br />
-          <input type='submit' className='submit_button' value='Speichern' />
-        </form>
-      </div>
-      */}
-
       <Modal show={props.showPopUp} onHide={props.switchPopUp} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Impfung hinzufügen</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -115,7 +62,8 @@ const Popup = (props) => {
                 Erreger
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Erreger-Auswahl" defaultValue="Bitte auswählen" onChange={handleChange} required>
+                <Form.Select aria-label="Erreger-Auswahl"
+                              defaultValue="Bitte auswählen" onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
                 </Form.Select>
@@ -128,7 +76,8 @@ const Popup = (props) => {
                 Impfstoff
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfstoff eingeben" onChange={handleChange} />
+                <Form.Control type="text" placeholder="Impfstoff eingeben"
+                              onChange={handleChange} />
               </Col>
             </Form.Group>
 
@@ -138,7 +87,8 @@ const Popup = (props) => {
                 Status
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Status der Impfung" defaultValue="Bitte auswählen" onChange={handleChange}>
+                <Form.Select aria-label="Status der Impfung" defaultValue="Bitte auswählen"
+                             onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="Abgeschlossen">Abgeschlossen</option>
                   <option value="Unvollendet">Unvollendet</option>
@@ -152,7 +102,8 @@ const Popup = (props) => {
                 Immununisierungsgrad
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Immunisierungsgrad" defaultValue="Bitte auswählen" onChange={handleChange}>
+                <Form.Select aria-label="Immunisierungsgrad" defaultValue="Bitte auswählen"
+                             onChange={handleChange}>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="G1">Grundimmunisierung 1</option>
                   <option value="G2">Grundimmunisierung 2</option>
@@ -166,6 +117,15 @@ const Popup = (props) => {
             </Form.Group>
 
             {/* Date Picker */}
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Datum
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <Form.Control type="date" placeholder={new Date()}
+                            onChange={handleChange} required />
+              </Col>
+            </Form.Group>
 
             {/* Impfstelle */}
             <Form.Group as={Row} className="mb-3">
@@ -173,7 +133,8 @@ const Popup = (props) => {
                 Impfstelle
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfstelle eingeben" onChange={handleChange} />
+                <Form.Control type="text" placeholder="Impfstelle eingeben"
+                              onChange={handleChange} required />
               </Col>
             </Form.Group>
 
@@ -183,7 +144,8 @@ const Popup = (props) => {
                 Dosis in ml
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Dosis eingeben" pattern="[0-9]+((.|,)[0-9]+)?" onChange={handleChange} />
+                <Form.Control type="text" placeholder="Dosis eingeben" pattern="[0-9]+((.|,)[0-9]+)?"
+                              onChange={handleChange} required/>
               </Col>
             </Form.Group>
 
@@ -193,7 +155,8 @@ const Popup = (props) => {
                 Impfgrund
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfgrund eingeben" onChange={handleChange} />
+                <Form.Control type="text" placeholder="Impfgrund eingeben"
+                              onChange={handleChange} />
               </Col>
             </Form.Group>
 
@@ -216,7 +179,8 @@ const Popup = (props) => {
             <Button variant="primary" type="submit">
               Speichern
             </Button>
-            <Button variant="danger" type="button" onClick={props.switchPopUp} className="mx-2">
+            <Button variant="danger" type="button" onClick={props.switchPopUp}
+                    className="mx-2">
               Abbrechen
             </Button>
           </Form>
