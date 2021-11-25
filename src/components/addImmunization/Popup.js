@@ -48,13 +48,14 @@ const Popup = (props) => {
     }
   }
 
-  const [show, setShow] = useState(false);
+  //const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  //const handleClose = () => setShow(false);
+  //const handleShow = () => setShow(show => !show);
 
   return (
     <div className="popup">
+      {/*
       <div className='popup_button'>
         <button onClick={props.switchPopUp}>
           Abbrechen
@@ -100,16 +101,14 @@ const Popup = (props) => {
           <input type='submit' className='submit_button' value='Speichern' />
         </form>
       </div>
-      <Button variant="primary" onClick={handleShow}>
-        Impfung hinzufügen
-      </Button>
+      */}
 
-      <Modal show={show} onHide={handleClose} size="xl">
+      <Modal show={props.showPopUp} onHide={props.switchPopUp} size="xl">
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             {/* Erreger */}
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm={3} md={5} lg={3}>
@@ -218,7 +217,7 @@ const Popup = (props) => {
             <Button variant="primary" type="submit">
               Speichern
             </Button>
-            <Button variant="danger" type="button" onClick={handleClose} className="mx-2">
+            <Button variant="danger" type="button" onClick={props.switchPopUp} className="mx-2">
               Abbrechen
             </Button>
           </Form>

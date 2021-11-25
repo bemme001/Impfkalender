@@ -1,35 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Popup from "./Popup";
+import { Button } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-class AddImmunization extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPopUp: false
-    };
+const AddImmunization = (props) => {
+  const [showPopUp, setShowPopUp] = useState(false);
 
-    this.switchPopUp = this.switchPopUp.bind(this);
+  const switchPopUp = () => {
+    setShowPopUp(show => !show);
   }
 
-  switchPopUp() {
-    this.setState({
-      showPopUp: !this.state.showPopUp
-    });
-  }
-
-  render() {
-    return(
-      <div className='add_immunization'>
-        <button className='add_immunization_button' onClick={this.switchPopUp}>
-          Impfung hinzufügen
-        </button>
-        {this.state.showPopUp
-          ? <Popup showPopUp={this.state.showPopUp} switchPopUp={this.switchPopUp}
-                   uuid={this.props.uuid} pid={this.props.pid} perf={this.props.perf}/>
-          : null}
-      </div>
-    );
-  }
+  return (
+    <div className='add_immunization'>
+      <Button variant="primary" onClick={switchPopUp}>
+        Impfung hinzufügen
+      </Button>
+      {showPopUp
+        ? <Popup showPopUp={showPopUp} switchPopUp={switchPopUp}
+                 uuid={props.uuid} pid={props.pid} perf={props.perf}/>
+        : null}
+    </div>
+  );
 }
 
 export default AddImmunization;
