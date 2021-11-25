@@ -2,6 +2,7 @@ import React from 'react'
 import {Col, Container, Row, Dropdown, Card, Button} from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
+import PatientInformation from './PatientInformations';
 
 export default function MainView() {
     return (
@@ -12,12 +13,7 @@ export default function MainView() {
                         <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
                             <Row>
                                 <Col>   
-                                    <h1>Max Mustermann</h1>
-                                    <h4>Geschlecht: männlich Geb: 22.01.2000</h4>
-                                    <h4>Schlossallee 12</h4>
-                                    <h4>65187 Wiesbaden</h4>
-                                    <h4>Tel.: 56387462</h4>
-                                  
+                                    <PatientInformation />
                                 </Col>
                             </Row>
                         </Container>   

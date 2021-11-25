@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 const AgeTiles = ({ range}) => {
   return (
     <div className="mb-3 d-grid gap-2">
-        <Button variant="info" size="lg" >
+        <Button variant="outline-success" size="lg" >
             {range}
         </Button>{' '}
     </div>  
