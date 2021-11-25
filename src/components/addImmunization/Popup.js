@@ -115,8 +115,8 @@ const Popup = (props) => {
                 Erreger
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Erreger-Auswahl" onChange={handleChange}>
-                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
+                <Form.Select aria-label="Erreger-Auswahl" defaultValue="Bitte auswählen" onChange={handleChange} required>
+                  <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
                 </Form.Select>
               </Col>
@@ -138,8 +138,8 @@ const Popup = (props) => {
                 Status
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Status der Impfung" onChange={handleChange}>
-                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
+                <Form.Select aria-label="Status der Impfung" defaultValue="Bitte auswählen" onChange={handleChange}>
+                  <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="Abgeschlossen">Abgeschlossen</option>
                   <option value="Unvollendet">Unvollendet</option>
                 </Form.Select>
@@ -152,9 +152,8 @@ const Popup = (props) => {
                 Immununisierungsgrad
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Select aria-label="Immunisierungsgrad" onChange={handleChange}>
-                  <option value="Bitte auswählen" disabled selected hidden>Bitte auswählen</option>
-                  <option value="Immunisierungsgrad" disabled hidden>Immunisierungsgrad</option>
+                <Form.Select aria-label="Immunisierungsgrad" defaultValue="Bitte auswählen" onChange={handleChange}>
+                  <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   <option value="G1">Grundimmunisierung 1</option>
                   <option value="G2">Grundimmunisierung 2</option>
                   <option value="G3">Grundimmunisierung 3</option>
@@ -184,7 +183,7 @@ const Popup = (props) => {
                 Dosis in ml
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Dosis eingeben" onChange={handleChange} />
+                <Form.Control type="text" placeholder="Dosis eingeben" pattern="[0-9]+((.|,)[0-9]+)?" onChange={handleChange} />
               </Col>
             </Form.Group>
 
