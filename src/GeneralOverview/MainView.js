@@ -1,10 +1,40 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {Col, Container, Row, Dropdown, Card, Button} from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
+import Patient from "./Patient";
+import Immunization from "./Immunization";
+import useEffectAsync from "../hooks/useEffectAsync";
+
+const id = 2691490;
 
 export default function MainView() {
+
+    const cacheuuid = useRef(null);
+    const [patient, setPatient] = useState(null);
+    const [immunization, setImmunization] = useState(null);
+    const [year, setYear] = useState(60);
+    const [month, setMonth] = useState(24)
+    let patientAge;
+
+
+    useEffectAsync( async () => {
+        const p = await Patient.create(id);
+        setPatient(p);
+        cacheuuid.current = p.uuid;
+
+        const i = await Immunization.create(cacheuuid.current);
+        setImmunization(i);
+    },[]);
+
+    function check(counter) {
+        if(immunization){
+            return immunization[counter];
+        }
+        return undefined;
+    }
+
     return (
         <div>
             <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
@@ -12,8 +42,8 @@ export default function MainView() {
                     <Col>
                         <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
                             <Row>
-                                <Col>   
-                                    <PatientInformation />
+                                <Col>
+                                    <PatientInformation patient={patient}/>
                                 </Col>
                             </Row>
                         </Container>   
@@ -35,7 +65,7 @@ export default function MainView() {
                                     </Dropdown.Menu>
                                 </Dropdown>
                                 </div>  
-
+                  
                                 <AgeTiles range="60+" /> 
                                 <AgeTiles range="18-60" /> 
                                 <AgeTiles range="17" /> 
@@ -56,20 +86,14 @@ export default function MainView() {
                                 </div>
                                 <Container fluid="xl" >
                                     <Row className="equal px-4">
-                                        
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col ><VaccinationTiles title  ="Covid-19" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Masern" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" /></Col> 
-                                    </Row>
-                                    <Row className="equal px-4">
-                                        
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
+                                        <Col > <VaccinationTiles immunization={check(0)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(1)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(2)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(3)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(4)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(5)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(6)}/></Col>
+                                        <Col > <VaccinationTiles immunization={check(7)}/></Col>
                                     </Row>
                                 </Container>
                             </Card.Body>
