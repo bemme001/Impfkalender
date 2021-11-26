@@ -1,8 +1,9 @@
 import React from 'react';
 import {Col, Table} from "react-bootstrap";
 import './SR.css';
+import SrTableRow from "./SRTableRow";
 
-const SRTable = () => {
+const SRTable = ({recommendation}) => {
   return (
     <Col>
       <Table bordered id="SRTable" className="align-middle">
@@ -56,188 +57,11 @@ const SRTable = () => {
         </tr>
         </thead>
         <tbody>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Rotaviren</th>
-          <td colSpan={2} className="bg-blue">G1 <span className="comment">a</span></td>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue">(G3)</td>
-          <td colSpan={6} className="bg-grey"/>
-          <td className="w-1"/>
-          <td colSpan={10} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Tetanus</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">A1</td>
-          <td className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A2</td>
-          <td className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A <span className="comment">e</span></td>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Diphtherie</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">A1</td>
-          <td className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A2</td>
-          <td className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A <span className="comment">e</span></td>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Pertussis</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">A1</td>
-          <td className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">A3 <span className="comment">e</span></td>
-          <td colSpan={2} className="bg-blue-light"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Hib H. inf Type b</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td className="bg-blue-light"/>
-          <td colSpan={9} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Poliomyelitis</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={3} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-blue">A1</td>
-          <td colSpan={4} className="bg-blue-light"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Hepatitis B</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={7} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Pneumokokken</th>
-          <td className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="bg-blue">G3 <span className="comment">c</span></td>
-          <td colSpan={4} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={8} className="bg-grey"/>
-          <td colSpan={2} className="bg-blue">S <span className="comment">g</span></td>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Meningokokken C</th>
-          <td colSpan={6} className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td colSpan={3} className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={7} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Masern</th>
-          <td colSpan={5} className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td colSpan={2} className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={7} className="bg-blue-light"/>
-          <td className="bg-blue">S <span className="comment">f</span></td>
-          <td colSpan={2} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Mumps, Röteln</th>
-          <td colSpan={5} className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td colSpan={2} className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={7} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Varizellen</th>
-          <td colSpan={5} className="bg-grey"/>
-          <td className="bg-blue">G1</td>
-          <td colSpan={2} className="bg-blue-light"/>
-          <td className="bg-blue">G2</td>
-          <td className="bg-blue-light"/>
-          <td className="w-1"/>
-          <td colSpan={7} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">HPV Humane Papillomviren</th>
-          <td colSpan={10} className="bg-grey"/>
-          <td className="w-1"/>
-          <td colSpan={3} className="bg-grey"/>
-          <td className="bg-blue">G1 <span className="comment">d</span></td>
-          <td className="bg-blue">G2 <span className="comment">d</span></td>
-          <td colSpan={2} className="bg-blue-light"/>
-          <td colSpan={3} className="bg-grey"/>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Herpes zoster</th>
-          <td colSpan={10} className="bg-grey"/>
-          <td className="w-1"/>
-          <td colSpan={8} className="bg-grey"/>
-          <td className="bg-blue">G1 <span className="comment">h</span></td>
-          <td className="bg-blue">G2 <span className="comment">h</span></td>
-        </tr>
-        <tr className="border border-white">
-          <th scope="row" className="border border-gray">Herpes zoster</th>
-          <td colSpan={10} className="bg-grey"/>
-          <td className="w-1"/>
-          <td colSpan={8} className="bg-grey"/>
-          <td colSpan={2} className="bg-blue">S (jährlich)</td>
-        </tr>
+        {
+          recommendation.map(element => {
+            return <SrTableRow vaccination={element}/>
+          })
+        }
         </tbody>
       </Table>
     </Col>
