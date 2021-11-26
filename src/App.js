@@ -1,11 +1,19 @@
+import React from "react";
 import './App.css';
-import SRMain from "./components/stikoRecommendation/SRMain";
+import HomePageMain from "./HomePage/HomePageMain";
+import NavbarMain from "./Header/NavbarMain";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomePageCardElement from "./HomePage/HomePageCardElement";
 
 function App() {
   return (
-    <div className="App">
-      <SRMain />
-    </div>
+    <BrowserRouter>
+      <NavbarMain />
+      <Routes>
+        <Route path="/" element={<HomePageMain />} />
+        <Route path="stiko-empfehlungen" element={<HomePageCardElement />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
