@@ -1,0 +1,68 @@
+/* * * * * * * * * * * * * *    Colors   * * * * * * * * * * * * * */
+.bg-blue {
+  background-color: #aac0df !important;
+}
+
+.bg-blue-light {
+  background-color: #dae1ee !important;
+}
+
+.bg-grey {
+  background-color: #d6d6d6 !important;
+}
+
+.bg-green {
+  background-color: #91c69e !important;
+}
+
+.bg-red {
+  background-color: #f2adad !important;
+}
+
+.bg-orange {
+  background-color: #f4dc98 !important;
+}
+
+
+/* * * * * * * * * *    Stiko Recommendation Table    * * * * * * * * */
+#SRTable .comment {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: bold;
+}
+
+#SRTable td {
+  text-align: center;
+}
+
+/*#SRTable > thead {
+  position: sticky;
+  top:0;
+}*/
+/*#SRTable > thead > th {
+  position: sticky;
+  top:0;
+}*/
+
+.border-gray {
+  border-color: #d6d6d6 !important;
+}
+
+.border-right-blue {
+  border-right: 1px solid #0d6efd !important
+}
+
+th {
+  font-weight: normal;
+}
+
+.w-1 {
+  width: 0.5% !important;
+  padding: 0 !important;
+}
+
+.fs-7 {
+  font-size: 0.7rem !important;
+}
+
+/* * * * * * * * * * * * * * *    ...    * * * * * * * * * * * * * */
