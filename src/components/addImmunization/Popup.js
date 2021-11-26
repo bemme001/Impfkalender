@@ -134,9 +134,11 @@ const Popup = (props) => {
               <Col sm={9} md={7} lg={9}>
                 <Form.Control type="date" placeholder={new Date()}
                             onChange={handleChange} name="date" isInvalid={ !!errors.date }/>
+
                 <Form.Control.Feedback type="invalid">
                   {errors.date}
                 </Form.Control.Feedback>
+
               </Col>
             </Form.Group>
 
