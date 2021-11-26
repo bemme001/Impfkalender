@@ -12,14 +12,18 @@ const Popup = (props) => {
 
   const findFormErrors = () => {
     const newErrors = {};
+    const regexDate = new RegExp('[0-9]+((.|,)[0-9]+)?');
     if(immunization.disease === undefined) newErrors.disease = "Bitte wählen Sie einen Erreger aus";
     if(immunization.vaccine === undefined) newErrors.vaccine = "Bitte geben Sie einen Impfstoff an.";
+    if(immunization.vaccine && immunization.vaccine.length > 200) newErrors.vaccine = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.status === undefined) newErrors.status = "Bitte wählen Sie einen Impfstatus aus.";
     if(immunization.immun === undefined) newErrors.immun = "Bitte wählen Sie einen Immunisierungsgrad aus.";
     if(immunization.date === undefined) newErrors.date = "Bitte wählen Sie ein Datum aus.";
     if(immunization.site === undefined) newErrors.site = "Bitte geben Sie an wo Sie am Körper geimpft haben.";
+    if(immunization.site && immunization.site.length > 200) newErrors.site = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.dose === undefined) newErrors.dose = "Bitte geben Sie an wie viel Imstoff (in ml) Sie verabreicht haben.";
-    if(immunization.dose < 0) newErrors.dose = "Bitte geben Sie einen positiven Wert ein.";
+    if(immunization.dose && immunization.dose < 0) newErrors.dose = "Bitte geben Sie einen positiven Wert ein.";
+    if(!regexDate.test(immunization.dose)) newErrors.dose = "Bitte geben Sie eine Zahl ein."; //pattern="[0-9]+((.|,)[0-9]+)?"
     return newErrors;
   }
 
@@ -163,7 +167,7 @@ const Popup = (props) => {
                 Dosis in ml
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Dosis eingeben" pattern="[0-9]+((.|,)[0-9]+)?"
+                <Form.Control type="text" placeholder="Dosis eingeben"
                               onChange={handleChange} name="dose" isInvalid={ !!errors.dose }/>
                 <Form.Control.Feedback type="invalid">
                   {errors.dose}
