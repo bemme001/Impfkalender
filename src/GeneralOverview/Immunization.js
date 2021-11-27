@@ -3,7 +3,9 @@ import axios from "axios";
 var immunizationJson;
 
 export default class Immunization {
-
+    /* static numOfImz;
+    numOfImz = immunizationJson.length; */
+    
     constructor(){
     };
 
@@ -24,14 +26,14 @@ export default class Immunization {
     static async create(uuid) {
         var Immunizations = [];
         await this.fetchImmunization(uuid);
-
+        
         for(var i = 0; i < immunizationJson.length; i++){
             const o = new Immunization();
             await o.getData(i);
             Immunizations.push(o);
         }
 
-        console.log(Immunizations);
+        //console.log(Immunizations);
         return Immunizations;
     }
 }
