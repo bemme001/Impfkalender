@@ -31,7 +31,7 @@ export default class Patient {
     static async create(id) {
         const o = new Patient();
         await o.fetchPatient(id);
-        console.log(o);
         return o;
     }
+
 }

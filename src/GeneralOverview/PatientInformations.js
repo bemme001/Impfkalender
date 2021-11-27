@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 
 const PatientInformation = (props) => {
+    //console.log(props);
+
     if(props.patient == undefined){
-        return <div>Kein Patient</div>
+        return <div>Loading...</div>
     }
 
     return (

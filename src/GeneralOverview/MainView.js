@@ -7,15 +7,9 @@ import Patient from "./Patient";
 import Immunization from "./Immunization";
 import useEffectAsync from "../hooks/useEffectAsync";
 import { Markup } from 'interweave';
+import axios from "axios";
 
 const id = 2691490;
-
-
-
-
-
-
-
 
 /* var numberOfImz = 3;//Länge des Arrays nachpflegen
 var iterationPoint = 0;
@@ -72,15 +66,14 @@ return 1;
    
 } */
 
-
 export default function MainView() {
 
     const cacheuuid = useRef(null);
     const [patient, setPatient] = useState(null);
     const [immunization, setImmunization] = useState(null);
-    const [year, setYear] = useState(60);
-    const [month, setMonth] = useState(24)
-    let patientAge;
+    //const [year, setYear] = useState(60);
+    //const [month, setMonth] = useState(24)
+    //let patientAge;
     let numOfImz;
 
     useEffectAsync( async () => {
@@ -92,9 +85,21 @@ export default function MainView() {
         setImmunization(i);
         if(immunization) numOfImz = Object.keys(immunization).length;//Undefined Problem
     },[]);
- 
 
-    function check(counter) {
+    const immunizationTiles = () => {
+        if(immunization){
+            return(
+                <Row xs="auto">
+                {immunization.map((element) =>
+                        <Col><VaccinationTiles immunization={element}/></Col>
+                    )}
+                </Row>
+            )
+        }
+        return null;
+    }
+
+    /*function check(counter) {
         if(immunization){
             return immunization[counter];
         }
@@ -109,14 +114,14 @@ export default function MainView() {
     
     function returnRow(){     
         
-        console.log(Immunization.imzLength);
+        //console.log(Immunization.imzLength);
         let e = ["<Col ><VaccinationTiles immunization={check(i)}/></Col>", "<Col ><VaccinationTiles immunization={check(i)}/></Col>"]
         for (let i = 0; i < 5; i++) {
             //TODO
         }
       
         return <Row className="equal px-4"><Col></Col></Row>
-    }
+    }*/
 
 
     return (
@@ -169,21 +174,7 @@ export default function MainView() {
                                     <Button variant="primary">Neue Impfung hinzufügen</Button>{' '}
                                 </div>
                                 <Container fluid="xl" >
-                                    <Row className="equal px-4">
-                                       {/*  <Col > <VaccinationTiles vaccinecode = {check(0).immunization.vaccinecode} status={check(0).immunization.status}/></Col> */}
-                                       {/*  <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col>
-                                        <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col>
-                                        <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col>
-                                        <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col> */}
-                                    </Row>
-                                    <Row className="equal px-4">
-                                        {/* <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col>
-                                        <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col>
-                                        <Col > <VaccinationTiles vaccinecode = {check(0).vaccinecode} status={check(0).status}/></Col> */}
-                                        <Col></Col>
-                                        <Col></Col>  
-                                    </Row>
-                                    {returnRow()}
+                                    {immunizationTiles()}
                                 </Container>
                             </Card.Body>
                         </Card>

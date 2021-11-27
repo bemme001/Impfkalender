@@ -13,7 +13,6 @@ export default class Immunization {
         this.id             = immunizationJson[count].resource.id;
         this.vaccinecode    = immunizationJson[count].resource.vaccineCode.text;
         this.status         = immunizationJson[count].resource.status;
-        console.log(immunizationJson[count].resource);
     }
 
     static async fetchImmunization(uuid) {
@@ -32,8 +31,8 @@ export default class Immunization {
             await o.getData(i);
             Immunizations.push(o);
         }
+        console.log(Immunizations);
 
-        //console.log(Immunizations);
         return Immunizations;
     }
 }
