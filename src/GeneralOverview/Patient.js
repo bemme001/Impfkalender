@@ -4,9 +4,6 @@ var patientJson;
 
 export default class Patient {
 
-    constructor(){
-    };
-
     async fetchPatient(id) {
         await axios.get("https://hapi.fhir.org/baseR4/Patient?_id=" + id)
             .then((response) => {

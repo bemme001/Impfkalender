@@ -1,11 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 const PatientInformation = (props) => {
-    //console.log(props);
-
-    if(props.patient == undefined){
-        return <div>Loading...</div>
-    }
 
     return (
       <div>

@@ -5,9 +5,6 @@ var immunizationJson;
 export default class Immunization {
     /* static numOfImz;
     numOfImz = immunizationJson.length; */
-    
-    constructor(){
-    };
 
     async getData(count){
         this.id             = immunizationJson[count].resource.id;
@@ -31,7 +28,6 @@ export default class Immunization {
             await o.getData(i);
             Immunizations.push(o);
         }
-        console.log(Immunizations);
 
         return Immunizations;
     }

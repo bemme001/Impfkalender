@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {Col, Container, Row, Dropdown, Card, Button} from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
@@ -6,8 +6,8 @@ import PatientInformation from './PatientInformations';
 import Patient from "./Patient";
 import Immunization from "./Immunization";
 import useEffectAsync from "../hooks/useEffectAsync";
-import { Markup } from 'interweave';
-import axios from "axios";
+//import { Markup } from 'interweave';
+//import axios from "axios";
 
 const id = 2691490;
 
@@ -74,7 +74,7 @@ export default function MainView() {
     //const [year, setYear] = useState(60);
     //const [month, setMonth] = useState(24)
     //let patientAge;
-    let numOfImz;
+    //let numOfImz;
 
     useEffectAsync( async () => {
         const p = await Patient.create(id);
@@ -83,7 +83,7 @@ export default function MainView() {
 
         const i = await Immunization.create(cacheuuid.current);
         setImmunization(i);
-        if(immunization) numOfImz = Object.keys(immunization).length;//Undefined Problem
+        //if(immunization) numOfImz = Object.keys(immunization).length;//Undefined Problem
     },[]);
 
     const immunizationTiles = () => {
@@ -94,6 +94,15 @@ export default function MainView() {
                         <Col><VaccinationTiles immunization={element}/></Col>
                     )}
                 </Row>
+            )
+        }
+        return null;
+    }
+
+    const patientInformations = () => {
+        if(patient){
+            return(
+                <PatientInformation patient={patient}/>
             )
         }
         return null;
@@ -132,7 +141,7 @@ export default function MainView() {
                         <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
                             <Row>
                                 <Col>
-                                    <PatientInformation patient={patient}/>
+                                    {patientInformations()}
                                 </Col>
                             </Row>
                         </Container>   

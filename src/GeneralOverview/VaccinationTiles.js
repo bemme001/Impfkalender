@@ -3,8 +3,6 @@ import {Card,Button} from "react-bootstrap";
 
 const VaccinationTiles = (props) => {
 
-    console.log(props);
-
   return (
     <div className="mb-4">
         <Card border="info" style={{ width: '10rem' }}>
