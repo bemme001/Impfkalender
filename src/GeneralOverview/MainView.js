@@ -1,10 +1,138 @@
-import React from 'react'
+import React, {useRef, useState} from 'react'
 import {Col, Container, Row, Dropdown, Card, Button} from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
+import Patient from "./Patient";
+import Immunization from "./Immunization";
+import useEffectAsync from "../hooks/useEffectAsync";
+//import { Markup } from 'interweave';
+//import axios from "axios";
+
+const id = 2691490;
+
+/* var numberOfImz = 3;//Länge des Arrays nachpflegen
+var iterationPoint = 0;
+
+function generateStructureOfTiles(props){
+    //generate Tiles and fill up with empty Cols if needed.
+    let listOfTileGroups = [];
+    let counter = 0;
+    let maxLength = 0;
+    //ermittle maximale Menge an Cols anhand von numberOfImz % 5 === 0 (wenn ungerade, fülle auf bis gerade)
+    if(numberOfImz % 5 === 0){
+        maxLength = numberOfImz;
+    } else {
+        let add = 0;
+        while((numberOfImz+add) % 5 !== 0){
+            add++;
+        }
+        maxLength = numberOfImz+add; //Länge der Imz + filler
+    }
+} */
+
+/* function Generate(props){
+    let tiles = []
+    let counter = 0;
+    //Wenn die differenz zwischen iterationPoint+5 und numberOfImz größer 1 und kleiner 5 ist, fülle den Rest mit leeren <Col> auf.
+    
+    for (let i = 1; i <= 5; i++) {
+      if(counter < numberOfImz-iterationPoint){
+        tiles.push(<Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>);
+        counter++;
+      }else{
+        tiles.push(<Col ></Col>);
+      }
+    }
+    iterationPoint += 5;
+    console.log(tiles);
+    return tiles;
+}
+
+function GenerateImmunizationTilesStructure(props) {
+
+    let rowList = [];
+
+    for (let i = 1; i <= numberOfImz; i++) {
+        if(i === 1 || i === 6 || i === 11 || i === 16 || i === 21){
+            rowList.push(
+                <Row className="equal px-4" key={i}>
+                  {Generate()}
+                </Row>
+            );      
+        }  
+    }
+return 1;
+   
+} */
 
 export default function MainView() {
+
+    const cacheuuid = useRef(null);
+    const [patient, setPatient] = useState(null);
+    const [immunization, setImmunization] = useState(null);
+    //const [year, setYear] = useState(60);
+    //const [month, setMonth] = useState(24)
+    //let patientAge;
+    //let numOfImz;
+
+    useEffectAsync( async () => {
+        const p = await Patient.create(id);
+        setPatient(p);
+        cacheuuid.current = p.uuid;
+
+        const i = await Immunization.create(cacheuuid.current);
+        setImmunization(i);
+        //if(immunization) numOfImz = Object.keys(immunization).length;//Undefined Problem
+    },[]);
+
+    const immunizationTiles = () => {
+        if(immunization){
+            return(
+                <Row xs="auto">
+                {immunization.map((element) =>
+                        <Col><VaccinationTiles immunization={element}/></Col>
+                    )}
+                </Row>
+            )
+        }
+        return null;
+    }
+
+    const patientInformations = () => {
+        if(patient){
+            return(
+                <PatientInformation patient={patient}/>
+            )
+        }
+        return null;
+    }
+
+    /*function check(counter) {
+        if(immunization){
+            return immunization[counter];
+        }
+        return undefined;
+    }
+
+
+  
+    function returnOneTile(counter){
+        return "<Col ><VaccinationTiles immunization={check(" + {counter} + ")}/></Col>"
+    }
+    
+    function returnRow(){     
+        
+        //console.log(Immunization.imzLength);
+        let e = ["<Col ><VaccinationTiles immunization={check(i)}/></Col>", "<Col ><VaccinationTiles immunization={check(i)}/></Col>"]
+        for (let i = 0; i < 5; i++) {
+            //TODO
+        }
+      
+        return <Row className="equal px-4"><Col></Col></Row>
+    }*/
+
+
     return (
         <div>
             <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
@@ -12,8 +140,8 @@ export default function MainView() {
                     <Col>
                         <Container fluid /*className="bg-light border rounded-2 mt-4"*/>
                             <Row>
-                                <Col>   
-                                    <PatientInformation />
+                                <Col>
+                                    {patientInformations()}
                                 </Col>
                             </Row>
                         </Container>   
@@ -35,7 +163,7 @@ export default function MainView() {
                                     </Dropdown.Menu>
                                 </Dropdown>
                                 </div>  
-
+                  
                                 <AgeTiles range="60+" /> 
                                 <AgeTiles range="18-60" /> 
                                 <AgeTiles range="17" /> 
@@ -55,22 +183,7 @@ export default function MainView() {
                                     <Button variant="primary">Neue Impfung hinzufügen</Button>{' '}
                                 </div>
                                 <Container fluid="xl" >
-                                    <Row className="equal px-4">
-                                        
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col ><VaccinationTiles title  ="Covid-19" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Masern" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" /></Col> 
-                                    </Row>
-                                    <Row className="equal px-4">
-                                        
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col ><VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
-                                        <Col > <VaccinationTiles title  ="Malaria" VacType="G1" display="d-none"/></Col>
-                                    </Row>
+                                    {immunizationTiles()}
                                 </Container>
                             </Card.Body>
                         </Card>

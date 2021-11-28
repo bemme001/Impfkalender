@@ -9,10 +9,12 @@ const VaccinationTiles = ({ title, VacType, display="d-inline" }) => {
     setShowPopUp(show => !show);
   }
 
+const VaccinationTiles = (props) => {
+
   return (
-     <div className="mb-4">
-        <Card border="info" class={display}>
-        <Card.Header><h4>{title}</h4></Card.Header>
+    <div className="mb-4">
+        <Card border="info" style={{ width: '10rem' }}>
+        <Card.Header>{props.immunization.vaccinecode}</Card.Header>
         <Card.Body>
             <Card.Title>{VacType}</Card.Title>
             <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
