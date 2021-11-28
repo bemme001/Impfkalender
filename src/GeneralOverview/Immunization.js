@@ -7,9 +7,14 @@ export default class Immunization {
     numOfImz = immunizationJson.length; */
 
     async getData(count){
-        this.id             = immunizationJson[count].resource.id;
-        this.vaccinecode    = immunizationJson[count].resource.vaccineCode.text;
-        this.status         = immunizationJson[count].resource.status;
+        this.id             = immunizationJson[count].resource.id;                  //Resourcen ID
+        this.vaccinecode    = immunizationJson[count].resource.vaccineCode.text;    //Erreger
+        this.status         = immunizationJson[count].resource.status;              //Status der Impfung
+        this.site           = immunizationJson[count].resource.site.text;           //Ort der Impfung
+        this.route          = immunizationJson[count].resource.route.text;          //Art der Durchführung
+        this.performer      = "Dr. Holiday"                                         //Arzt
+        this.note           = immunizationJson[count].resource.note[0].text         //Notiz
+        this.quantity       = immunizationJson[count].resource.doseQuantity.value + " " + immunizationJson[count].resource.doseQuantity.code
     }
 
     static async fetchImmunization(uuid) {
@@ -28,7 +33,6 @@ export default class Immunization {
             await o.getData(i);
             Immunizations.push(o);
         }
-
         return Immunizations;
     }
 }
