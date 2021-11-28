@@ -9,7 +9,7 @@ const InfoPopup = (props) => {
           <Modal.Title>Infos zur Impfung</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>testestestestest</p>
+          <p>{props.infos.status}</p>
           <Button onClick={props.switchPopUp}>Schließen</Button>
         </Modal.Body>
       </Modal>
