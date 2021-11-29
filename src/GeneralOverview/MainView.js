@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react'
-import {Col, Container, Row, Dropdown, Card, Button} from "react-bootstrap";
+import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
@@ -36,8 +36,8 @@ export default function MainView() {
         if(immunization){
             return(
                 <Row xs="auto">
-                {immunization.map((element) =>
-                        <Col><VaccinationTiles immunization={element}/></Col>
+                {immunization.map((element, key) =>
+                        <Col><VaccinationTiles key={key} immunization={element}/></Col>
                     )}
                 </Row>
             )
@@ -101,7 +101,7 @@ export default function MainView() {
                         <Card>
                             <Card.Body>
                                 <div className="mb-4">
-                                    <AddImmunization/>
+                                <AddImmunization uuid='urn:uuid:5b978457880843a790471c3127b76418' pid='2693259' perf='Practitioner/2691497'/>
                                   {/*<Button variant="primary">Neue Impfung hinzufügen</Button>{' '}*/}
                                 </div>
                                 <Container fluid="xl" >

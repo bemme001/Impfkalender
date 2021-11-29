@@ -5,7 +5,6 @@ import NavbarMain from "./Header/NavbarMain";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomePageCardElement from "./HomePage/HomePageCardElement";
 import MainView from "./GeneralOverview/MainView";
-import AddImmunization from "./components/addImmunization/AddImmunization";
 
 function App() {
   return (

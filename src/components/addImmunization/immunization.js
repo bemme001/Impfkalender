@@ -18,48 +18,6 @@ export default class Immunization {
           "Pneumokokken", "Poliomyelitis", "Rotaviren", "Tetanus", "Varizellen"
         ];
     };
-    create = () => {                  // returns: JSON gefühlt mit den Daten des Objektes
-      return ({
-        resourceType: "Immunization",
-        identifier: [{
-          system: "urn:ietf:rfc:3986",
-          value: this.uuid
-        }],
-        status: this.status,
-        vaccineCode: {
-          text: this.vaccine
-        },
-        patient: {
-          reference: `Patient/${this.pid}`
-        },
-        occurrenceDateTime: this.date,
-        site: {
-          text: this.site
-        },
-        doseQuantity: {
-          value: this.dose,
-          system: "http://unitsofmeasure.org",
-          code: "mL"
-        },
-        performer: {
-          actor: {
-            reference: this.perf
-          }
-        },
-        note: {
-          text: this.note
-        },
-        reasonCode: {
-          text: this.reason
-        },
-        protocolApplied: {
-          targetDisease: {
-            text: this.disease
-          },
-          doseNumberString: this.immun
-        }
-      });
-    };
     toString = () => {
       console.log(this.uuid)
       console.log(this.pid)

@@ -27,14 +27,13 @@ const Popup = (props) => {
     return newErrors;
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (data, event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
-
     if ( Object.keys(newErrors).length > 0 ) {
       setErrors(newErrors);
     } else {
-      let json = immunization.create();
+      let json = create();
       postImmunization(json);
       props.switchPopUp();
     }
@@ -47,6 +46,49 @@ const Popup = (props) => {
       setErrors({...errors, [event.target.name]: null});
     }
   }
+
+  const create = () => {                  // returns: JSON gefühlt mit den Daten des Objektes
+  return ({
+    resourceType: "Immunization",
+    identifier: [{
+      system: "urn:ietf:rfc:3986",
+      value: immunization.uuid
+    }],
+    status: immunization.status,
+    vaccineCode: {
+      text: immunization.vaccine
+    },
+    patient: {
+      reference: `Patient/${immunization.pid}`
+    },
+    occurrenceDateTime: immunization.date,
+    site: {
+      text: immunization.site
+    },
+    doseQuantity: {
+      value: immunization.dose,
+      system: "http://unitsofmeasure.org",
+      code: "mL"
+    },
+    performer: {
+      actor: {
+        reference: immunization.perf
+      }
+    },
+    note: {
+      text: immunization.note
+    },
+    reasonCode: {
+      text: immunization.reason
+    },
+    protocolApplied: {
+      targetDisease: {
+        text: immunization.disease
+      },
+      doseNumberString: immunization.immun
+    }
+  });
+};
 
   return (
     <div className="popup">
