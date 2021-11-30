@@ -12,9 +12,9 @@ const VaccinationTiles = (props) => {
   return (
     <div className="mb-4">
         <Card border="info" style={{ width: '10rem' }}>
-        <Card.Header>{props.immunization.vaccinecode}</Card.Header>
+        <Card.Header>{props.immunization.pathogen}</Card.Header>
         <Card.Body>
-            <Card.Title>{props.immunization.status}</Card.Title>
+            <Card.Title>{props.immunization.immun}</Card.Title>
             <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
             {showPopUp ? <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={props.immunization}/> : null}
         </Card.Body>

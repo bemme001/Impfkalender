@@ -7,20 +7,32 @@ export default class Immunization {
     numOfImz = immunizationJson.length; */
 
     async getData(count){
-        this.id             = immunizationJson[count].resource.id;                  //Resourcen ID
-        this.vaccinecode    = immunizationJson[count].resource.vaccineCode.text;    //Erreger
-        this.status         = immunizationJson[count].resource.status;              //Status der Impfung
-        this.site           = immunizationJson[count].resource.site.text;           //Ort der Impfung
-        this.route          = immunizationJson[count].resource.route.text;          //Art der Durchführung
-        this.performer      = "Dr. Holiday"                                         //Arzt
-        this.note           = immunizationJson[count].resource.note[0].text         //Notiz
-        this.quantity       = immunizationJson[count].resource.doseQuantity.value + " " + immunizationJson[count].resource.doseQuantity.code
+        this.id                         = immunizationJson[count].resource.id;                  //Resourcen ID
+        this.pathogen                   = immunizationJson[count].resource.protocolApplied[0]
+            .targetDisease[0].text;                                                             //Erreger
+        this.vaccine                    = immunizationJson[count].resource.vaccineCode.text;    //Impfstoff
+        this.status                     = immunizationJson[count].resource.status;              //Status
+        this.immun                      = immunizationJson[count].resource.protocolApplied[0]
+            .doseNumberString;                                                                  //Immunisierung
+        this.date                       = immunizationJson[count].resource.occurrenceDateTime;  //Datum
+        this.site                       = immunizationJson[count].resource.site.text;           //Impfstelle
+        this.quantity                   = immunizationJson[count].resource.doseQuantity.value
+            + " " + immunizationJson[count].resource.doseQuantity.code;                         //Dosis
+        this.reason                     = immunizationJson[count].resource.reasonCode ?
+            immunizationJson[count].resource.reasonCode[0].text : "No Value";                   //Impfgrund
+        this.note                       = immunizationJson[count].resource.note ?
+            immunizationJson[count].resource.note[0].text : "No Value";                         //Notiz
     }
 
     static async fetchImmunization(uuid) {
         await axios.get("https://hapi.fhir.org/baseR4/Immunization?identifier=" + uuid)
             .then((response) => {
-                immunizationJson = response.data.entry;
+                immunizationJson = [];
+                console.log(response.data.entry);
+
+                if(response.data.entry){
+                    immunizationJson = response.data.entry;
+                }
             });
     };
 

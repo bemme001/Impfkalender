@@ -10,7 +10,7 @@ import AddImmunization from "../components/addImmunization/AddImmunization"
 //import { Markup } from 'interweave';
 //import axios from "axios";
 
-const id = 2691490;
+const id = 2698452;
 
 
 export default function MainView() {
@@ -30,6 +30,14 @@ export default function MainView() {
 
         const i = await Immunization.create(cacheuuid.current);
         setImmunization(i);
+
+        //Dirty Fix
+        /*const interval = setInterval(async () => {
+            const i = await Immunization.create(cacheuuid.current);
+            setImmunization(i);
+        }, 1000);
+        return () => clearInterval(interval);*/
+
     },[]);
 
     const immunizationTiles = () => {
@@ -101,7 +109,7 @@ export default function MainView() {
                         <Card>
                             <Card.Body>
                                 <div className="mb-4">
-                                <AddImmunization uuid='urn:uuid:5b978457880843a790471c3127b76418' pid='2693259' perf='Practitioner/2691497'/>
+                                <AddImmunization uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1' pid='2698452' perf='Practitioner/2691497'/>
                                   {/*<Button variant="primary">Neue Impfung hinzufügen</Button>{' '}*/}
                                 </div>
                                 <Container fluid="xl" >
