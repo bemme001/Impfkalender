@@ -27,7 +27,7 @@ const Popup = (props) => {
     return newErrors;
   }
 
-  const handleSubmit = (data, event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
     if ( Object.keys(newErrors).length > 0 ) {
