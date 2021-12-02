@@ -5,8 +5,8 @@ import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import Patient from "./Patient";
 import Immunization from "./Immunization";
-import useEffectAsync from "../hooks/useEffectAsync";
-import AddImmunization from "../components/addImmunization/AddImmunization"
+import useEffectAsync from "../../hooks/useEffectAsync";
+import AddImmunization from "../addImmunization/AddImmunization"
 //import { Markup } from 'interweave';
 //import axios from "axios";
 

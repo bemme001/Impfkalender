@@ -3,8 +3,8 @@ import './App.css';
 import HomePageMain from "./components/HomePage/HomePageMain";
 import NavbarMain from "./components/Header/NavbarMain";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import MainView from "./GeneralOverview/MainView";
-import SRMain from "./components/stikoRecommendation/SRMain";
+import MainView from "./components/GeneralOverview/MainView";
+import SRMain from "./components/StikoRecommendation/SRMain";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePageMain />} />
         <Route path="stiko-empfehlungen" element={<SRMain />} />
-        <Route path="mainview" element={<MainView />} />
+        <Route path="generelle-eubersicht" element={<MainView />} />
       </Routes>
     </BrowserRouter>
   );
