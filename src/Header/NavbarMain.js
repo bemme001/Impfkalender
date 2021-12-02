@@ -1,12 +1,16 @@
 import React from 'react';
-import {Container, Nav, Navbar} from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import {Link} from "react-router-dom";
+import Searchbar from "./Searchbar"
 
 const NavbarMain = () => {
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
         <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+        <Nav>
+            <Searchbar />
+        </Nav>
         <Nav className="d-flex">
           <Link to="/" className="nav-link">Startseite</Link>
           <Link to="/stiko-empfehlungen" className="nav-link">STIKO Impfempfehlung</Link>

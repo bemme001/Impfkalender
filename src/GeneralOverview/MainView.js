@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react'
+import { useLocation } from 'react-router-dom'
 import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
@@ -18,10 +19,13 @@ export default function MainView() {
     const cacheuuid = useRef(null);
     const [patient, setPatient] = useState(null);
     const [immunization, setImmunization] = useState(null);
+    const pat = useLocation().state;
+    let key = 0;
     //const [year, setYear] = useState(60);
     //const [month, setMonth] = useState(24)
     //let patientAge;
 
+    console.log(pat)
 
     useEffectAsync( async () => {
         const p = await Patient.create(id);
@@ -44,8 +48,10 @@ export default function MainView() {
         if(immunization){
             return(
                 <Row xs="auto">
-                {immunization.map((element, key) =>
-                        <Col><VaccinationTiles key={key} immunization={element}/></Col>
+                {immunization.map((element) =>
+                        <Col key={key++}>
+                            <VaccinationTiles immunization={element}/>
+                        </Col>
                     )}
                 </Row>
             )
@@ -109,7 +115,11 @@ export default function MainView() {
                         <Card>
                             <Card.Body>
                                 <div className="mb-4">
-                                <AddImmunization uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1' pid='2698452' perf='Practitioner/2691497'/>
+                                <AddImmunization 
+                                    uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1'
+                                    pid='2698452'
+                                    perf='Practitioner/2691497'
+                                />
                                   {/*<Button variant="primary">Neue Impfung hinzufügen</Button>{' '}*/}
                                 </div>
                                 <Container fluid="xl" >
