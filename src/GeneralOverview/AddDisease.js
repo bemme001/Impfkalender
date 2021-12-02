@@ -1,6 +1,5 @@
 import React from "react";
 import {useEffect, useState} from "react";
-import Test from './Test'
 
 function AddDisease() {
   const [diseaseData, setDiseaseData] = useState(null);
@@ -34,8 +33,11 @@ function AddDisease() {
     <div className="add_disease_container">
       <ul>
         {diseaseData && diseaseData.map((disease, key) => <li key={key}>{disease.name}</li>)}
+        <br/>
       </ul>
       <form onSubmit={handleSubmit}>
+        Start the JSON Server in a second terminal: npx json-server --watch data/DiseaseDB.json --port 3001
+        <br/>
         <input type='text' name='disease' onChange={event => setNewDisease(event.target.value)}/>
         <input type='submit' value='Speichern'/>
       </form>

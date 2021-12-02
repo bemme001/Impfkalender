@@ -8,6 +8,7 @@ import Patient from "./Patient";
 import Immunization from "./Immunization";
 import useEffectAsync from "../hooks/useEffectAsync";
 import AddImmunization from "../components/addImmunization/AddImmunization"
+import AddDisease from "./AddDisease"
 //import { Markup } from 'interweave';
 //import axios from "axios";
 
@@ -122,6 +123,7 @@ export default function MainView() {
                                 />
                                   {/*<Button variant="primary">Neue Impfung hinzufügen</Button>{' '}*/}
                                 </div>
+                                <AddDisease/>
                                 <Container fluid="xl" >
                                     {immunizationTiles()}
                                 </Container>
