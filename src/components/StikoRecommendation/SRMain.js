@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {Container, Row} from "react-bootstrap";
 import SRTable from "./SRTable";
 import SrTableDescription from "./SRTableDescription";
 import SR2021 from "./SR2021";
+import Immunization from "../GeneralOverview/Immunization";
+import useEffectAsync from "../../hooks/useEffectAsync";
+import Patient from "../GeneralOverview/Patient";
 
 const SRMain = () => {
 
   const recommendation = SR2021()
+
+  // Testbereich -- Start
+  const [immunization, setImmunization] = useState(null);
+  useEffectAsync( async () => {
+    const p = await Patient.create(2698452);
+    const i = await Immunization.create(p.uuid);
+    setImmunization(i);
+  },[]);
+  // Testbereich -- End
 
   return (
     <Container fluid="xl">
