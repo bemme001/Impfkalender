@@ -3,6 +3,7 @@ import Immunization from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
 import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AddDisease from "../../GeneralOverview/AddDisease"
 
 const Popup = (props) => {
   const [ errors, setErrors ] = useState({});

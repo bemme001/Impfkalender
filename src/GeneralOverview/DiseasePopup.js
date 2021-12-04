@@ -1,6 +1,7 @@
 import React from "react";
 import {useEffect, useState} from "react";
-import {Button, Modal} from "react-bootstrap";
+import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function DiseasePopup(props) {
@@ -35,21 +36,35 @@ function DiseasePopup(props) {
     <div className="add_disease_container">
       <Modal show={props.showPopUp} onHide={props.switchPopUp} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>Erreger</Modal.Title>
+          <Modal.Title>
+            Erreger hinzufügen <br/>
+            (Start the JSON Server in a second terminal: npx json-server --watch data/DiseaseDB.json --port 3001)
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ul>
+          {/*<ul>
             {diseaseData && diseaseData.map((disease, key) => <li key={key}>{disease.name}</li>)}
-            <br/>
-          </ul>
-          <form onSubmit={handleSubmit}>
-            Start the JSON Server in a second terminal: npx json-server --watch data/DiseaseDB.json --port 3001
-            <br/>
-            <input type='text' name='disease' onChange={event => setNewDisease(event.target.value)}/>
-            <input type='submit' value='Speichern'/>
-          </form>
-          <Button onClick={props.switchPopUp}>Schließen</Button>
+          </ul>*/}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={3} md={5} lg={3}>
+                Erreger
+              </Form.Label>
+              <Col sm={9} md={7} lg={9}>
+                <input type='text' name='disease' onChange={event => setNewDisease(event.target.value)} required/>
+              </Col>
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Speichern
+            </Button>
+            <Button variant="danger" type="button" onClick={props.switchPopUp}
+                    className="mx-2">
+              Abbrechen
+            </Button>
+          </Form>
         </Modal.Body>
+        <Modal.Footer></Modal.Footer>
       </Modal>
 
     </div>
