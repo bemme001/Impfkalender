@@ -1,0 +1,76 @@
+{
+  "diseaseData": [
+    {
+      "id": 0,
+      "name": "Diphtherie"
+    },
+    {
+      "name": "Hepatitis B",
+      "id": 1
+    },
+    {
+      "name": "Hibb – H. influenzae Typ b",
+      "id": 2
+    },
+    {
+      "name": "Influenza",
+      "id": 3
+    },
+    {
+      "name": "Masern",
+      "id": 4
+    },
+    {
+      "name": "Meningokokken C",
+      "id": 5
+    },
+    {
+      "name": "Herpes zoster",
+      "id": 6
+    },
+    {
+      "name": "HPV – Humane Papillomviren",
+      "id": 7
+    },
+    {
+      "name": "Mumps, Röteln",
+      "id": 8
+    },
+    {
+      "name": "Pertussis",
+      "id": 9
+    },
+    {
+      "name": "Pneumokokken",
+      "id": 10
+    },
+    {
+      "name": "Poliomyelitis",
+      "id": 11
+    },
+    {
+      "name": "Rotaviren",
+      "id": 12
+    },
+    {
+      "name": "Tetanus",
+      "id": 13
+    },
+    {
+      "name": "Varizellen",
+      "id": 14
+    },
+    {
+      "name": "covid-19",
+      "id": 15
+    },
+    {
+      "name": "test",
+      "id": 16
+    },
+    {
+      "name": "test123",
+      "id": 17
+    }
+  ]
+}
