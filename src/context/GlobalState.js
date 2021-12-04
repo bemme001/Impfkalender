@@ -1,7 +1,7 @@
 import React, {createContext, useReducer, useState} from "react";
 import  AppReducer from './AppReducer';
-import Patient from "../GeneralOverview/Patient";
-import Immunization from "../GeneralOverview/Immunization";
+import Patient from "../components/GeneralOverview/Patient";
+import Immunization from "../components/GeneralOverview/Immunization";
 
 const initialState = {
     patient : null,

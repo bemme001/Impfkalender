@@ -1,6 +1,6 @@
 import react from 'react';
-import Patient from "../GeneralOverview/Patient";
-import Immunization from "../GeneralOverview/Immunization";
+import Patient from "../components/GeneralOverview/Patient";
+import Immunization from "../components/GeneralOverview/Immunization";
 
 export default async (state, action) => {
 

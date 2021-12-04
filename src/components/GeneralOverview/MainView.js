@@ -1,12 +1,12 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useContext } from 'react'
 import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
-import useEffectAsync from "../hooks/useEffectAsync";
-import AddImmunization from "../components/addImmunization/AddImmunization"
+import useEffectAsync from "../../hooks/useEffectAsync";
+import AddImmunization from "../addImmunization/AddImmunization"
 import AddDisease from "./AddDisease"
-import {GlobalContext} from "../context/GlobalState";
+import {GlobalContext} from "../../context/GlobalState";
 
 const id = 2698452;
 
