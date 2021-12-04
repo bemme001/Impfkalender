@@ -28,7 +28,6 @@ export default class Immunization {
         await axios.get("https://hapi.fhir.org/baseR4/Immunization?identifier=" + uuid)
             .then((response) => {
                 immunizationJson = [];
-                console.log(response.data.entry);
 
                 if(response.data.entry){
                     immunizationJson = response.data.entry;

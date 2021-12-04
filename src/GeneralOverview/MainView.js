@@ -1,32 +1,28 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useContext} from 'react'
 import { useLocation } from 'react-router-dom'
 import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
-import Patient from "./Patient";
-import Immunization from "./Immunization";
 import useEffectAsync from "../hooks/useEffectAsync";
 import AddImmunization from "../components/addImmunization/AddImmunization"
 import AddDisease from "./AddDisease"
-//import { Markup } from 'interweave';
-//import axios from "axios";
+import {GlobalContext} from "../context/GlobalState";
 
 const id = 2698452;
 
-
 export default function MainView() {
 
+    let key = 0;
+    /*
     const cacheuuid = useRef(null);
     const [patient, setPatient] = useState(null);
     const [immunization, setImmunization] = useState(null);
     const pat = useLocation().state;
-    let key = 0;
     //const [year, setYear] = useState(60);
     //const [month, setMonth] = useState(24)
     //let patientAge;
 
-    console.log(pat)
 
     useEffectAsync( async () => {
         const p = await Patient.create(id);
@@ -36,20 +32,26 @@ export default function MainView() {
         const i = await Immunization.create(cacheuuid.current);
         setImmunization(i);
 
-        //Dirty Fix
-        /*const interval = setInterval(async () => {
+        const interval = setInterval(async () => {
             const i = await Immunization.create(cacheuuid.current);
             setImmunization(i);
         }, 1000);
-        return () => clearInterval(interval);*/
+        return () => clearInterval(interval);
 
+    },[]);
+    */
+
+    const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
+
+    useEffectAsync( async () => {
+        await fhirFetch(id);
     },[]);
 
     const immunizationTiles = () => {
-        if(immunization){
+        if(immunizationList){
             return(
                 <Row xs="auto">
-                {immunization.map((element) =>
+                {immunizationList.map((element) =>
                         <Col key={key++}>
                             <VaccinationTiles immunization={element}/>
                         </Col>
@@ -61,9 +63,9 @@ export default function MainView() {
     }
 
     const patientInformations = () => {
-        if(patient){
+        if(patientObject){
             return(
-                <PatientInformation patient={patient}/>
+                <PatientInformation patient={patientObject}/>
             )
         }
         return null;

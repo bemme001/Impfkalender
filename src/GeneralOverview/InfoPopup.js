@@ -1,6 +1,15 @@
 import {Button, Modal} from "react-bootstrap";
+/*import {GlobalContext} from "../context/GlobalState";
+import React, {useRef, useState, useContext} from 'react'*/
 
 const InfoPopup = (props) => {
+
+  /*const {patientObject, immunizationList} = useContext(GlobalContext);
+
+  function test(){
+    console.log(patientObject);
+    console.log(immunizationList);
+  }*/
 
   return (
     <div className='InfoPopup'>
@@ -19,6 +28,8 @@ const InfoPopup = (props) => {
           <p>{props.infos.quantity}</p>
           <p>{props.infos.reason}</p>
           <p>{props.infos.note}</p>
+
+          {/*<p>{test()}</p>*/}
 
           <Button onClick={props.switchPopUp}>Schließen</Button>
         </Modal.Body>
