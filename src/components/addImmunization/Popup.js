@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Immunization from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
 import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AddDisease from "../../GeneralOverview/AddDisease"
 
 const Popup = (props) => {
   const [ errors, setErrors ] = useState({});
   const [immunization, setImmunization] = useState(
     new Immunization(props.uuid, props.pid, props.perf, "", "")
   );
+  const [diseaseData, setDiseaseData] = useState(null);
 
   const findFormErrors = () => {
     const newErrors = {};
@@ -46,6 +48,16 @@ const Popup = (props) => {
       setErrors({...errors, [event.target.name]: null});
     }
   }
+
+  useEffect(() => {
+    fetch('http://localhost:3001/diseaseData')
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        setDiseaseData(data);
+      })
+  }, [] );
 
   const create = () => {                  // returns: JSON gefühlt mit den Daten des Objektes
   return ({
@@ -108,7 +120,7 @@ const Popup = (props) => {
                               defaultValue="Bitte auswählen" onChange={handleChange}
                              isInvalid={ !!errors.disease }>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
-                  {immunization.diseaseData.map((x, y) => <option key={y}>{x}</option>)}
+                  {diseaseData && diseaseData.map((x, y) => <option key={y}>{x.name}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.disease}

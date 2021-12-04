@@ -3,18 +3,18 @@ import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
 import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
-import Patient from "./Patient";
-import Immunization from "./Immunization";
-import useEffectAsync from "../../hooks/useEffectAsync";
-import AddImmunization from "../addImmunization/AddImmunization"
-//import { Markup } from 'interweave';
-//import axios from "axios";
+import useEffectAsync from "../hooks/useEffectAsync";
+import AddImmunization from "../components/addImmunization/AddImmunization"
+import AddDisease from "./AddDisease"
+import {GlobalContext} from "../context/GlobalState";
 
 const id = 2698452;
 
 
 export default function MainView() {
 
+    let key = 0;
+    /*
     const cacheuuid = useRef(null);
     const [patient, setPatient] = useState(null);
     const [immunization, setImmunization] = useState(null);
@@ -31,21 +31,29 @@ export default function MainView() {
         const i = await Immunization.create(cacheuuid.current);
         setImmunization(i);
 
-        //Dirty Fix
-        /*const interval = setInterval(async () => {
+        const interval = setInterval(async () => {
             const i = await Immunization.create(cacheuuid.current);
             setImmunization(i);
         }, 1000);
-        return () => clearInterval(interval);*/
+        return () => clearInterval(interval);
 
+    },[]);
+    */
+
+    const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
+
+    useEffectAsync( async () => {
+        await fhirFetch(id);
     },[]);
 
     const immunizationTiles = () => {
-        if(immunization){
+        if(immunizationList){
             return(
                 <Row xs="auto">
-                {immunization.map((element, key) =>
-                        <Col><VaccinationTiles key={key} immunization={element}/></Col>
+                {immunizationList.map((element) =>
+                        <Col key={key++}>
+                            <VaccinationTiles immunization={element}/>
+                        </Col>
                     )}
                 </Row>
             )
@@ -54,9 +62,9 @@ export default function MainView() {
     }
 
     const patientInformations = () => {
-        if(patient){
+        if(patientObject){
             return(
-                <PatientInformation patient={patient}/>
+                <PatientInformation patient={patientObject}/>
             )
         }
         return null;
@@ -109,9 +117,14 @@ export default function MainView() {
                         <Card>
                             <Card.Body>
                                 <div className="mb-4">
-                                <AddImmunization uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1' pid='2698452' perf='Practitioner/2691497'/>
+                                <AddImmunization
+                                    uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1'
+                                    pid='2698452'
+                                    perf='Practitioner/2691497'
+                                />
                                   {/*<Button variant="primary">Neue Impfung hinzufügen</Button>{' '}*/}
                                 </div>
+                                <AddDisease/>
                                 <Container fluid="xl" >
                                     {immunizationTiles()}
                                 </Container>
