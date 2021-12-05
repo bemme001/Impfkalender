@@ -1,4 +1,5 @@
 import React from 'react';
+import InfoPopup from "../GeneralOverview/InfoPopup";
 
 const SrTableRow = ({vaccination, patient, immunizations}) => {
   function diffInMonths(birthDate, immunDate) {

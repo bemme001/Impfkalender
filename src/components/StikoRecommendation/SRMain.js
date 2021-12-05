@@ -12,11 +12,11 @@ const SRMain = () => {
   const patient = {id: 1, birthdate: "2008-10-21"}
   // const patient = {}
   const immunizations = [
-    {id: 1, pathogen: "Rotaviren", status: "completed", immun: "G1", date: "2008-11-25"},
-    {id: 2, pathogen: "Rotaviren", status: "completed", immun: "G2", date: "2009-06-05"},
+    {id: 1, pathogen: "Rotaviren",  status: "completed", immun: "G1",  date: "2008-11-25"},
+    {id: 2, pathogen: "Rotaviren",  status: "completed", immun: "G2",  date: "2009-06-05"},
     {id: 3, pathogen: "Diphtherie", status: "completed", immun: "G1", date: "2008-12-05"},
     {id: 3, pathogen: "Diphtherie", status: "completed", immun: "G2", date: "2009-06-05"},
-    {id: 3, pathogen: "Diphtherie", status: "completed", immun: "G3", date: "1989-06-05"},
+    {id: 3, pathogen: "Diphtherie", status: "completed", immun: "G3", date: "2013-06-05"},
   ]
   // Testbereich -- End
 
