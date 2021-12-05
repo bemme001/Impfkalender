@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SrTableRow = ({vaccination}) => {
+const SrTableRow = ({vaccination, patient, immunizations}) => {
   function diffInMonths(birthDate, immunDate) {
     let date1 = new Date(birthDate)
     let date2 = new Date(immunDate)
@@ -8,14 +8,6 @@ const SrTableRow = ({vaccination}) => {
     let months = (years * 12) + (date2.getMonth() - date1.getMonth())
     return months
   }
-
-  // const patient = {id: 1, birthdate: "1988-10-21"}
-  const patient = {}
-  const immunizations = [
-    {id: 1, pathogen: "Rotaviren", status: "completed", immun: "G1", date: "1988-11-25"},
-    {id: 2, pathogen: "Rotaviren", status: "completed", immun: "G2", date: "1989-06-05"},
-    //{id: 2, pathogen: "Rotaviren", status: "completed", immun: "G3", date: "1989-06-05"},
-  ]
 
   return (
     <tr className="border border-white">

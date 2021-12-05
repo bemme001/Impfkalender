@@ -3,7 +3,7 @@ import {Col, Table} from "react-bootstrap";
 import './SR.css';
 import SrTableRow from "./SRTableRow";
 
-const SRTable = ({recommendation}) => {
+const SRTable = ({recommendation, patient, immunizations}) => {
   return (
     <Col>
       <Table bordered id="SRTable" className="align-middle">
@@ -59,7 +59,10 @@ const SRTable = ({recommendation}) => {
         <tbody>
         {
           recommendation.map(element => {
-            return <SrTableRow vaccination={element}/>
+            return <SrTableRow
+              vaccination={element}
+              patient={patient}
+              immunizations={immunizations}/>
           })
         }
         </tbody>
