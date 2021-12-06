@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  typesreact:
+    image: typesreact
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+  
+  json-server:
+    container_name: server
+    build:
+      context: ./data
+      dockerfile: Dockerfile
+    volumes:
+      - './data/DiseaseDB.json:/diseaseData.json'
+    ports:
+      - "3001:3001"
+    command: npx json-server --watch diseaseData.json --host 0.0.0.0 -p 3001
+    restart: always
