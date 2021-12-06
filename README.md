@@ -1,3 +1,10 @@
+# How to start the app with docker-compose
+1. Make sure u have docker and docker-compose installed.(If not installed, install it, sometimes docker-compose comes with docker)
+2. Run the command: docker-compose build (in your terminal in the directory with the docker-compose file in it)
+3. Run the command: docker-compose up -d
+4. To close the app run: docker-compose down (if u dont run the command the container will keep running)
+5. To see logs run: docker ps -a to see the container id and then run docker logs <container id>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
