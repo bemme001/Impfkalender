@@ -17,7 +17,7 @@ const SrTableCell = ({ element, immunisation, colors }) => {
         className={"bg-" + colors} onClick={switchPopUp} >{element.name}
         <span className="comment"> {element.desc}</span>
         {showPopUp
-            ? <StikoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunisation} colors={colors} />
+            ? <StikoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunisation} colors={colors} element={element} />
             : null}
 
     </td>;
