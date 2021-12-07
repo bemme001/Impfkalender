@@ -4,12 +4,14 @@ import AgeTiles from "./AgeTiles";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import useEffectAsync from "../../hooks/useEffectAsync";
-import AddImmunization from "../addImmunization/AddImmunization"
-import AddDisease from "./AddDisease"
+import AddImmunization from "../addImmunization/AddImmunization";
+import AddDisease from "./AddDisease";
+import AgeTileBoard from "./AgeTileBoard";
 import {GlobalContext} from "../../context/GlobalState";
+import actions from './filter/actions';
+import { getAgeDifference } from './filter/helper';
 
 const id = 2698452;
-
 
 export default function MainView() {
 
@@ -40,7 +42,8 @@ export default function MainView() {
     },[]);
     */
 
-    const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
+   const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
+   const [filter, setFilter] = useState(() => actions[0].handler);
 
     useEffectAsync( async () => {
         await fhirFetch(id);
@@ -50,7 +53,18 @@ export default function MainView() {
         if(immunizationList){
             return(
                 <Row xs="auto">
-                {immunizationList.map((element) =>
+                {immunizationList.filter((immu => {
+                        // check if patient object is available for filter
+                        if(!patientObject) {
+                            return true;
+                        }
+                        const birthdate = new Date(patientObject.birthdate);
+                        const vaccinationDate = new Date(immu.date);
+
+                        const age = getAgeDifference(birthdate, vaccinationDate);
+                        return filter(age);
+
+                    })).map((element) =>
                         <Col key={key++}>
                             <VaccinationTiles immunization={element}/>
                         </Col>
@@ -89,7 +103,7 @@ export default function MainView() {
                     <Col md={2}>        
                         <Card>
                             <Card.Body>
-                                <div className="mb-4">
+                                {/* <div className="mb-4">
                                 <Dropdown>
                                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                                         Alter in Jahren
@@ -99,17 +113,11 @@ export default function MainView() {
                                         <Dropdown.Item href="#/action-1">Alter in Monaten</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                                </div>  
-                  
-                                <AgeTiles range="60+" /> 
-                                <AgeTiles range="18-60" /> 
-                                <AgeTiles range="17" /> 
-                                <AgeTiles range="15-16" /> 
-                                <AgeTiles range="9-14" /> 
-                                <AgeTiles range="7-8" /> 
-                                <AgeTiles range="5-6" /> 
-                                <AgeTiles range="2-4" /> 
-
+                                </div>   */}
+                                
+                                <AgeTileBoard actions={actions} handler={(filterAction) => {
+                                    setFilter(() => filterAction);
+                                }}/>
                             </Card.Body>
                         </Card>
                     </Col>
