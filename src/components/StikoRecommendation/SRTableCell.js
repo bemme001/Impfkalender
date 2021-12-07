@@ -18,8 +18,8 @@ const SrTableCell = ({ element, immunisation, colors }) => {
     return <td
         colSpan={element.t_end - element.t_start}
         className={"bg-" + colors}  >
+        <button className="btn px-0" onClick={switchPopUp} >{element.name}</button>
         <span className="comment"> {element.desc}</span>
-        <button className="btn" onClick={switchPopUp} >{element.name}</button>
         {showPopUp
             ? <StikoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunisation} colors={colors} element={element} />
             : null}

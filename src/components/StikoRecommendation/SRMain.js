@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {Container, Row} from "react-bootstrap";
 import SRTable from "./SRTable";
 import SrTableDescription from "./SRTableDescription";
