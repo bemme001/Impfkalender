@@ -24,7 +24,7 @@ const dateRange = (from, to) => {
 const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
     return (
         <div className='StikoPopup'>
-            <Modal show={showPopUp} onHide={switchPopUp} size="md">
+            <Modal show={showPopUp} onHide={switchPopUp} size="md" >
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {infos.pathogen + ": " + (colors == "orange"
@@ -126,11 +126,11 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Bemerkung:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readonly defaultValue={infos.note} />
+                                <Form.Control plaintext readOnly defaultValue={infos.note} />
                             </Col>
                         </Form.Group>
 
-                        <Button variant="primary" type="button" onClick={infos.switchPopUp}>Schließen</Button>
+                        <Button variant="primary" type="button" onClick={switchPopUp}>Schließen</Button>
                     </Form>
                 </Modal.Body>
             </Modal>

@@ -10,12 +10,16 @@ import StikoPopup from './StikoPopup';
  */
 const SrTableCell = ({ element, immunisation, colors }) => {
     const [showPopUp, setShowPopUp] = useState(false);
-    const switchPopUp = () => setShowPopUp(s => !s);
+    const switchPopUp = () => {
+      setShowPopUp(s => !s);
+      console.log(element);
+    };
 
     return <td
         colSpan={element.t_end - element.t_start}
-        className={"bg-" + colors} onClick={switchPopUp} >{element.name}
+        className={"bg-" + colors}  >
         <span className="comment"> {element.desc}</span>
+        <button className="btn" onClick={switchPopUp} >{element.name}</button>
         {showPopUp
             ? <StikoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunisation} colors={colors} element={element} />
             : null}
