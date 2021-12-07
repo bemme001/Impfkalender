@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Immunization from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
 import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AddDisease from "../GeneralOverview/AddDisease"
+import {GlobalContext} from "../../context/GlobalState";
 
 const Popup = (props) => {
   const [ errors, setErrors ] = useState({});
@@ -11,16 +11,23 @@ const Popup = (props) => {
     new Immunization(props.uuid, props.pid, props.perf, "", "")
   );
   const [diseaseData, setDiseaseData] = useState(null);
+  const {patientObject} = useContext(GlobalContext);
 
   const findFormErrors = () => {
     const newErrors = {};
     const regexDate = new RegExp('[0-9]+((.|,)[0-9]+)?');
+    const now = new Date().getTime();
+    const immuDate = new Date(immunization.date).getTime();
+    const birthday = new Date(patientObject.birthdate).getTime();
+
     if(immunization.disease === undefined) newErrors.disease = "Bitte wählen Sie einen Erreger aus";
     if(immunization.vaccine === undefined) newErrors.vaccine = "Bitte geben Sie einen Impfstoff an.";
     if(immunization.vaccine && immunization.vaccine.length > 200) newErrors.vaccine = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.status === undefined) newErrors.status = "Bitte wählen Sie einen Impfstatus aus.";
     if(immunization.immun === undefined) newErrors.immun = "Bitte wählen Sie einen Immunisierungsgrad aus.";
     if(immunization.date === undefined) newErrors.date = "Bitte wählen Sie ein Datum aus.";
+    if(immuDate > now) newErrors.date = "Bitte wählen Sie ein Datum aus, das nicht in der Zukunft liegt.";
+    if(immuDate < birthday) newErrors.date = "Bitte wählen Sie ein Datum aus, an dem der Patient schon lebte.";
     if(immunization.site === undefined) newErrors.site = "Bitte geben Sie an wo Sie am Körper geimpft haben.";
     if(immunization.site && immunization.site.length > 200) newErrors.site = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.dose === undefined) newErrors.dose = "Bitte geben Sie an wie viel Imstoff (in ml) Sie verabreicht haben.";

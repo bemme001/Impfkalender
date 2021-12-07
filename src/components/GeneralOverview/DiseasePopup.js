@@ -1,13 +1,15 @@
 import React from "react";
-import {useEffect, useState} from "react";
-import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
+import { useState } from "react";
+import { Modal, Button, Form, Col, Row } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function DiseasePopup(props) {
-  const [diseaseData, setDiseaseData] = useState(null);
+  //const [diseaseData, setDiseaseData] = useState(null);
   const [newDisease, setNewDisease] = useState(null);
 
+
+  /*
   useEffect(() => {
     fetch('http://localhost:3001/diseaseData')
       .then(res => {
@@ -17,6 +19,7 @@ function DiseasePopup(props) {
         setDiseaseData(data);
       })
   }, [] );
+  */
 
 
   const handleSubmit = (event) => {

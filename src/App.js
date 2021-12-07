@@ -4,7 +4,7 @@ import HomePageMain from "./components/HomePage/HomePageMain";
 import NavbarMain from "./components/Header/NavbarMain";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import HomePageCardElement from "./components/HomePage/HomePageCardElement";
+//import HomePageCardElement from "./components/HomePage/HomePageCardElement";
 import MainView from "./components/GeneralOverview/MainView";
 import PatientSearch from "./components/patientSearch/PatientSearch";
 import {GlobalProvider} from "./context/GlobalState";

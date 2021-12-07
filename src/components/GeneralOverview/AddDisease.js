@@ -1,7 +1,6 @@
-import {Card,Button} from "react-bootstrap";
-import InfoPopup from "./InfoPopup";
+import { Button } from "react-bootstrap";
 import DiseasePopup from "./DiseasePopup";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 
 function AddDisease(){
   const [showPopUp, setShowPopUp] = useState(false);
