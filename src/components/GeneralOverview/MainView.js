@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
-import {Col, Container, Row, Dropdown, Card } from "react-bootstrap";
-import AgeTiles from "./AgeTiles";
+import React, { useContext, useState } from 'react'
+import {Col, Container, Row, Card } from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import useEffectAsync from "../../hooks/useEffectAsync";

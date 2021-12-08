@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -6,7 +6,7 @@ const formatMonthNumber = (dateNumber) => {
     // dateNumber in Jahren angeben
     if (dateNumber > 12) {
         // Jahre + restliche Monate angeben
-        const append = dateNumber % 12 != 0
+        const append = dateNumber % 12 !== 0
             ? `und ${dateNumber % 12}. Monat`
             : ``;
         return `${dateNumber / 12}. Jahr` + append;
@@ -17,7 +17,7 @@ const formatMonthNumber = (dateNumber) => {
 
 // toString für Zeitraum
 const dateRange = (from, to) => {
-    if (from == to) return `im ${formatMonthNumber(from)}`;
+    if (from === to) return `im ${formatMonthNumber(from)}`;
     else return `vom ${formatMonthNumber(from)} bis zum ${formatMonthNumber(to)}`;
 }
 
@@ -27,7 +27,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
             <Modal show={showPopUp} onHide={switchPopUp} size="md" >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {infos.pathogen + ": " + (colors == "orange"
+                        {infos.pathogen + ": " + (colors === "orange"
                             ? "verspätet"
                             : "rechtzeitig") + " verimpft"
                         }
@@ -81,7 +81,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                         </Form.Group>
 
                         {/* "empfohlener Zeitraum" wird nur bei verspäteter Impfung angezeigt */}
-                        {colors == "orange" ?
+                        {colors === "orange" ?
                             <Form.Group as={Row} className="mb-3">
                                 <Form.Label column sm={3} md={5} lg={5}>
                                     empfohlener Zeitraum:

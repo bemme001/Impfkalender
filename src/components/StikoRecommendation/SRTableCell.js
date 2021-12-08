@@ -12,7 +12,6 @@ const SrTableCell = ({ element, immunisation, colors }) => {
     const [showPopUp, setShowPopUp] = useState(false);
     const switchPopUp = () => {
       setShowPopUp(s => !s);
-      console.log(element);
     };
 
     return <td

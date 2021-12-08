@@ -21,7 +21,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePageMain />} />
                 <Route path="stiko-empfehlungen" element={<SRMain />} />
-                <Route path="generelle-eubersicht" element={<MainView />} />
+                <Route path="generelle-uebersicht" element={<MainView />} />
                 <Route path="search::value" element={<PatientSearch />} />
             </Routes>
             </BrowserRouter>

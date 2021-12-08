@@ -58,8 +58,9 @@ const SRTable = ({recommendation, patient, immunizations}) => {
         </thead>
         <tbody>
         {
-          recommendation.map(element => {
+          recommendation.map((element, key) => {
             return <SrTableRow
+              key={key}
               vaccination={element}
               patient={patient}
               immunizations={immunizations}/>

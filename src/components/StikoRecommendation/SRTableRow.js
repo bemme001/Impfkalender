@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SRTableCell from './SRTableCell';
 
 function diffInMonths(birthDate, immunDate) {
@@ -16,9 +16,9 @@ const SrTableRow = ({ vaccination, patient, immunizations }) => {
       {
         vaccination.times.map((e,index) => {
           // check if the cell is a close/open/space
-          if (e.name === 'close') return <td colSpan={e.t_end - e.t_start} className="bg-grey" />
-          if (e.name === 'open') return <td colSpan={e.t_end - e.t_start} className="bg-blue-light" />
-          if (e.name === 'space') return <td className="w-1" />
+          if (e.name === 'close') return <td key={index} colSpan={e.t_end - e.t_start} className="bg-grey" />
+          if (e.name === 'open') return <td key={index} colSpan={e.t_end - e.t_start} className="bg-blue-light" />
+          if (e.name === 'space') return <td key={index} className="w-1" />
 
           const immunisation = immunizations.find(i => i.pathogen === vaccination.name && i.immun === e.name)
           // first of all try to find vaccine
@@ -28,7 +28,7 @@ const SrTableRow = ({ vaccination, patient, immunizations }) => {
             // calculate whether the vaccine was given on right time -> green, not -> orange
             const tileColor = vaccineDateDiffInMonths >= e.r_start && vaccineDateDiffInMonths <= e.r_end ? "green" : "orange";
             // spawn the table cell
-            return <SRTableCell element={e} immunisation={immunisation} colors={tileColor}></SRTableCell>
+            return <SRTableCell key={index} element={e} immunisation={immunisation} colors={tileColor}></SRTableCell>
           }
 
           // check if the patient should have been vaccinated
@@ -36,6 +36,7 @@ const SrTableRow = ({ vaccination, patient, immunizations }) => {
             const birthDateAndTodayDiffInMonths = diffInMonths(patient.birthdate, Date.now())
             if (birthDateAndTodayDiffInMonths > e.r_end) {
               return <td
+                key={index}
                 colSpan={e.t_end - e.t_start}
                 className="bg-red">{e.name}
                 <span className="comment"> {e.desc}</span>
@@ -44,7 +45,7 @@ const SrTableRow = ({ vaccination, patient, immunizations }) => {
           }
 
           // or just show recommendation
-          return <td colSpan={e.t_end - e.t_start} className="bg-blue">{e.name} <span className="comment">{e.desc}</span></td>
+          return <td key={index} colSpan={e.t_end - e.t_start} className="bg-blue">{e.name} <span className="comment">{e.desc}</span></td>
            // TODO: Refactor td into SRTableCell.js
         })
       }
