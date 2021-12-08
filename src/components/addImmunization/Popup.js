@@ -15,7 +15,7 @@ const Popup = (props) => {
 
   const findFormErrors = () => {
     const newErrors = {};
-    const regexDate = new RegExp('[0-9]+((.|,)[0-9]+)?');
+    const regexDose = new RegExp('[0-9]+((.|,)[0-9]+)?');
     const now = new Date().getTime();
     const immuDate = new Date(immunization.date).getTime();
     const birthday = new Date(patientObject.birthdate).getTime();
@@ -32,7 +32,7 @@ const Popup = (props) => {
     if(immunization.site && immunization.site.length > 200) newErrors.site = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.dose === undefined) newErrors.dose = "Bitte geben Sie an wie viel Imstoff (in ml) Sie verabreicht haben.";
     if(immunization.dose && immunization.dose < 0) newErrors.dose = "Bitte geben Sie einen positiven Wert ein.";
-    if(!regexDate.test(immunization.dose)) newErrors.dose = "Bitte geben Sie eine Zahl ein."; //pattern="[0-9]+((.|,)[0-9]+)?"
+    if(!regexDose.test(immunization.dose)) newErrors.dose = "Bitte geben Sie eine Zahl ein."; //pattern="[0-9]+((.|,)[0-9]+)?"
     return newErrors;
   }
 
