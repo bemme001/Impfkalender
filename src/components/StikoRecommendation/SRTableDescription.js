@@ -5,12 +5,12 @@ import './SR.css';
 const SrTableDescription = () => {
   return (
     <Row>
-      <Col sm={12} className="mb-4 mt-1">
-        <button type="button" className="btn bg-blue rounded-0 mx-1">Empfohlener Impfzeitpunkt</button>
-        <button type="button" className="btn bg-blue-light rounded-0 mx-1">Nachholimpfzeitraum</button>
-        <button type="button" className="btn bg-orange rounded-0 mx-1">nicht rechtzeitig verabreicht</button>
-        <button type="button" className="btn bg-green rounded-0 mx-1">rechtzeitig verabreicht</button>
-        <button type="button" className="btn bg-red rounded-0 mx-1">nicht verabreicht</button>
+      <Col sm={12} className="mb-3 mt-1">
+        <button type="button" className="btn bg-blue rounded-0 mx-1 mb-2">Empfohlener Impfzeitpunkt</button>
+        <button type="button" className="btn bg-blue-light rounded-0 mx-1 mb-2">Nachholimpfzeitraum</button>
+        <button type="button" className="btn bg-orange rounded-0 mx-1 mb-2">nicht rechtzeitig verabreicht</button>
+        <button type="button" className="btn bg-green rounded-0 mx-1 mb-2">rechtzeitig verabreicht</button>
+        <button type="button" className="btn bg-red rounded-0 mx-1 mb-2">nicht verabreicht</button>
       </Col>
 
       <Col sm={3}>
