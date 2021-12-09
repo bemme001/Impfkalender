@@ -20,9 +20,23 @@ const SRMain = () => {
   //   {id: 3, pathogen: "Diphtherie", status: "completed", immun: "G3", date: "2013-06-05"},
   // ]
   // Testbereich -- End
+  // const [patient, setPatient] = useState({})
 
   let {patientObject, immunizationList} = useContext(GlobalContext)
-  if (!patientObject) patientObject = {}
+
+  // console.log('BEFORE, patient: ', patient)
+  // console.log('BEFORE, patientObject: ', patientObject)
+
+  // if (patientObject) {
+  //   setPatient(patientObject)
+  // }
+
+  if (!patientObject) {
+    patientObject = {}
+  }
+
+  // console.log('AFTER, patient: ', patient)
+  // console.log('AFTER, patientObject: ', patientObject)
 
   const [radioValue, setRadioValue] = useState('1');
   const radios = [
@@ -56,11 +70,13 @@ const SRMain = () => {
                         key={idx}
                         id={`radio-${idx}`}
                         type="radio"
-                        variant={idx % 2 ? 'primary' : 'secondary'}
+                        variant={idx % 2 ? 'outline-danger' : 'outline-primary'}
                         name="radio"
                         value={radio.value}
                         checked={radioValue === radio.value}
-                        onChange={(e) => setRadioValue(e.currentTarget.value)}
+                        onChange={(e) => {
+                          setRadioValue(e.currentTarget.value)
+                        }}
                       >
                         {radio.name}
                       </ToggleButton>
