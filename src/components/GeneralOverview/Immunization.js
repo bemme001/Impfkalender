@@ -3,8 +3,19 @@ import axios from "axios";
 var immunizationJson;
 
 export default class Immunization {
-    /* static numOfImz;
-    numOfImz = immunizationJson.length; */
+
+    constructor(id, pathogen, vaccine, status, immun, date, site, quantity, reason, note) {
+        this.id                         = id;           //Resourcen ID
+        this.pathogen                   = pathogen;     //Erreger
+        this.vaccine                    = vaccine;      //Impfstoff
+        this.status                     = status;       //Status
+        this.immun                      = immun         //Immunisierung
+        this.date                       = date;         //Datum
+        this.site                       = site;         //Impfstelle
+        this.quantity                   = quantity;     //Dosis
+        this.reason                     = reason;       //Impfgrund
+        this.note                       = note;         //Notiz
+    }
 
     async getData(count){
         this.id                         = immunizationJson[count].resource.id;                  //Resourcen ID
@@ -25,7 +36,7 @@ export default class Immunization {
     }
 
     static async fetchImmunization(uuid) {
-        await axios.get("https://hapi.fhir.org/baseR4/Immunization?identifier=" + uuid)
+        await axios.get("https://hapi.fhir.org/baseR4/Immunization?identifier=" + uuid + "&_count=1024")
             .then((response) => {
                 immunizationJson = [];
 

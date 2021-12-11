@@ -1,5 +1,4 @@
-import React, {createContext, useReducer, useState} from "react";
-import  AppReducer from './AppReducer';
+import React, {createContext, useState} from "react";
 import Patient from "../components/GeneralOverview/Patient";
 import Immunization from "../components/GeneralOverview/Immunization";
 
@@ -11,7 +10,6 @@ const initialState = {
 export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({ children }) => {
-    //const [state, dispatch] = useReducer(AppReducer, initialState);
     const [patientObject, setPatientObject] = useState(initialState.patient);
     const [immunizationList, setImmunizationList] = useState(initialState.immunization);
 
@@ -25,16 +23,13 @@ export const GlobalProvider = ({ children }) => {
         setImmunizationList(immunization);
     }
 
-    /*function addImmunization(item) {
-        dispatch({
-            type: 'ADD_IMMUNIZATION',
-            payload: item
-        });
-    }*/
+    async function addImmunization(item) {
+        await setImmunizationList(oldArray => [...oldArray, item]);
+    }
 
     return(
         <GlobalContext.Provider value = {{patientObject,
-            immunizationList, fhirFetch}}>
+            immunizationList, fhirFetch, addImmunization}}>
             {children}
         </GlobalContext.Provider>
     )

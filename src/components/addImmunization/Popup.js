@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import Immunization from './immunization'
+import ImmunizationJson from './immunization'
 import { postImmunization } from '../../hooks/postImmunization'
 import { Modal, Button, Form, Col, Row, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {GlobalContext} from "../../context/GlobalState";
+import Immunization from "../GeneralOverview/Immunization";
 
 const Popup = (props) => {
   const [ errors, setErrors ] = useState({});
   const [immunization, setImmunization] = useState(
-    new Immunization(props.uuid, props.pid, props.perf, "", "")
+    new ImmunizationJson(props.uuid, props.pid, props.perf, "", "")
   );
   const [diseaseData, setDiseaseData] = useState(null);
-  const {patientObject} = useContext(GlobalContext);
+  const {patientObject, addImmunization} = useContext(GlobalContext);
 
   const findFormErrors = () => {
     const newErrors = {};
@@ -36,6 +37,22 @@ const Popup = (props) => {
     return newErrors;
   }
 
+  const addLocalImmunization = () => {
+    let element = new Immunization(
+        immunization.pid,
+        immunization.disease,
+        immunization.vaccine,
+        immunization.status,
+        immunization.immun,
+        immunization.date,
+        immunization.site,
+        immunization.dose,
+        immunization.reason,
+        immunization.note
+    )
+    addImmunization(element);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const newErrors = findFormErrors();
@@ -44,6 +61,7 @@ const Popup = (props) => {
     } else {
       let json = create();
       postImmunization(json);
+      addLocalImmunization();
       props.switchPopUp();
     }
   }

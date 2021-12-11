@@ -1,4 +1,4 @@
-export default class Immunization {
+export default class ImmunizationJson {
     constructor(uuid, pid, perf, note, reason, vaccine, status, date, site, dose, disease, immun){
         this.uuid     = uuid;          // Identifier des Patienten
         this.pid      = pid;           // ID des Patienten im System
