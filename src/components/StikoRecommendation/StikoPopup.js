@@ -6,10 +6,7 @@ const formatMonthNumber = (dateNumber) => {
     // dateNumber in Jahren angeben
     if (dateNumber > 12) {
         // Jahre + restliche Monate angeben
-        const append = dateNumber % 12 !== 0
-            ? `und ${dateNumber % 12}. Monat`
-            : ``;
-        return `${dateNumber / 12}. Jahr` + append;
+        return `${Math.round(dateNumber / 12)}. Jahr`;
     }
     // dateNumber in Monaten angeben
     else return `${dateNumber}. Monat`;
@@ -21,10 +18,16 @@ const dateRange = (from, to) => {
     else return `vom ${formatMonthNumber(from)} bis zum ${formatMonthNumber(to)}`;
 }
 
+// schöne Date-Ausgabe
+const date_toString = (date) => {
+    const temp = date.split('-');
+    return [temp[2], temp[1], temp[0]].join(".");
+}
+
 const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
     return (
         <div className='StikoPopup'>
-            <Modal show={showPopUp} onHide={switchPopUp} size="md" >
+            <Modal show={showPopUp} onHide={switchPopUp} size="lg" >
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {infos.pathogen + ": " + (colors === "orange"
@@ -40,7 +43,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Erreger:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.pathogen} />
+                                {infos.pathogen}
                             </Col>
                         </Form.Group>
 
@@ -49,7 +52,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Impfstoff:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.vaccine} />
+                                {infos.vaccine}
                             </Col>
                         </Form.Group>
 
@@ -58,7 +61,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Status:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.status} />
+                               {infos.status}
                             </Col>
                         </Form.Group>
 
@@ -67,7 +70,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Immunisierungsgrad:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.immun} />
+                                {infos.immun} 
                             </Col>
                         </Form.Group>
 
@@ -76,7 +79,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Datum:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.date} />
+                                {date_toString(infos.date)}
                             </Col>
                         </Form.Group>
 
@@ -87,9 +90,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                     empfohlener Zeitraum:
                                 </Form.Label>
                                 <Col sm={3} md={5} lg={5}>
-                                    <Form.Control
-                                        plaintext readOnly
-                                        defaultValue={dateRange(element.r_start, element.r_end)} />
+                                    {dateRange(element.r_start, element.r_end)}
                                 </Col>
                             </Form.Group> : null
                         }
@@ -99,7 +100,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Impfstelle:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.site} />
+                               {infos.site}
                             </Col>
                         </Form.Group>
 
@@ -108,7 +109,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Dosis in ml:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.quantity} />
+                                {infos.quantity}
                             </Col>
                         </Form.Group>
 
@@ -117,7 +118,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Impfgrund:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.reason} />
+                               {infos.reason}
                             </Col>
                         </Form.Group>
 
@@ -126,7 +127,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                                 Bemerkung:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                <Form.Control plaintext readOnly defaultValue={infos.note} />
+                                {infos.note}
                             </Col>
                         </Form.Group>
 
@@ -134,7 +135,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                     </Form>
                 </Modal.Body>
             </Modal>
-        </div >
+        </div>
     )
 }
 
