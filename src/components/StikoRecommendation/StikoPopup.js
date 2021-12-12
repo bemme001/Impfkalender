@@ -27,7 +27,7 @@ const date_toString = (date) => {
 const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
     return (
         <div className='StikoPopup'>
-            <Modal show={showPopUp} onHide={switchPopUp} size="lg" >
+            <Modal show={showPopUp} onHide={() => switchPopUp("close")} size="lg" >
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {infos.pathogen + ": " + (colors === "orange"
@@ -131,7 +131,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element }) => {
                             </Col>
                         </Form.Group>
 
-                        <Button variant="primary" type="button" onClick={switchPopUp}>Schließen</Button>
+                        <Button variant="primary" type="button" onClick={() => switchPopUp("close")}>Schließen</Button>
                     </Form>
                 </Modal.Body>
             </Modal>
