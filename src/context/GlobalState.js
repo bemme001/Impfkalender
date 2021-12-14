@@ -15,7 +15,6 @@ export const GlobalProvider = ({ children }) => {
 
     async function fhirFetch(patientId) {
         let patient, immunization;
-
         patient = await Patient.create(patientId);
         immunization = await Immunization.create(patient.uuid);
 

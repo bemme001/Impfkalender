@@ -12,22 +12,24 @@ const PatientInformation = (props) => {
       <h5>Patient: {props.patient.name}</h5>
       <hr className="mt-3 mb-3"/>
       <table className="table table-borderless w-50 mb-0" id="go-personal-date">
-        <tr>
-          <td className="w-7r">Geb:</td>
-          <td>{date_toString(props.patient.birthdate)}</td>
-        </tr>
-        <tr>
-          <td>Geschlecht:</td>
-          <td>{props.patient.gender}</td>
-        </tr>
-        <tr>
-          <td>Adresse:</td>
-          <td>{props.patient.line}, {props.patient.postal}, {props.patient.city}</td>
-        </tr>
-        <tr>
-          <td>Tel.:</td>
-          <td>{props.patient.telecom}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td className="w-7r">Geb:</td>
+            <td>{date_toString(props.patient.birthdate)}</td>
+          </tr>
+          <tr>
+            <td>Geschlecht:</td>
+            <td>{props.patient.gender}</td>
+          </tr>
+          <tr>
+            <td>Adresse:</td>
+            <td>{props.patient.line}, {props.patient.postal}, {props.patient.city}</td>
+          </tr>
+          <tr>
+            <td>Tel.:</td>
+            <td>{props.patient.telecom}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

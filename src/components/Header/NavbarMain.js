@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useRef} from 'react';
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import {Link} from "react-router-dom";
 import Searchbar from "./Searchbar";
 import { BsSearch } from 'react-icons/bs';
 
 const NavbarMain = () => {
-  const [searchButton, setSearchButton] = useState(false);
+  const searchButton = useRef(false);
 
   const switchSearchButton = () => {
-    setSearchButton(!searchButton);
+    searchButton.current = !searchButton.current;
   }
 
   return (

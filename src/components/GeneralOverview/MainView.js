@@ -9,6 +9,7 @@ import {GlobalContext} from "../../context/GlobalState";
 import actions from './filter/actions';
 import {getAgeDifference} from './filter/helper';
 import './GO.css';
+import { useLocation } from 'react-router-dom';
 
 const id = 2698452;
 
@@ -18,9 +19,10 @@ export default function MainView() {
 
   const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
   const [filter, setFilter] = useState(() => actions[0].handler);
+  const patient = useLocation();
 
   useEffect(() => {
-    fhirFetch(id);
+      fhirFetch(patient.state.resource);
   }, []);
 
   const immunizationTiles = () => {
@@ -51,6 +53,7 @@ export default function MainView() {
 
   const patientInformations = () => {
     if (patientObject) {
+      console.log(patientObject);
       return (
         <PatientInformation patient={patientObject}/>
       )
@@ -103,8 +106,8 @@ export default function MainView() {
               <Col>
                 <div className="btn-group" role="group">
                   <AddImmunization
-                    uuid='urn:uuid:6d7fea63c34a40f698b2aa34e5ea13b1'
-                    pid='2698452'
+                    uuid={ patient.state.resource.identifier[0].value }
+                    pid={ patient.state.resource.id }
                     perf='Practitioner/2691497'
                   />
                   <span className="me-3" />
