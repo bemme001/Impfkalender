@@ -14,17 +14,14 @@ const NavbarMain = () => {
   return (
     <Navbar bg="primary" variant="dark" sticky="top">
       <Container>
-        <Nav className="d-flex">
+        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+        <Nav className="d-flex align-items-center">
           <Link to="/" className="nav-link">Startseite</Link>
           <Link to="/stiko-empfehlungen" className="nav-link">STIKO Impfempfehlung</Link>
           <Link to="/generelle-uebersicht" className="nav-link">Generelle Übersicht</Link>
-        </Nav>
-        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
-        <Nav>
-         
           {searchButton ? <Searchbar /> : null}
-          <Button onClick={switchSearchButton}> <BsSearch /> </Button>
-
+          <Link to="#" className="nav-link pt-1" onClick={switchSearchButton}><BsSearch /></Link>
+          {/*<Button onClick={switchSearchButton}> <BsSearch /> </Button>*/}
         </Nav>
       </Container> 
     </Navbar>
