@@ -1,6 +1,8 @@
 Patienten (Name | Link) und ihre Immunisierungen (Errger | Link)
 Der Link bei Liste liefert alle Immunisierungen zu einer Person in einen JSON
 
+Alle Patienten: http://hapi.fhir.org/baseR4/Patient?identifier=urn:uuid:6c26efa95b1f43e0962278947043491c
+
 +- Dr. Holiday, I am | http://hapi.fhir.org/baseR4/Practitioner/2691497
 |
 +- hsrm-impfkalender | http://hapi.fhir.org/baseR4/Organization/2693252
@@ -23,7 +25,7 @@ Der Link bei Liste liefert alle Immunisierungen zu einer Person in einen JSON
 |	+- Influenza | 
 |	+- Liste: 
 |
-+- Schmidt, Michael | 
++- Schmidt, Michael | http://hapi.fhir.org/baseR4/Patient/2711582
 |	+- Masern | 
 |	+- Tetanus | 
 |	+- Hepatitis B | 
