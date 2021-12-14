@@ -115,7 +115,7 @@ export default function MainView() {
             </Row>
             {/* Durchgeführte Impfungen */}
             <Row>
-              <h5 className="mb-3">Durchgeführte Impfungen von {patientObject.name}:</h5>
+              <h5 className="mb-3">Durchgeführte Impfungen von {patientObject.name}</h5>
               {/* todo: todo necessary refactoring*/}
               {immunizationTiles()}
             </Row>
