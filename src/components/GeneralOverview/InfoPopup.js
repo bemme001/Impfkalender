@@ -20,7 +20,7 @@ const InfoPopup = (props) => {
         <Modal.Body>
           <Form id="info_popup">
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Erreger:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -28,8 +28,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Impfstoff:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -37,8 +37,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Status:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -46,8 +46,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Immunisierungsgrad:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -55,8 +55,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Impfdatum:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -64,8 +64,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Impfstelle:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -73,8 +73,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Dosis in ml:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -82,8 +82,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Impfgrund:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
@@ -91,8 +91,8 @@ const InfoPopup = (props) => {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="">
-              <Form.Label column sm={4} md={4} lg={4} className="p-2">
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm={4} md={4} lg={4}>
                 Bemerkung:
               </Form.Label>
               <Col sm={4} md={4} lg={4} className="p-2">
