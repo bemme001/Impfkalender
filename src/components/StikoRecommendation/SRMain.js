@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState'
 import { ButtonGroup, Col, Container, Row, ToggleButton } from "react-bootstrap";
 import SRTable from "./SRTable";
@@ -32,9 +32,9 @@ const SRMain = () => {
   return (
     <Container fluid="xl">
       <Row className="mt-5">
-        <Col>
+        <Col className="ps-0">
           <h1>
-            STIKO Empfehlung 2020/2021
+            <span className="bg-light ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
           </h1>
         </Col>
       </Row>
