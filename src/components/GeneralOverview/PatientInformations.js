@@ -7,16 +7,15 @@ const date_toString = (date) => {
 }
 
 const PatientInformation = (props) => {
-
-    return (
-      <div>
-          <h1>{props.patient.name}</h1>
-          <h4>Geb: {date_toString(props.patient.birthdate)}</h4>
-          <h4>Geschlecht: {props.patient.gender}</h4>
-          <h4>{props.patient.line}</h4>
-          <h4>{props.patient.postal}, {props.patient.city}</h4>
-          <h4>Tel.: {props.patient.telecom}</h4>
-      </div>
+  return (
+    <div>
+      <h1>{props.patient.name}</h1>
+      <h4>Geb: {date_toString(props.patient.birthdate)}</h4>
+      <h4>Geschlecht: {props.patient.gender}</h4>
+      <h4>{props.patient.line}</h4>
+      <h4>{props.patient.postal}, {props.patient.city}</h4>
+      <h4>Tel.: {props.patient.telecom}</h4>
+    </div>
   );
 };
 
