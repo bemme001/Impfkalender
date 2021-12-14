@@ -5,8 +5,8 @@ const Searchbar = () => {
     const [ value, setValue ] = useState("")
 
     return (
-        <Form>
-            <InputGroup className="mb-3">
+        <Form className="ms-2">
+            <InputGroup>
                 <InputGroup.Text id="searchbar">Patient</InputGroup.Text>
                 <Form.Control
                     placeholder="Name / ID"
