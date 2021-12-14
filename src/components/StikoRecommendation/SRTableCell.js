@@ -8,20 +8,20 @@ import StikoPopup from './StikoPopup';
  * @returns a td-element containing the immunizaition degree, 
  * some of which are clickable to view the stiko popup
  */
-const SrTableCell = ({ element, immunisation, colors }) => {
+const SrTableCell = ({ element, immunisation, colors, patient }) => {
   const [showPopUp, setShowPopUp] = useState(false);
   const switchPopUp = (e) => {
-    if(e === "close" || e.target.nodeName === "TD" ) setShowPopUp(s => !s);
+    if (e === "close" || e.target.nodeName === "TD") setShowPopUp(s => !s);
   };
 
   return <td
     colSpan={element.t_end - element.t_start}
     className={"bg-" + colors} onClick={(e) => switchPopUp(e)}>
-    {/* <button className="btn px-0" >{element.name}</button> */}{element.name}
-      <span className="comment"> {element.desc}</span>
-      {showPopUp
-        ? <StikoPopup showPopUp={showPopUp} switchPopUp={(e) => switchPopUp(e)} infos={immunisation} colors={colors} element={element} />
-        : null}
+    {element.name}
+    <span className="comment"> {element.desc}</span>
+    {showPopUp
+      ? <StikoPopup showPopUp={showPopUp} switchPopUp={(e) => switchPopUp(e)} infos={immunisation} colors={colors} element={element} patient={patient}/>
+      : null}
   </td>
 }
 
