@@ -42,7 +42,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Erreger:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {infos.pathogen}
                             </Col>
                         </Form.Group>
@@ -51,7 +51,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Impfstoff:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {infos.vaccine}
                             </Col>
                         </Form.Group>
@@ -60,7 +60,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Status:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                {infos.status}
                             </Col>
                         </Form.Group>
@@ -69,7 +69,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Immunisierungsgrad:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {infos.immun} 
                             </Col>
                         </Form.Group>
@@ -78,7 +78,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Impfdatum:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {date_toString(infos.date)}
                             </Col>
                         </Form.Group>
@@ -87,7 +87,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Alter des Patienten zum Impfzeitpunkt:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {new Date(infos.date).getFullYear() - new Date(patient.birthdate).getFullYear() + " Jahre"}
                             </Col>
                         </Form.Group>
@@ -98,7 +98,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                                 <Form.Label column sm={3} md={5} lg={5}>
                                     empfohlener Zeitraum:
                                 </Form.Label>
-                                <Col sm={3} md={5} lg={5} className="p-2">
+                                <Col sm={3} md={5} lg={5}>
                                     {dateRange(element.r_start, element.r_end)}
                                 </Col>
                             </Form.Group> : null
@@ -108,7 +108,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Impfstelle:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                {infos.site}
                             </Col>
                         </Form.Group>
@@ -117,7 +117,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Dosis in ml:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {infos.quantity}
                             </Col>
                         </Form.Group>
@@ -126,7 +126,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Impfgrund:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                {infos.reason}
                             </Col>
                         </Form.Group>
@@ -135,7 +135,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                             <Form.Label column sm={3} md={5} lg={5}>
                                 Bemerkung:
                             </Form.Label>
-                            <Col sm={3} md={5} lg={5} className="p-2">
+                            <Col sm={3} md={5} lg={5}>
                                 {infos.note}
                             </Col>
                         </Form.Group>
