@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Navigate } from "react-router-dom"
 import { Table, Button } from "react-bootstrap";
+import { GlobalContext } from "../../context/GlobalState"
 
 const PatientList = ({ patients }) => {
     let key = 0;
 
+    const { fhirFetch } = useContext(GlobalContext);
+
+    if (patients.total === 1 ) {
+        fhirFetch(patients.entry[0].resource)
+    }
+
+    const globalizeObject = (patient) => {
+        fhirFetch(patient)
+    }
+
     return (
         <>
             {patients.total === 1 
-            ? <Navigate to='/generelle-uebersicht' state={patients.entry[0]} />
+            ? <Navigate to='/generelle-uebersicht' />
             : <Table>
                 <thead>
                     <tr>
@@ -21,13 +32,11 @@ const PatientList = ({ patients }) => {
                             <td>
                             <Link
                                 to="/generelle-uebersicht"
-                                state={ 
-                                    patient
-                                }
                             >
                                 <Button
                                     variant="light"
                                     id="patient_overview_button"
+                                    onClick={() => globalizeObject(patient.resource)}
                                     type="submit"
                                 >
                                 {patient.resource.name[0].text}

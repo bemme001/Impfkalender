@@ -9,8 +9,6 @@ const PatientSearch = () => {
     const { value } = useParams();
     const { data, isSuccess } = GetPatientList(value);
 
-    console.log(data)
-
     return (
         <>
             {isSuccess && (
