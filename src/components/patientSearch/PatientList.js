@@ -8,7 +8,7 @@ const PatientList = ({ patients }) => {
     return (
         <>
             {patients.total === 1 
-            ? <Navigate to='/mainview' state={patients.entry[0]} />
+            ? <Navigate to='/generelle-uebersicht' state={patients.entry[0]} />
             : <Table>
                 <thead>
                     <tr>
@@ -20,7 +20,7 @@ const PatientList = ({ patients }) => {
                         <tr key={key++}>
                             <td>
                             <Link
-                                to="/mainview"
+                                to="/generelle-uebersicht"
                                 state={ 
                                     patient
                                 }
