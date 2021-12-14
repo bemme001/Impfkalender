@@ -1,0 +1,7 @@
+.w-7r {
+  width: 7rem !important;
+}
+
+#go-personal-date tr td:first-child {
+  font-weight: bold;
+}
