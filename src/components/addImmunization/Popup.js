@@ -21,7 +21,8 @@ const Popup = (props) => {
     const immuDate = new Date(immunization.date).getTime();
     const birthday = new Date(patientObject.birthdate).getTime();
 
-    if(immunization.disease === undefined) newErrors.disease = "Bitte wählen Sie einen Erreger aus";
+    if(!!errors.diseaseErr) newErrors.diseaseErr = errors.diseaseErr;
+    if(immunization.disease === undefined) newErrors.disease = "Bitte wählen Sie einen Erreger aus.";
     if(immunization.vaccine === undefined) newErrors.vaccine = "Bitte geben Sie einen Impfstoff an.";
     if(immunization.vaccine && immunization.vaccine.length > 200) newErrors.vaccine = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
     if(immunization.status === undefined) newErrors.status = "Bitte wählen Sie einen Impfstatus aus.";
@@ -75,13 +76,17 @@ const Popup = (props) => {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3001/diseaseData')
+    fetch("http://localhost:3001/diseaseData")
       .then(res => {
         return res.json()
       })
       .then(data => {
         setDiseaseData(data);
+        setErrors({...errors, "diseaseErr": null})
       })
+      .catch(() =>
+        setErrors({...errors, "diseaseErr": "Erreger konnten nicht geladen werden!"})
+      )
   }, [] );
 
   const create = () => {                  // returns: JSON gefühlt mit den Daten des Objektes
@@ -143,12 +148,12 @@ const Popup = (props) => {
               <Col sm={9} md={7} lg={9}>
                 <Form.Select aria-label="Erreger-Auswahl" name="disease"
                               defaultValue="Bitte auswählen" onChange={handleChange}
-                             isInvalid={ !!errors.disease }>
+                             isInvalid={ !!errors.disease || !!errors.diseaseErr }>
                   <option value="Bitte auswählen" disabled hidden>Bitte auswählen</option>
                   {diseaseData && diseaseData.map((x, y) => <option key={y}>{x.name}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.disease}
+                  {!!errors.diseaseErr ? errors.diseaseErr : errors.disease}
                 </Form.Control.Feedback>
               </Col>
             </Form.Group>
