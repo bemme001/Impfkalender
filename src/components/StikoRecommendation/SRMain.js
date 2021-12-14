@@ -1,6 +1,6 @@
-import React, {useRef, useState, useContext} from 'react';
-import {GlobalContext} from '../../context/GlobalState'
-import {ButtonGroup, Col, Container, Row, ToggleButton} from "react-bootstrap";
+import React, { useRef, useState, useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState'
+import { ButtonGroup, Col, Container, Row, ToggleButton } from "react-bootstrap";
 import SRTable from "./SRTable";
 import SrTableDescription from "./SRTableDescription";
 import SR2021 from "./SR2021";
@@ -9,7 +9,7 @@ const SRMain = () => {
 
   const recommendation = SR2021()
 
-  const {patientObject, immunizationList} = useContext(GlobalContext)
+  const { patientObject, immunizationList } = useContext(GlobalContext)
   const [patient, setPatient] = useState(patientObject ? patientObject : {})
 
   const [radioValue, setRadioValue] = useState('1');
@@ -21,6 +21,12 @@ const SRMain = () => {
   const switchPatientData = (e) => {
     setRadioValue(e.currentTarget.value)
     setPatient(Object.keys(patient).length !== 0 ? {} : patientObject)
+  }
+
+  // schöne Date-Ausgabe
+  const date_toString = (date) => {
+    const temp = date.split('-');
+    return [temp[2], temp[1], temp[0]].join(".");
   }
 
   return (
@@ -39,7 +45,7 @@ const SRMain = () => {
               <Col>
                 <b>Aktueller Patient: </b>
                 {patientObject.name} ({patientObject.gender}),&nbsp;
-                {patientObject.birthdate}
+                {date_toString(patientObject.birthdate)}
               </Col>
               <Col className="d-flex justify-content-end">
                 <div className="pt-2 mx-2">Patientendaten:</div>
@@ -61,9 +67,9 @@ const SRMain = () => {
                 </ButtonGroup>
               </Col>
             </Row>
-            : <p/>
+            : <p />
         }
-        <h6 className="mb-2" style={{color: "#4082df"}}>Tabelle 1: Impfkalender (Standardimpfungen) für Säuglinge, Kinder, Jugendliche und Erwachsene; 2020/2021</h6>
+        <h6 className="mb-2" style={{ color: "#4082df" }}>Tabelle 1: Impfkalender (Standardimpfungen) für Säuglinge, Kinder, Jugendliche und Erwachsene; 2020/2021</h6>
         <SRTable
           recommendation={recommendation}
           patient={patient}

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Col, Container, Row, Card } from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
-import useEffectAsync from "../../hooks/useEffectAsync";
 import AddImmunization from "../addImmunization/AddImmunization";
 import AddDisease from "./AddDisease";
 import AgeTileBoard from "./AgeTileBoard";
@@ -15,38 +14,13 @@ const id = 2698452;
 export default function MainView() {
 
     let key = 0;
-    /*
-    const cacheuuid = useRef(null);
-    const [patient, setPatient] = useState(null);
-    const [immunization, setImmunization] = useState(null);
-    //const [year, setYear] = useState(60);
-    //const [month, setMonth] = useState(24)
-    //let patientAge;
-
-
-    useEffectAsync( async () => {
-        const p = await Patient.create(id);
-        setPatient(p);
-        cacheuuid.current = p.uuid;
-
-        const i = await Immunization.create(cacheuuid.current);
-        setImmunization(i);
-
-        const interval = setInterval(async () => {
-            const i = await Immunization.create(cacheuuid.current);
-            setImmunization(i);
-        }, 1000);
-        return () => clearInterval(interval);
-
-    },[]);
-    */
 
    const {fhirFetch, patientObject, immunizationList} = useContext(GlobalContext);
    const [filter, setFilter] = useState(() => actions[0].handler);
 
-    useEffectAsync( async () => {
-        await fhirFetch(id);
-    },[]);
+    useEffect( () => {
+        fhirFetch(id);
+    }, []);
 
     const immunizationTiles = () => {
         if(immunizationList){

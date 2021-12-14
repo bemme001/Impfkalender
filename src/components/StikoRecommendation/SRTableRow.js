@@ -28,7 +28,7 @@ const SrTableRow = ({ vaccination, patient, immunizations }) => {
             // calculate whether the vaccine was given on right time -> green, not -> orange
             const tileColor = vaccineDateDiffInMonths >= e.r_start && vaccineDateDiffInMonths <= e.r_end ? "green" : "orange";
             // spawn the table cell
-            return <SRTableCell key={index} element={e} immunisation={immunisation} colors={tileColor}></SRTableCell>
+            return <SRTableCell key={index} element={e} immunisation={immunisation} colors={tileColor} />
           }
 
           // check if the patient should have been vaccinated

@@ -27,7 +27,7 @@ const Searchbar = () => {
                     disabled={!value}
                     value="Search"
                 >
-                Search
+                Absenden
                 </Button>
             </InputGroup>
         </Form>
