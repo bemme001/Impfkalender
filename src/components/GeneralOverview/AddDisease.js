@@ -10,8 +10,11 @@ function AddDisease(){
   }
 
   return(
-    <div className="mb-4">
-      <Button variant="primary" onClick={switchPopUp}>
+    <div>
+      <Button
+        type="button"
+        variant="outline-secondary"
+        onClick={switchPopUp}>
         Erreger hinzufügen
       </Button>
       {showPopUp ? <DiseasePopup showPopUp={showPopUp} switchPopUp={switchPopUp}/> : null}

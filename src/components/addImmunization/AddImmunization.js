@@ -11,8 +11,11 @@ const AddImmunization = (props) => {
   }
 
   return (
-    <div className='add_immunization'>
-      <Button variant="primary" onClick={switchPopUp}>
+    <div>
+      <Button
+        type="button"
+        variant="outline-success"
+        onClick={switchPopUp}>
         Impfung hinzufügen
       </Button>
       {showPopUp
