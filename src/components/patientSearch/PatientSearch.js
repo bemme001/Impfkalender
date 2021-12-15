@@ -2,6 +2,7 @@ import React from 'react';
 import { GetPatientList } from "../../hooks/getPatientList"
 import { useParams } from "react-router-dom"
 
+
 import PatientList from "./PatientList" 
 import NotFound from "./NotFound"
 

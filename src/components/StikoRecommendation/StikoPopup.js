@@ -24,6 +24,17 @@ const date_toString = (date) => {
     return [temp[2], temp[1], temp[0]].join(".");
 }
 
+const patientAge = (infos, patient) => {
+    switch (new Date(infos.date).getFullYear() - new Date(patient.birthdate).getFullYear()) {
+        case 0:
+            return new Date(infos.date).getMonth() - new Date(patient.birthdate).getMonth() + " Monate"
+        case 1:
+            return "1 Jahr und " + new Date(infos.date).getMonth() - new Date(patient.birthdate).getMonth() + " Monate"
+        default:
+            return new Date(infos.date).getFullYear() - new Date(patient.birthdate).getFullYear() + " Jahre"
+    }
+}
+
 const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient }) => {
     return (
         <div className='StikoPopup'>
@@ -88,7 +99,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                                 Alter des Patienten zum Impfzeitpunkt:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                {new Date(infos.date).getFullYear() - new Date(patient.birthdate).getFullYear() + " Jahre"}
+                                {patientAge(infos, patient)}
                             </Col>
                         </Form.Group>
 
