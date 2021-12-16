@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {Col, Container, Row, Card} from "react-bootstrap";
+import {Col, Container, Row, Card, Button, Form} from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import AddImmunization from "../addImmunization/AddImmunization";
@@ -19,11 +19,26 @@ export default function MainView() {
   const {patientObject, immunizationList} = useContext(GlobalContext);
   const [filter, setFilter] = useState(() => actions[0].handler);
 
-  const immunizationTiles = () => {
-    if (immunizationList) {
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  // Test Bereich - Start
+  console.log('actions: ', actions)
+  console.log('filter: ', filter)
+
+  const [vaccineType, setVaccineType] = useState('all')
+  const renderImmunizationTiles = () => {
+    if (vaccineType === 'all') {
+      return immunizationTiles(immunizationList)
+    }
+    return immunizationTiles(immunizationList.filter(e => e.reason === vaccineType))
+  }
+  // Test Bereich - End
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+  const immunizationTiles = (immunizations) => {
+    if (immunizations) {
       return (
         <Row xs="auto">
-          {immunizationList.filter((immu => {
+          {immunizations.filter((immu => {
             // check if patient object is available for filter
             if (!patientObject) {
               return true;
@@ -97,7 +112,7 @@ export default function MainView() {
           <Col md={10}>
             {/* Buttons Impfung/Erreger hinzufügen */}
             <Row className="mb-3">
-              <Col>
+              <Col md={12}>
                 <div className="btn-group" role="group">
                   {patientObject && <AddImmunization
                     uuid={ patientObject.uuid }
@@ -110,11 +125,32 @@ export default function MainView() {
                 <hr className="mt-4 mb-0" />
               </Col>
             </Row>
+
+
+            {/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/}
+            {/*Test Bereich - Start*/}
+            <Row>
+              <Col className="mb-3">
+                <Form.Select aria-label="Filter example"
+                             className="w-25"
+                             onChange={(e) => setVaccineType(e.target.value)}>
+                  <option value="all">All</option>
+                  <option value="Drogen">Drogen</option>
+                  <option value="asd">Asd</option>
+                </Form.Select>
+                <hr className="mt-4 mb-0" />
+              </Col>
+            </Row>
+            {/*Test Bereich - End*/}
+            {/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/}
+
+
             {/* Durchgeführte Impfungen */}
             <Row>
               <h5 className="mb-3">Durchgeführte Impfungen</h5>
               {/* todo: todo necessary refactoring*/}
-              {immunizationTiles()}
+              {renderImmunizationTiles()}
+              {/*{immunizationTiles()}*/}
             </Row>
 
           </Col>

@@ -265,8 +265,14 @@ const Popup = (props) => {
                 Impfgrund
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfgrund eingeben"
-                              onChange={handleChange} name="reason"/>
+                {/*<Form.Control type="text" placeholder="Impfgrund eingeben"*/}
+                {/*              onChange={handleChange} name="reason"/>*/}
+                <select className="form-select" id="inputGroupSelect01">
+                  <option selected>Choose...</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
               </Col>
             </Form.Group>
 
