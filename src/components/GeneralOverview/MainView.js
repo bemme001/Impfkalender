@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {Col, Container, Row, Card, Button, Form} from "react-bootstrap";
+import React, {useContext, useEffect, useState, Fragment} from 'react'
+import {Col, Container, Row, Card, Button, Form,InputGroup} from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import AddImmunization from "../addImmunization/AddImmunization";
@@ -8,12 +8,15 @@ import AgeTileBoard from "./AgeTileBoard";
 import {GlobalContext} from "../../context/GlobalState";
 import actions from './filter/actions';
 import {getAgeDifference} from './filter/helper';
+import { BsSearch } from 'react-icons/bs';
 import './GO.css';
+
+
 
 const id = 2698452;
 
 export default function MainView() {
-
+  
   let key = 0;
 
   const {patientObject, immunizationList} = useContext(GlobalContext);
@@ -31,6 +34,8 @@ export default function MainView() {
     }
     return immunizationTiles(immunizationList.filter(e => e.reason === vaccineType))
   }
+
+
   // Test Bereich - End
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -50,7 +55,7 @@ export default function MainView() {
             return filter(age);
 
           })).map((element) =>
-            <Col key={key++}>
+            <Col md={3} key={key++}>
               <VaccinationTiles immunization={element}/>
             </Col>
           )}
@@ -112,7 +117,7 @@ export default function MainView() {
           <Col md={10}>
             {/* Buttons Impfung/Erreger hinzufügen */}
             <Row className="mb-3">
-              <Col md={12}>
+              <Col md={5}>
                 <div className="btn-group" role="group">
                   {patientObject && <AddImmunization
                     uuid={ patientObject.uuid }
@@ -122,29 +127,26 @@ export default function MainView() {
                   <span className="me-3" />
                   <AddDisease/>
                 </div>
-                <hr className="mt-4 mb-0" />
+                
+              </Col>
+              <Col md={7} className='d-flex flex-row-reverse'>
+                  {/* Dropdown Filterung nach Art der Impfung*/}
+                  <InputGroup className='w-75'>
+                    <InputGroup.Text>Filterung nach Impfart</InputGroup.Text>                    
+                    <Form.Select aria-label="Filter example"
+                              onChange={(e) => setVaccineType(e.target.value)}>
+                    <option value="all">Alle anzeigen</option>
+                    <option value="standard">Standard</option>
+                    <option value="indikation">Indikation</option>
+                    <option value="reise">Reise</option>
+                  </Form.Select>         
+                </InputGroup>
+                
+              </Col>
+              <Col md={12}>
+                <hr className='w-100'/>
               </Col>
             </Row>
-
-
-            {/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/}
-            {/*Test Bereich - Start*/}
-            <Row>
-              <Col className="mb-3">
-                <Form.Select aria-label="Filter example"
-                             className="w-25"
-                             onChange={(e) => setVaccineType(e.target.value)}>
-                  <option value="all">All</option>
-                  <option value="Drogen">Drogen</option>
-                  <option value="asd">Asd</option>
-                </Form.Select>
-                <hr className="mt-4 mb-0" />
-              </Col>
-            </Row>
-            {/*Test Bereich - End*/}
-            {/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/}
-
-
             {/* Durchgeführte Impfungen */}
             <Row>
               <h5 className="mb-3">Durchgeführte Impfungen</h5>
