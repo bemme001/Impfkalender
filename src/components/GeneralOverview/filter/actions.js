@@ -7,17 +7,23 @@ const ranges = [
     [7, 8],
     [9, 14],
     [15, 16],
-    [17, 17],
+    [17],
     [18, 59],
   ];
-  
+
   function rangeActionGenerator(r) {
-    return {
+
+      if( r[0]===17){
+        return{
+          text: "17",
+          handler: () => true,
+        }
+      }
+      return {
       text: r[0] + " - " + r[1],
-      handler: (age) => numberInBetween(age, r[0], r[1]),
-    };
-  }
-  
+      handler: (age) => numberInBetween(age, r[0], r[1]),}
+    }
+    
   const allAction = {
     text: "Show all",
     handler: () => true,

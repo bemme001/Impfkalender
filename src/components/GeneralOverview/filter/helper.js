@@ -14,3 +14,4 @@ export function numberInBetween(x, start, end) {
 export function numberIsBigger(x, start) {
   return x >= start;
 }
+
