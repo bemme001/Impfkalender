@@ -45,16 +45,6 @@ export default function MainView() {
     return null;
   }
 
-  const patientInformations = () => {
-    if (patientObject) {
-      console.log(patientObject);
-      return (
-        <PatientInformation patient={patientObject}/>
-      )
-    }
-    return null;
-  }
-
   return (
     <div>
       <Container fluid="xl">
@@ -71,7 +61,7 @@ export default function MainView() {
         {/* Personal infos */}
         <Row className="bg-light py-3 rounded-3">
           <Col>
-            {patientInformations()}
+            {patientObject && <PatientInformation patient={patientObject}/>}
           </Col>
         </Row>
 
