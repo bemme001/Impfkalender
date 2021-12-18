@@ -15,8 +15,8 @@ export const GlobalProvider = ({ children }) => {
 
     useEffect(() => {
 
-        let val1 = localStorage.getItem("patient");
-        let val2 = localStorage.getItem("immunization");
+        let val1 = localStorage.getItem("b3b69232-601e-11ec-8607-0242ac130002");
+        let val2 = localStorage.getItem("b3b69534-601e-11ec-8607-0242ac130002");
 
         console.log(val1);
         console.log(val2);
@@ -35,11 +35,11 @@ export const GlobalProvider = ({ children }) => {
         setPatientObject(patient);
         setImmunizationList(immunization);
 
-        localStorage.setItem("patient", JSON.stringify(patient));
-        localStorage.setItem("immunization", JSON.stringify(immunization));
+        localStorage.setItem("b3b69232-601e-11ec-8607-0242ac130002", JSON.stringify(patient));
+        localStorage.setItem("b3b69534-601e-11ec-8607-0242ac130002", JSON.stringify(immunization));
 
-        let val1 = JSON.parse(localStorage.getItem("patient"));
-        let val2 = JSON.parse(localStorage.getItem("immunization"));
+        let val1 = JSON.parse(localStorage.getItem("b3b69232-601e-11ec-8607-0242ac130002"));
+        let val2 = JSON.parse(localStorage.getItem("b3b69534-601e-11ec-8607-0242ac130002"));
 
         console.log(val1);
         console.log(val2);
