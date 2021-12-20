@@ -31,14 +31,17 @@ const SRMain = () => {
 
   return (
     <Container fluid="xl">
-      <Row className="mt-5">
+      {/* <Row className="mt-5 bg-light">
         <Col className="ps-0">
           <h1>
-            <span className="bg-light ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
+            <span className="ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
           </h1>
         </Col>
-      </Row>
+      </Row> */}
       <Row className="bg-light mt-4 mb-5 rounded-3 pb-4 pt-4">
+        <h1>
+          <span className="ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
+        </h1>
         {
           (patientObject !== null && Object.keys(patientObject).length !== 0)
             ? <Row className="d-flex align-items-center mb-3">
