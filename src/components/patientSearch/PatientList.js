@@ -3,6 +3,12 @@ import { Link, Navigate } from "react-router-dom"
 import { Table, Button, Container } from "react-bootstrap";
 import { GlobalContext } from "../../context/GlobalState"
 
+// schöne Date-Ausgabe
+const date_toString = (date) => {
+    const temp = date.split('-');
+    return [temp[2], temp[1], temp[0]].join(".");
+}
+
 const PatientList = ({ patients }) => {
     let key = 0;
 
@@ -28,6 +34,7 @@ const PatientList = ({ patients }) => {
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th class="text-center">Geburtsdatum</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +53,9 @@ const PatientList = ({ patients }) => {
                                                 {patient.resource.name[0].text}
                                             </Button>
                                         </Link>
+                                    </td>
+                                    <td class="col-lg-2 text-center">
+                                        {date_toString(patient.resource.birthDate)}
                                     </td>
                                 </tr>
                             )}
