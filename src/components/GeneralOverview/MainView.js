@@ -24,9 +24,6 @@ export default function MainView() {
 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   // Test Bereich - Start
-  console.log('actions: ', actions)
-  console.log('filter: ', filter)
-
   const [vaccineType, setVaccineType] = useState('all')
   const renderImmunizationTiles = () => {
     if (vaccineType === 'all') {

@@ -5,3 +5,13 @@
 #go-personal-date tr td:first-child {
   font-weight: bold;
 }
+
+.clear-btn {
+  background: none !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  cursor: pointer !important;
+  outline: inherit !important;
+}
