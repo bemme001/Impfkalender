@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Popup from "./Popup";
 import { Button } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // TODO braucht man das?
 
 const AddImmunization = (props) => {
   const [showPopUp, setShowPopUp] = useState(false);

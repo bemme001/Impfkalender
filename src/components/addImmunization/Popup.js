@@ -265,8 +265,15 @@ const Popup = (props) => {
                 Impfgrund
               </Form.Label>
               <Col sm={9} md={7} lg={9}>
-                <Form.Control type="text" placeholder="Impfgrund eingeben"
-                              onChange={handleChange} name="reason"/>
+                <select className="form-select"
+                        id="inputGroupSelect01"
+                        onChange={handleChange}
+                        name="reason">
+                  <option value="none">- - -</option>
+                  <option value="standard">Standardimpfung</option>
+                  <option value="indikation">Indikationsimpfung</option>
+                  <option value="reise">Reiseimpfung</option>
+                </select>
               </Col>
             </Form.Group>
 

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Col, Container, Row, Card } from "react-bootstrap";
+import React, {useContext, useEffect, useState, Fragment} from 'react'
+import {Col, Container, Row, Card, Button, Form, InputGroup} from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import AddImmunization from "../addImmunization/AddImmunization";
@@ -11,21 +11,37 @@ import { getAgeDifference } from './filter/helper';
 import './GO.css';
 import { useSSRSafeId } from '@react-aria/ssr';
 
+
+
 const id = 2698452;
 
 export default function MainView() {
-
+  
   let key = 0;
 
   const { patientObject, immunizationList } = useContext(GlobalContext);
   const [filter, setFilter] = useState(() => actions[0].handler);
   const [searchText, setSearchText] = useState('');
 
-  const immunizationTiles = () => {
-    if (immunizationList) {
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  // Test Bereich - Start
+  const [vaccineType, setVaccineType] = useState('all')
+  const renderImmunizationTiles = () => {
+    if (vaccineType === 'all') {
+      return immunizationTiles(immunizationList)
+    }
+    return immunizationTiles(immunizationList.filter(e => e.reason === vaccineType))
+  }
+
+
+  // Test Bereich - End
+  // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+  const immunizationTiles = (immunizations) => {
+    if (immunizations) {
       return (
         <Row xs="auto">
-          {immunizationList.filter((immu => {
+          {immunizations.filter((immu => {
             // check if patient object is available for filter
             if (!patientObject) {
               return true;
@@ -35,15 +51,13 @@ export default function MainView() {
 
             const age = getAgeDifference(birthdate, vaccinationDate);
             return filter(age);
-
           })).filter((immu) => {
-            console.log(immu.pathogen);
             return immu.pathogen.toLocaleLowerCase().startsWith(searchText.toLocaleLowerCase(), 0);
 
           }).sort((a, b) => {
             return ('' + a.pathogen).localeCompare(b.pathogen);
           }).map((element) =>
-            <Col key={key++}>
+            <Col md={3} key={key++}>
               <VaccinationTiles immunization={element} />
             </Col>
           )}
@@ -108,7 +122,7 @@ export default function MainView() {
           <Col md={10}>
             {/* Buttons Impfung/Erreger hinzufügen */}
             <Row className="mb-3">
-              <Col>
+              <Col md={5}>
                 <div className="btn-group" role="group">
                   {patientObject && <AddImmunization
                     uuid={patientObject.uuid}
@@ -118,7 +132,24 @@ export default function MainView() {
                   <span className="me-3" />
                   <AddDisease />
                 </div>
-                <hr className="mt-4 mb-0" />
+                
+              </Col>
+              <Col md={7} className='d-flex flex-row-reverse'>
+                  {/* Dropdown Filterung nach Art der Impfung*/}
+                  <InputGroup className='w-75'>
+                    <InputGroup.Text>Filterung nach Impfart</InputGroup.Text>                    
+                    <Form.Select aria-label="Filter example"
+                              onChange={(e) => setVaccineType(e.target.value)}>
+                    <option value="all">Alle anzeigen</option>
+                    <option value="standard">Standard</option>
+                    <option value="indikation">Indikation</option>
+                    <option value="reise">Reise</option>
+                  </Form.Select>         
+                </InputGroup>
+                
+              </Col>
+              <Col md={12}>
+                <hr className='w-100'/>
               </Col>
             </Row>
             {/* Durchgeführte Impfungen */}
@@ -131,7 +162,8 @@ export default function MainView() {
                   }}/>
                 </div>
               {/* todo: todo necessary refactoring*/}
-              {immunizationTiles()}
+              {renderImmunizationTiles()}
+              {/*{immunizationTiles()}*/}
             </Row>
 
           </Col>
