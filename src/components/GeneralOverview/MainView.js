@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState, Fragment} from 'react'
-import {Col, Container, Row, Card, Button, Form, InputGroup} from "react-bootstrap";
+import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
+import { Col, Container, Row, Card, Button, Form, InputGroup } from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import AddImmunization from "../addImmunization/AddImmunization";
@@ -11,17 +11,16 @@ import { getAgeDifference } from './filter/helper';
 import './GO.css';
 import { useSSRSafeId } from '@react-aria/ssr';
 
-
-
 const id = 2698452;
 
 export default function MainView() {
-  
+
   let key = 0;
 
   const { patientObject, immunizationList } = useContext(GlobalContext);
   const [filter, setFilter] = useState(() => actions[0].handler);
   const [searchText, setSearchText] = useState('');
+  const vaccineCounter = useRef(0);
 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   // Test Bereich - Start
@@ -32,37 +31,33 @@ export default function MainView() {
     }
     return immunizationTiles(immunizationList.filter(e => e.reason === vaccineType))
   }
-
-
   // Test Bereich - End
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
   const immunizationTiles = (immunizations) => {
     if (immunizations) {
-      return (
-        <Row xs="auto">
-          {immunizations.filter((immu => {
-            // check if patient object is available for filter
-            if (!patientObject) {
-              return true;
-            }
-            const birthdate = new Date(patientObject.birthdate);
-            const vaccinationDate = new Date(immu.date);
+        const rows = immunizations.filter((immu => {
+          // check if patient object is available for filter
+          if (!patientObject) {
+            return true;
+          }
+          const birthdate = new Date(patientObject.birthdate);
+          const vaccinationDate = new Date(immu.date);
 
-            const age = getAgeDifference(birthdate, vaccinationDate);
-            return filter(age);
-          })).filter((immu) => {
-            return immu.pathogen.toLocaleLowerCase().startsWith(searchText.toLocaleLowerCase(), 0);
+          const age = getAgeDifference(birthdate, vaccinationDate);
+          return filter(age);
+        })).filter((immu) => {
+          return immu.pathogen.toLocaleLowerCase().startsWith(searchText.toLocaleLowerCase(), 0);
 
-          }).sort((a, b) => {
-            return ('' + a.pathogen).localeCompare(b.pathogen);
-          }).map((element) =>
-            <Col md={3} key={key++}>
-              <VaccinationTiles immunization={element} />
-            </Col>
-          )}
-        </Row>
-      )
+        }).sort((a, b) => {
+          return ('' + a.pathogen).localeCompare(b.pathogen);
+        }).map((element) => {
+          return <Col md={3} key={key++}>
+            <VaccinationTiles immunization={element} birthdate={patientObject.birthdate} />
+          </Col>
+        })
+        vaccineCounter.current = rows.length;
+        return <Row xs="auto">{rows}</Row>;
     }
     return null;
   }
@@ -132,35 +127,36 @@ export default function MainView() {
                   <span className="me-3" />
                   <AddDisease />
                 </div>
-                
+
               </Col>
               <Col md={7} className='d-flex flex-row-reverse'>
-                  {/* Dropdown Filterung nach Art der Impfung*/}
-                  <InputGroup className='w-75'>
-                    <InputGroup.Text>Filterung nach Impfart</InputGroup.Text>                    
-                    <Form.Select aria-label="Filter example"
-                              onChange={(e) => setVaccineType(e.target.value)}>
+                {/* Dropdown Filterung nach Art der Impfung*/}
+                <InputGroup className='w-75'>
+                  <InputGroup.Text>Filterung nach Impfart</InputGroup.Text>
+                  <Form.Select aria-label="Filter example"
+                    onChange={(e) => setVaccineType(e.target.value)}>
                     <option value="all">Alle anzeigen</option>
                     <option value="standard">Standard</option>
                     <option value="indikation">Indikation</option>
                     <option value="reise">Reise</option>
-                  </Form.Select>         
+                  </Form.Select>
                 </InputGroup>
-                
+
               </Col>
               <Col md={12}>
-                <hr className='w-100'/>
+                <hr className='w-100' />
               </Col>
             </Row>
             {/* Durchgeführte Impfungen */}
             <Row>
-              
+
               <h5 className="mb-3">Durchgeführte Impfungen</h5>
               <div className="btn-group" role="group">
-                  <input type="text" placeholder="Durchsuche Impfungen" onChange={(event) => {
-                    setSearchText(event.target.value);
-                  }}/>
-                </div>
+                <input type="text" placeholder="Durchsuche Impfungen" onChange={(event) => {
+                  setSearchText(event.target.value);
+                }} />
+                <div>Angezeigte Impfungen: {vaccineCounter.current}</div>
+              </div>
               {/* todo: todo necessary refactoring*/}
               {renderImmunizationTiles()}
               {/*{immunizationTiles()}*/}
