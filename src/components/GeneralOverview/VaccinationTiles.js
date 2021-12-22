@@ -3,6 +3,7 @@ import {Card, Button, Row, Col, OverlayTrigger, Tooltip} from "react-bootstrap";
 import InfoPopup from "./InfoPopup";
 import { BsFillCheckCircleFill, BsExclamationTriangleFill, BsTruck } from 'react-icons/bs';
 import './GO.css';
+import { getAgeDifference } from './filter/helper';
 
 const VaccinationTiles = (props) => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -35,7 +36,11 @@ const VaccinationTiles = (props) => {
     }
   }
 
-  console.log(props)
+  function getAge() {
+    const result = getAgeDifference(new Date(props.birthdate), new Date(props.immunization.date));
+    return result;
+  }
+
   return (
     <div className="mb-4">
         <Card border="info">
@@ -50,6 +55,7 @@ const VaccinationTiles = (props) => {
         <Card.Body>
             <Card.Title>{props.immunization.immun}</Card.Title>
             <div>Datum: {props.immunization.date}</div>
+            <div>Alter {getAge()}</div>
             <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
             {showPopUp ? <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={props.immunization}/> : null}
         </Card.Body>
