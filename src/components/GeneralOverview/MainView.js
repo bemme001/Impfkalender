@@ -1,15 +1,15 @@
 import React, {useContext, useEffect, useState, Fragment} from 'react'
-import {Col, Container, Row, Card, Button, Form,InputGroup} from "react-bootstrap";
+import {Col, Container, Row, Card, Button, Form, InputGroup} from "react-bootstrap";
 import VaccinationTiles from "./VaccinationTiles";
 import PatientInformation from './PatientInformations';
 import AddImmunization from "../addImmunization/AddImmunization";
 import AddDisease from "./AddDisease";
 import AgeTileBoard from "./AgeTileBoard";
-import {GlobalContext} from "../../context/GlobalState";
+import { GlobalContext } from "../../context/GlobalState";
 import actions from './filter/actions';
-import {getAgeDifference} from './filter/helper';
-import { BsSearch } from 'react-icons/bs';
+import { getAgeDifference } from './filter/helper';
 import './GO.css';
+import { useSSRSafeId } from '@react-aria/ssr';
 
 
 
@@ -19,8 +19,9 @@ export default function MainView() {
   
   let key = 0;
 
-  const {patientObject, immunizationList} = useContext(GlobalContext);
+  const { patientObject, immunizationList } = useContext(GlobalContext);
   const [filter, setFilter] = useState(() => actions[0].handler);
+  const [searchText, setSearchText] = useState('');
 
   // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   // Test Bereich - Start
@@ -50,10 +51,14 @@ export default function MainView() {
 
             const age = getAgeDifference(birthdate, vaccinationDate);
             return filter(age);
+          })).filter((immu) => {
+            return immu.pathogen.toLocaleLowerCase().startsWith(searchText.toLocaleLowerCase(), 0);
 
-          })).map((element) =>
+          }).sort((a, b) => {
+            return ('' + a.pathogen).localeCompare(b.pathogen);
+          }).map((element) =>
             <Col md={3} key={key++}>
-              <VaccinationTiles immunization={element}/>
+              <VaccinationTiles immunization={element} />
             </Col>
           )}
         </Row>
@@ -66,7 +71,7 @@ export default function MainView() {
     if (patientObject) {
       console.log(patientObject);
       return (
-        <PatientInformation patient={patientObject}/>
+        <PatientInformation patient={patientObject} />
       )
     }
     return null;
@@ -101,12 +106,15 @@ export default function MainView() {
            */}
           <Col md={2}>
             <Card>
+              <Card.Title>
+                Altersfilter
+              </Card.Title>
               <Card.Body>
                 <AgeTileBoard
                   actions={actions}
                   handler={(filterAction) => {
-                  setFilter(() => filterAction);
-                }}/>
+                    setFilter(() => filterAction);
+                  }} />
               </Card.Body>
             </Card>
           </Col>
@@ -117,12 +125,12 @@ export default function MainView() {
               <Col md={5}>
                 <div className="btn-group" role="group">
                   {patientObject && <AddImmunization
-                    uuid={ patientObject.uuid }
-                    pid={ patientObject.id }
+                    uuid={patientObject.uuid}
+                    pid={patientObject.id}
                     perf='Practitioner/2691497'
                   />}
                   <span className="me-3" />
-                  <AddDisease/>
+                  <AddDisease />
                 </div>
                 
               </Col>
@@ -146,7 +154,13 @@ export default function MainView() {
             </Row>
             {/* Durchgeführte Impfungen */}
             <Row>
+              
               <h5 className="mb-3">Durchgeführte Impfungen</h5>
+              <div className="btn-group" role="group">
+                  <input type="text" placeholder="Durchsuche Impfungen" onChange={(event) => {
+                    setSearchText(event.target.value);
+                  }}/>
+                </div>
               {/* todo: todo necessary refactoring*/}
               {renderImmunizationTiles()}
               {/*{immunizationTiles()}*/}

@@ -49,6 +49,7 @@ const VaccinationTiles = (props) => {
         </Card.Header>
         <Card.Body>
             <Card.Title>{props.immunization.immun}</Card.Title>
+            <div>Datum: {props.immunization.date}</div>
             <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
             {showPopUp ? <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={props.immunization}/> : null}
         </Card.Body>
