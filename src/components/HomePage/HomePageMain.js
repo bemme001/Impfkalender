@@ -1,11 +1,15 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
+import Searchbar from "../Header/Searchbar";
 
 import HomePageCardElement from "./HomePageCardElement";
 
 const HomePageMain = () => {
   return (
     <Container fluid="xl" className="bg-light border rounded-2 mt-5">
+      <Row>
+        <Searchbar/>
+      </Row>
       <Row>
         <Col className="text-center py-3">
           <h1 className="mb-3">Navigationsseite</h1>

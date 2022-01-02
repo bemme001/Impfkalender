@@ -1,33 +1,34 @@
 import { InputGroup, Button, Form } from "react-bootstrap";
 import { useState } from "react"
 import { Navigate } from "react-router-dom"
+import { BsSearch } from 'react-icons/bs';
+import './searchbar.css';
 
 const Searchbar = () => {
     const [ value, setValue ] = useState("")
 
     return (
-        
         <Form className="ms-2">
-            <InputGroup>
-                <InputGroup.Text id="searchbar">Patient</InputGroup.Text>
+          <InputGroup>
                 <Form.Control
-                    placeholder="Name / ID"
-                    aria-label="Name / ID"
+                    placeholder="Name / ID des Patienten"
+                    aria-label="Name / ID des Patienten"
                     aria-describedby="searchbar"
-                    type="input"
+                    type="search"
+                    className="text-white transparent-input"
                     onChange={(e) => {
                         isNaN(e.target.value) 
                         ? setValue("name=" + e.target.value)
                         : setValue("_id=" + e.target.value)
                     }}
                 />
-                <Button 
-                    variant="light"
+                <Button
+                    variant="outline-light"
                     id="patient_search_button"
                     type="button"
                     href={"/search:" + value}
                 >
-                Absenden
+                <BsSearch/>
                 </Button>
             </InputGroup>
         </Form>
