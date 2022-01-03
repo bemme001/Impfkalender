@@ -1,8 +1,24 @@
 .transparent-input{
-  background-color:transparent !important;
+  background-color:rgba(255,255,255,0.0) !important;
+  opacity: 0.7 !important;
+}
+
+.transparent-input::placeholder{
   color: white !important;
 }
 
-::placeholder{
-  color: white !important;
+.transparent-button{
+  background-color:rgba(255,255,255,0.0) !important;
+  opacity: 0.7 !important;
+}
+
+.nontransparent-input{
+  outline: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  width: 300px !important;
+}
+
+.nontransparent-button{
+
 }

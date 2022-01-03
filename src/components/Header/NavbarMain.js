@@ -13,7 +13,8 @@ const NavbarMain = () => {
         <Navbar.Brand href="#home">LOGO</Navbar.Brand>
         <Nav className="d-flex align-items-center">
           {/*searchButton && <Searchbar />*/}
-          <Searchbar/>
+          <Searchbar formStyleClass="text-white transparent-input" buttonStyleClass="transparent-button"
+                     variantStyle="outline-light" inputSize="sm"/>
           {/*<Link to="#" className="nav-link pt-1" onClick={() => setSearchButton(!searchButton)}><BsSearch /></Link>*/}
           <Link to="/" className="text-white nav-link">Startseite</Link>
           <Link to="/stiko-empfehlungen" className="text-white nav-link">STIKO Impfempfehlung</Link>

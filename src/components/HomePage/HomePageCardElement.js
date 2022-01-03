@@ -7,13 +7,12 @@ const HomePageCardElement = ({ extraInfo = "---",
                          description = "---",
                          link = "---"}) => {
   return (
-    <Card border="info" style={{ width: '18rem' }}>
-      <Card.Header>{extraInfo}</Card.Header>
+    <Card className="border-secondary text-center" style={{ width: '30rem' }}>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>{description}</Card.Text>
         <Link to={link}>
-          <Button variant="outline-primary" className="w-100">Open</Button>
+          <Button variant="outline-secondary">Öffnen</Button>
         </Link>
       </Card.Body>
     </Card>

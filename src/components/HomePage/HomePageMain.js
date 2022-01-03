@@ -6,30 +6,30 @@ import HomePageCardElement from "./HomePageCardElement";
 
 const HomePageMain = () => {
   return (
-    <Container fluid="xl" className="bg-light border rounded-2 mt-5">
-      <Row>
-        <Searchbar/>
-      </Row>
-      <Row>
-        <Col className="text-center py-3">
-          <h1 className="mb-3">Navigationsseite</h1>
-          <hr className="w-50 m-auto mb-3"/>
+    <Container fluid={true} className="p-0" >
+      <Row className="px-5 py-5" style={{height: "50vh"}}>
+        <Col className="text-center w-50 px-5 py-5">
+          <h1 className="mb-3">Patientensuche</h1>
+          <hr className="w-25 m-auto mb-3"/>
+          <Searchbar formStyleClass="nontransparent-input w-50" buttonStyleClass="nontransparent-button"
+                     variantStyle="outline-secondary" inputSize="lg"/>
         </Col>
       </Row>
-      <Row className="equal px-4">
-        <Col md={4} className="px-4 pb-5 d-flex justify-content-center">
+      <Row className="w-100" style={{backgroundColor:"rgba(2, 117, 216, 0.1)", height: "50vh"}}>
+        <Col md={6} className="pl-5 py-5 d-flex h-30 justify-content-center">
           <HomePageCardElement
-            extraInfo="Impfkalender 2020/20212"
+            extraInfo="Impfkalender 2020/2021"
             name="STIKO Impfempfehlung"
             description="Standardimpfungen für Säuglinge, Kinder, Jugendliche und Erwachsene."
             link="/stiko-empfehlungen"
           />
         </Col>
-        <Col md={4} className="px-4 pb-5 d-flex justify-content-center">
+        <Col md={6} className="pr-5 py-5 d-flex h-30 justify-content-center">
           <HomePageCardElement
             extraInfo="Extra information"
-            name="Name"
-            description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+            name="Generelle Übersicht"
+            description="Alle Impfungen ihres Patienten auf einen Blick"
+            link="generelle-uebersicht"
           />
         </Col>
       </Row>
