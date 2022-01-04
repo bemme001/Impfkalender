@@ -5,6 +5,12 @@ import { BsFillCheckCircleFill, BsExclamationTriangleFill, BsTruck } from 'react
 import './GO.css';
 import { getAgeDifference } from './filter/helper';
 
+// schöne Date-Ausgabe
+const date_toString = (date) => {
+  const temp = date.split('-');
+  return [temp[2], temp[1], temp[0]].join(".");
+}
+
 const VaccinationTiles = (props) => {
   const [showPopUp, setShowPopUp] = useState(false);
 
@@ -54,7 +60,7 @@ const VaccinationTiles = (props) => {
         </Card.Header>
         <Card.Body>
             <Card.Title>{props.immunization.immun}</Card.Title>
-            <div>Datum: {props.immunization.date}</div>
+            <div>Datum: {date_toString(props.immunization.date)}</div>
             <div>Alter {getAge()}</div>
             <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
             {showPopUp ? <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={props.immunization}/> : null}

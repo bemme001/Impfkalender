@@ -4,6 +4,12 @@ import { BsFillHandIndexFill } from "react-icons/bs";
 /*import {GlobalContext} from "../context/GlobalState";
 import React, {useRef, useState, useContext} from 'react'*/
 
+// schöne Date-Ausgabe
+const date_toString = (date) => {
+  const temp = date.split('-');
+  return [temp[2], temp[1], temp[0]].join(".");
+}
+
 const InfoPopup = (props) => {
 
   /*const {patientObject, immunizationList} = useContext(GlobalContext);
@@ -76,7 +82,7 @@ const InfoPopup = (props) => {
               <Col sm={4} md={4} lg={4} className="p-2"
               contentEditable suppressContentEditableWarning 
               onBlur={e =>UpdateInfo('date',e.target.innerText)}>
-                {props.infos.date}
+                {date_toString(props.infos.date)}
               </Col>
             </Form.Group>
 
