@@ -5,5 +5,8 @@ export const postImmunization = async (json) => {
         .post("https://hapi.fhir.org/baseR4/Immunization", json, {
             "ContentType": "application/fhir+json;charset=utf-8"
         })
-        .then((res) => res.data);  
+        .catch(error => console.log(error))
+        .then((res) => res.data)
+        .catch(error => console.log(error))
+    return false;
 }

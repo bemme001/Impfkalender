@@ -13,27 +13,29 @@ const ranges = [
 
 function rangeActionGenerator(r) {
   let text = r[0] + " - " + r[1];
-  if(r[0] === 17) {
+  if (r[0] === 17) {
     text = '17';
   }
   return {
     text: text,
-    handler: (age) => numberInBetween(age, r[0], r[1]),
+    start: r[0],
+    end: r[1],
   }
 }
 
-const allAction = {
-  text: "Show all",
-  handler: () => true,
-};
-
 const over60Action = {
   text: "60+",
-  handler: (age) => numberIsBigger(age, 60),
+  start: 60,
+  end: -1,
 };
 
-let actions = [];
-actions = actions.concat([allAction], ranges.map(rangeActionGenerator));
-actions.push(over60Action);
+const showAll = {
+  text: 'Alle anzeigen',
+  start: -1,
+  end: -1
+};
 
-export default actions;
+const ageRanges = [showAll, ...ranges.map(rangeActionGenerator)];
+ageRanges.push(over60Action);
+
+export default ageRanges;
