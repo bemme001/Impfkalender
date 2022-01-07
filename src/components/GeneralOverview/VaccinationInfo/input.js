@@ -105,12 +105,14 @@ export function DateInput({ label, name, value, editable, onChange, errors }) {
     );
 }
 
-export function NumberInput({ label, name, editable, value = 0, onChange, placeholder, errors }) {
+export function NumberInput({ label, name, editable, value, onChange, placeholder, errors }) {
     const error = errors.hasOwnProperty(name);
     let message = null;
     if (error) {
         message = errors[name];
     }
+
+    console.log('value number', value);
     return (
         <FormularSpace label={label}>
             {editable

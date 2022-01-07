@@ -16,8 +16,10 @@ export const checkForms = (immunization, patient) => {
     if (immuDate < birthday) newErrors.date = "Bitte wählen Sie ein Datum aus, an dem der Patient schon lebte.";
     if (immunization.site === '') newErrors.site = "Bitte geben Sie an wo Sie am Körper geimpft haben.";
     if (immunization.site && immunization.site.length > 200) newErrors.site = "Bitte geben Sie nicht mehr als 200 Zeichen ein."
-    if (immunization.dose && immunization.dose < 0) newErrors.dose = "Bitte geben Sie einen positiven Wert ein.";
-    if (immunization.dose === 0) newErrors.dose = "Bitte geben Sie an wie viel Imstoff (in ml) Sie verabreicht haben.";
-    if (!regexDose.test(immunization.dose)) newErrors.dose = "Bitte geben Sie eine Zahl ein."; //pattern="[0-9]+((.|,)[0-9]+)?"
+
+    // Funktioniert nicht, sofern immunization.dose als Textinput ein ml hinzufuegt wird
+    // if (immunization.dose && immunization.dose < 0) newErrors.dose = "Bitte geben Sie einen positiven Wert ein.";
+    // if (immunization.dose === 0) newErrors.dose = "Bitte geben Sie an wie viel Imstoff (in ml) Sie verabreicht haben.";
+    // if (!regexDose.test(immunization.dose)) newErrors.dose = "Bitte geben Sie eine Zahl ein."; //pattern="[0-9]+((.|,)[0-9]+)?"
     return newErrors;
 }
