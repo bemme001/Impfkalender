@@ -1,16 +1,31 @@
 import { Button, Form, Modal, Col, Row } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { DateInput, NumberInput, TextInput, Dropdown } from "./input";
 import { statusOptions, immunOptions, reasonOptions } from "./DropdownOptions";
 import { checkForms } from "./FromCheck";
 import { usePathogenLoader } from "./usePathogenLoader";
 import { submitVaccinationInfoChange } from "./submitVaccinationInfoChange";
+import { GlobalContext } from '../../../context/GlobalState';
 
 function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
+  const { fhirFetch } = useContext(GlobalContext);
   const [editable, setEditable] = useState(false);
   const [errors, setErrors] = useState({});
   const pathogenOptions = usePathogenLoader([], errors, setErrors);
   const [vaccination, setVaccination] = useState(infos);
+
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  let color = 'black'
+  switch (submitMessage) {
+    case 'success':
+      color = 'green';
+      break;
+    case 'error':
+      color = 'red';
+    default:
+      break;
+  }
 
   function handleChange(key, value) {
     setVaccination({ ...vaccination, [key]: value });
@@ -18,13 +33,22 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log('handleSubmit');
     const checkedErrors = checkForms(vaccination, patient);
     const zeroErrors = Object.entries(checkedErrors).length === 0;
     setErrors(checkedErrors);
     console.log('errors', errors);
     if (zeroErrors) {
-      if (submitVaccinationInfoChange(vaccination, patient)) {
-        setEditable(false)
+      const response = await submitVaccinationInfoChange(vaccination, patient);
+      if (response) {
+        setSubmitMessage('success');
+
+        // Aktualsieren des PatientenObjektes nach erfolgreichem Update
+        console.log('fhirFetch new patient', patient.id);
+        fhirFetch(patient.id);
+      }
+      else {
+        setSubmitMessage('error');
       }
     }
   }
@@ -94,10 +118,10 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
               errors={errors}
             />
 
-            <NumberInput
+            <TextInput
               label="Dosis in ml"
-              name="dose"
-              value={vaccination.dose}
+              name="quantity"
+              value={vaccination.quantity}
               editable={editable}
               onChange={handleChange}
               errors={errors}
@@ -130,6 +154,7 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
                   onClick={() => {
                     setVaccination({ ...infos });
                     setEditable(!editable)
+                    setSubmitMessage('');
                   }}
                   className="mx-2">
                   Verwerfen
@@ -139,6 +164,7 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
                   type="submit">
                   Speichern
                 </Button>
+                <span style={{ marginLeft: '20px', color: color }}>{submitMessage}</span>
               </>
               :
               <>
@@ -149,13 +175,13 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
                   className="mx-2">
                   Abbrechen
                 </Button>
-                <Button
+                <button
                   variant="warning"
                   type="button"
                   onClick={() => setEditable(!editable)}
                   className="mx-2">
                   Bearbeiten
-                </Button>
+                </button>
               </>
             }
           </Form>
