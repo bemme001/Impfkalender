@@ -11,8 +11,8 @@ const HomePageMain = () => {
         <Col className="text-center px-5 py-5">
           <h1 className="mb-3">Patientensuche</h1>
           <hr className="w-25 m-auto mb-3"/>
-          <Searchbar formStyleClass="nontransparent-input" buttonStyleClass="nontransparent-button"
-                     variantStyle="outline-secondary" inputSize="lg"/>
+          <Searchbar formStyleClass="nontransparent-input border-primary" buttonStyleClass="btn-outline-primary"
+                     variantStyle="btn-outline-primary" inputSize="lg"/>
         </Col>
       </Row>
       <Row className="w-100" style={{backgroundColor:"rgba(39,40,44,0.1)", height: "48vh"}}>
