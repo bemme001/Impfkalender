@@ -9,6 +9,7 @@ import MainView from "./components/GeneralOverview/MainView";
 import PatientSearch from "./components/patientSearch/PatientSearch";
 import {GlobalProvider} from "./context/GlobalState";
 import SRMain from "./components/StikoRecommendation/SRMain";
+import Footer from "./components/HomePage/Footer";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="generelle-uebersicht" element={<MainView />} />
                 <Route path="search::value" element={<PatientSearch />} />
             </Routes>
+            <Footer/>
             </BrowserRouter>
         </QueryClientProvider>
     </GlobalProvider>
