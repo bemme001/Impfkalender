@@ -4,16 +4,18 @@ import { Navigate } from "react-router-dom"
 import { BsSearch } from 'react-icons/bs';
 import './searchbar.css';
 
+
 const Searchbar = (props) => {
-    const [ value, setValue ] = useState("")
+    const [ value, setValue ] = useState("");
 
   /*
-  const handleKeyDown = (e) => {
+  const handleKeyPress = (e) => {
       if (e.key === 'Enter') {
         <Link to={"/search:" + value}/>
       }
    }
-   */
+   onKeyPress={handleKeyPress}
+  */
 
 
     return (
