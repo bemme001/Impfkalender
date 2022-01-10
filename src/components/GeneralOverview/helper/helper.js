@@ -1,6 +1,7 @@
 export function getAgeDifference(startDate, endDate) {
-  const timeMilliseconds = startDate - endDate;
-  const difference = 1970 - new Date(timeMilliseconds).getFullYear();
+
+  const timeMilliseconds = endDate - startDate;
+  const difference = new Date(timeMilliseconds).getFullYear() - 1970;
   return difference;
 }
 
@@ -14,4 +15,3 @@ export function numberInBetween(x, start, end) {
 export function numberIsBigger(x, start) {
   return x >= start;
 }
-
