@@ -44,7 +44,7 @@ function VaccinationTiles({ patient, immunization }) {
 
   return (
     <div className="mb-4">
-      <Card border="info">
+      <Card border="info" onClick={switchPopUp}>
         <Card.Header style={{ minHeight: "65px" }}>
           <Row>
             <Col md={9}>{pathogen}</Col>
@@ -57,14 +57,14 @@ function VaccinationTiles({ patient, immunization }) {
           <Card.Title>{immun}</Card.Title>
           <div>Datum: {date_toString(date)}</div>
           <div>Alter {getAge()}</div>
-          <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
+          
           {showPopUp && <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunization} patient={patient} />}
         </Card.Body>
       </Card>
     </div>
   );
 }
-
+//<Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
 function VaccinationOverlayTrigger({ toolTipText, symbol }) {
   return <OverlayTrigger
     placement='top'
