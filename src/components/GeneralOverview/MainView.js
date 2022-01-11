@@ -26,9 +26,9 @@ export default function MainView() {
   return (
     <Container fluid="xl">
       <Row className="mt-5 mb-4">
-        <h1 className="bg-light ps-2 pe-3">Generelle Übersicht</h1>
+        <h1 className="bg-white ps-2 pe-3">Generelle Übersicht</h1>
       </Row>
-      <Row className="bg-light py-3 rounded-3">
+      <Row className="bg-white py-3 rounded-3">
         <PatientView patient={patientObject} />
       </Row>
       <Row className="bg-light py-4 rounded-3 mt-4">
