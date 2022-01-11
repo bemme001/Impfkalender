@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AgeTiles from "./AgeTiles";
-import { numberInBetween } from "./helper/helper";
 import "./GO.css"
 import MultiRangeSlider from "./MultiRangeSlider";
 

@@ -84,11 +84,9 @@ function VaccinationTileBoard({ vaccinations, patient }) {
     return (
         <Row xs="auto">
             {vaccinations.map((v, key) => {
-                return <>
-                    <Col md={3} key={key}>
+                return <Col md={3} key={key}>
                         <VaccinationTiles immunization={v} patient={patient} />
                     </Col>
-                </>
             })}
         </Row>
     );

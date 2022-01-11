@@ -1,6 +1,6 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import { useState, useContext } from "react";
-import { DateInput, TextInput, Dropdown } from "./input";
+import { DateInput, TextInput, Dropdown, NumberInput } from "./input";
 import { statusOptions, immunOptions, reasonOptions } from "./DropdownOptions";
 import { checkForms } from "./FromCheck";
 import { usePathogenLoader } from "./usePathogenLoader";
@@ -24,6 +24,7 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
       break;
     case 'error':
       color = 'red';
+      break;
     default:
       break;
   }
@@ -42,8 +43,9 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
       if (response) {
         setSubmitMessage('success');
 
-        // Aktualsieren des PatientenObjektes nach erfolgreichem Update
+        // Aktualisieren des PatientenObjektes nach erfolgreichem Update
         reloadPatient(patient.id);
+        switchPopUp();
       }
       else {
         setSubmitMessage('error');
@@ -159,7 +161,9 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
                 </Button>
                 <Button
                   variant="danger"
-                  type="submit">
+                  type="button"
+                  onClick={(e) => handleSubmit(e)}
+                >
                   Speichern
                 </Button>
                 <span style={{ marginLeft: '20px', color: color }}>{submitMessage}</span>

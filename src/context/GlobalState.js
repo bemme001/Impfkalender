@@ -25,9 +25,9 @@ export const GlobalProvider = ({ children }) => {
         }
     }, []);
 
-    async function fhirFetch(patientId) {
+    async function fhirFetch(patientObject) {
         let patient, immunization;
-        patient = await Patient.create(patientId);
+        patient = await Patient.create(patientObject);
         immunization = await Immunization.create(patient.uuid);
 
         setPatientObject(patient);
@@ -35,9 +35,6 @@ export const GlobalProvider = ({ children }) => {
 
         localStorage.setItem("b3b69232-601e-11ec-8607-0242ac130002", JSON.stringify(patient));
         localStorage.setItem("b3b69534-601e-11ec-8607-0242ac130002", JSON.stringify(immunization));
-
-        let val1 = JSON.parse(localStorage.getItem("b3b69232-601e-11ec-8607-0242ac130002"));
-        let val2 = JSON.parse(localStorage.getItem("b3b69534-601e-11ec-8607-0242ac130002"));
     }
 
     async function fetchPatient(patientID) {

@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 //   reason: "Drogen",
 //   note: "my note"
 // }
+
 export function usePathogenLoader(initialValue, errors, setErrors) {
     const [pathogenOptions, setPathogenOptions] = useState(initialValue);
     useEffect(() => {
@@ -27,6 +28,7 @@ export function usePathogenLoader(initialValue, errors, setErrors) {
             })
             .catch(() => setErrors({ ...errors, "diseaseErr": "Erreger konnten nicht geladen werden!" })
             );
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return pathogenOptions;
 }
