@@ -40,8 +40,7 @@ function DiseasePopup(props) {
       <Modal show={props.showPopUp} onHide={props.switchPopUp} size="xl">
         <Modal.Header closeButton>
           <Modal.Title>
-            Erreger hinzufügen <br/>
-            (Start the JSON Server in a second terminal: npx json-server --watch data/DiseaseDB.json --port 3001)
+            Erreger hinzufügen
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

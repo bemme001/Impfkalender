@@ -66,12 +66,14 @@ export default function VaccinationView({ vaccinations, patient }) {
                     </Col>
                 </Row>
                 <Row>
-                    <h5 className="mb-3">Durchgeführte Impfungen</h5>
-                    <div className="btn-group" role="group">
-                        <input type="text" placeholder="Durchsuche Impfungen" onChange={e => setFilter({ ...filter, searchText: e.target.value })} />
-                        <div>Angezeigte Impfungen: {vaccinations.length}</div>
-                    </div>
-                    <VaccinationTileBoard vaccinations={vaccinations} patient={patient} />
+                    <Col>
+                        <h5 className="mb-3">Durchgeführte Impfungen</h5>
+                        <div className="btn-group mb-3" role="group">
+                            <input className="form-control" type="text" placeholder="Durchsuche Impfungen" onChange={e => setFilter({ ...filter, searchText: e.target.value })} />
+                            <div className="ms-5">Angezeigte Impfungen: {vaccinations.length}</div>
+                        </div>
+                        <VaccinationTileBoard vaccinations={vaccinations} patient={patient} />
+                    </Col>
                 </Row>
             </Col>
         </>

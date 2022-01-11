@@ -1,31 +1,37 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
+import Searchbar from "../Header/Searchbar";
 
 import HomePageCardElement from "./HomePageCardElement";
-
+//rgba(2, 117, 216, 0.1) für Card Background
 const HomePageMain = () => {
   return (
-    <Container fluid="xl" className="bg-light border rounded-2 mt-5">
-      <Row>
-        <Col className="text-center py-3">
-          <h1 className="mb-3">Navigationsseite</h1>
-          <hr className="w-50 m-auto mb-3"/>
+    <Container fluid={true} style={{paddingRight: "15px", paddingLeft: "15px", marginRight: "auto", marginLeft: "auto"}}>
+      <Row className="center px-5 py-5 w-75 mx-auto" style={{height: "48vh"}}>
+        <Col className="text-center px-5 py-5">
+          <h1 className="mb-3">Patientensuche</h1>
+          <hr className="w-25 m-auto mb-3"/>
+          <Searchbar formStyleClass="nontransparent-input border-primary" buttonStyleClass="btn-outline-primary"
+                     variantStyle="btn-outline-primary" inputSize="lg"/>
         </Col>
       </Row>
-      <Row className="equal px-4">
-        <Col md={4} className="px-4 pb-5 d-flex justify-content-center">
+      <Row  style={{backgroundColor:"rgba(39,40,44,0.1)", height: "45vh"}}>
+        <Col md={6} className="px-5 py-5 d-flex h-30 w-40 justify-content-end">
           <HomePageCardElement
-            extraInfo="Impfkalender 2020/20212"
+            extraInfo="Impfkalender 2021/2022"
             name="STIKO Impfempfehlung"
-            description="Standardimpfungen für Säuglinge, Kinder, Jugendliche und Erwachsene."
+            description="Standardimpfungen für Säuglinge, Kinder, Jugendliche und Erwachsene.
+              Vergleichen Sie die Impfungen ihres Patienten mit der Stiko-Impfempfehlung."
             link="/stiko-empfehlungen"
           />
         </Col>
-        <Col md={4} className="px-4 pb-5 d-flex justify-content-center">
+        <Col md={6} className="px-5 py-5 d-flex h-30 w-40 justify-content-start">
           <HomePageCardElement
             extraInfo="Extra information"
-            name="Name"
-            description="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam"
+            name="Generelle Übersicht"
+            description="Alle Impfungen ihres Patienten auf einen Blick. Filtern Sie nach Altersstufen
+              und fügen Sie neue Impfungen in den Kalender ein."
+            link="/generelle-uebersicht"
           />
         </Col>
       </Row>

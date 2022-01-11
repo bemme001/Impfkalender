@@ -1,18 +1,23 @@
-import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
-import { Col, Container, Row, Card, Button, Form, InputGroup } from "react-bootstrap";
-import VaccinationTiles from "./VaccinationTiles";
-import PatientInformation from './PatientInformations';
-import AddImmunization from "../addImmunization/AddImmunization";
-import AddDisease from "./AddDisease";
-import AgeTileBoard from "./AgeTileBoard";
+import React, { useContext } from 'react'
+import { Container, Row } from "react-bootstrap";
 import { GlobalContext } from "../../context/GlobalState";
-import { getAgeDifference } from './helper/helper';
 import './GO.css';
-import { useSSRSafeId } from '@react-aria/ssr';
 import PatientView from './PatientView';
 import VaccinationView from './VaccinationView';
+import { motion } from "framer-motion";
 
-const id = 2698452;
+const MotionContainer = motion(Container);
+// import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
+// import { Container, Row, Card, Button, Form, InputGroup, Col } from "react-bootstrap";
+// import VaccinationTiles from "./VaccinationTiles";
+// import PatientInformation from './PatientInformations';
+// import AddImmunization from "../addImmunization/AddImmunization";
+// import AddDisease from "./AddDisease";
+// import AgeTileBoard from "./AgeTileBoard";
+// import { getAgeDifference } from './helper/helper';
+// import { useSSRSafeId } from '@react-aria/ssr';
+
+//const id = 2698452;
 
 export default function MainView() {
   const { patientObject, immunizationList } = useContext(GlobalContext);
@@ -22,17 +27,21 @@ export default function MainView() {
   }
 
   return (
-    <Container fluid="xl">
+    <MotionContainer fluid="xl" 
+        exit={{ x: '100vw', transition: {ease: 'easeInOut'}}}
+        animate={{ x: 0, transition: { delay: 0.25, ease: 'easeInOut' }}}
+        initial={{ x: '100vw'}}
+    >
       <Row className="mt-5 mb-4">
-        <h1 className="bg-light ps-2 pe-3">Generelle Übersicht</h1>
+        <h1 className="bg-white ps-2 pe-3">Generelle Übersicht</h1>
       </Row>
-      <Row className="bg-light py-3 rounded-3">
+      <Row className="bg-white py-3 rounded-3">
         <PatientView patient={patientObject} />
       </Row>
       <Row className="bg-light py-4 rounded-3 mt-4">
         <VaccinationView vaccinations={immunizationList} patient={patientObject} />
       </Row>
-    </Container>
+    </MotionContainer>
   );
 }
 

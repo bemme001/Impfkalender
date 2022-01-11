@@ -4,6 +4,9 @@ import InfoPopup from "./VaccinationInfo/VaccinationInfoPopUp";
 import { BsFillCheckCircleFill, BsExclamationTriangleFill, BsTruck } from 'react-icons/bs';
 import './GO.css';
 import { getAgeDifference } from './helper/helper';
+import { motion } from "framer-motion";
+import { Text } from '@mantine/core';
+
 
 const vReasonDictionary = {
   standard: {
@@ -43,27 +46,29 @@ function VaccinationTiles({ patient, immunization }) {
 
   return (
     <div className="mb-4">
-      <Card border="info">
-        <Card.Header style={{ minHeight: "65px" }}>
-          <Row>
-            <Col md={9}>{pathogen}</Col>
-            <Col md={3} className="p-0 d-flex justify-content-center align-items-start">
-              <VaccinationOverlayTrigger toolTipText={toolTip.name} symbol={toolTip.symbol} />
-            </Col>
-          </Row>
-        </Card.Header>
-        <Card.Body>
-          <Card.Title>{immun}</Card.Title>
-            <div>Datum: {date_toString(date)}</div>
-            <div>Alter {getAge()}</div>
-          <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
-          {showPopUp && <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunization} patient={patient} />}
-        </Card.Body>
-      </Card>
+    {showPopUp && <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunization} patient={patient} />}
+        <motion.div whileHover={{scale:0.9}} whileTap={{scale:0.8}}>
+            <Card border="info" onClick={switchPopUp}>
+                <Card.Header style={{ minHeight: "32.5px" }}>
+                <Row>
+                
+                    <Col md={10}><Text lineClamp={1}>{pathogen}</Text></Col>
+                    <Col md={2} className="p-0 d-flex justify-content-center align-items-start">
+                        <VaccinationOverlayTrigger toolTipText={toolTip.name} symbol={toolTip.symbol} />
+                    </Col>
+                </Row>
+                </Card.Header>
+                <Card.Body>
+                <Card.Title>{immun}</Card.Title>
+                <div>Datum: {date_toString(date)}</div>
+                <div>Alter {getAge()}</div>
+                </Card.Body>
+            </Card>
+        </motion.div>
     </div>
   );
 }
-
+//<Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
 function VaccinationOverlayTrigger({ toolTipText, symbol }) {
   return <OverlayTrigger
     placement='top'

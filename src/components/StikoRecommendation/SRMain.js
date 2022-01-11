@@ -4,6 +4,9 @@ import { ButtonGroup, Col, Container, Row, ToggleButton } from "react-bootstrap"
 import SRTable from "./SRTable";
 import SrTableDescription from "./SRTableDescription";
 import SR2021 from "./SR2021";
+import { motion } from "framer-motion";
+
+const MotionContainer = motion(Container);
 
 const SRMain = () => {
 
@@ -30,15 +33,22 @@ const SRMain = () => {
   }
 
   return (
-    <Container fluid="xl">
-      <Row className="mt-5">
+    <MotionContainer fluid="xl" 
+        exit={{ x: '-100vw', transition: { ease: 'easeInOut' }}}
+        animate={{ x: '0', transition: { delay: 0.25, ease: 'easeInOut' }}}
+        initial={{ x: '-100vw' }}
+    >
+      {/* <Row className="mt-5 bg-light">
         <Col className="ps-0">
           <h1>
-            <span className="bg-light ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
+            <span className="ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
           </h1>
         </Col>
-      </Row>
-      <Row className="bg-light mt-4 mb-5 rounded-3 pb-4 pt-4">
+      </Row> */}
+      <Row className="bg-light mt-4 rounded-3 pb-4 pt-4">
+        <h1>
+          <span className="ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
+        </h1>
         {
           (patientObject !== null && Object.keys(patientObject).length !== 0)
             ? <Row className="d-flex align-items-center mb-3">
@@ -77,7 +87,7 @@ const SRMain = () => {
         />
         <SrTableDescription />
       </Row>
-    </Container>
+    </MotionContainer>
   );
 };
 
