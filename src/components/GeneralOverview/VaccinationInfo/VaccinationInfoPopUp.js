@@ -1,11 +1,12 @@
-import { Button, Form, Modal, Col, Row } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { useState, useContext } from "react";
-import { DateInput, NumberInput, TextInput, Dropdown } from "./input";
+import { DateInput, TextInput, Dropdown } from "./input";
 import { statusOptions, immunOptions, reasonOptions } from "./DropdownOptions";
 import { checkForms } from "./FromCheck";
 import { usePathogenLoader } from "./usePathogenLoader";
 import { submitVaccinationInfoChange } from "./submitVaccinationInfoChange";
 import { GlobalContext } from '../../../context/GlobalState';
+
 
 function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
   const { fhirFetch } = useContext(GlobalContext);
@@ -171,17 +172,17 @@ function InfoPopup({ switchPopUp, showPopUp, infos, patient }) {
                 <Button
                   variant="primary"
                   type="button"
-                  onClick={() => { switchPopUp() }}
+                  onClick={() => switchPopUp() }
                   className="mx-2">
                   Abbrechen
                 </Button>
-                <button
+                <Button
                   variant="warning"
                   type="button"
                   onClick={() => setEditable(!editable)}
                   className="mx-2">
                   Bearbeiten
-                </button>
+                </Button>
               </>
             }
           </Form>

@@ -18,7 +18,7 @@ const HomePageMain = () => {
       <Row  style={{backgroundColor:"rgba(39,40,44,0.1)", height: "45vh"}}>
         <Col md={6} className="px-5 py-5 d-flex h-30 w-40 justify-content-end">
           <HomePageCardElement
-            extraInfo="Impfkalender 2020/2021"
+            extraInfo="Impfkalender 2021/2022"
             name="STIKO Impfempfehlung"
             description="Standardimpfungen für Säuglinge, Kinder, Jugendliche und Erwachsene.
               Vergleichen Sie die Impfungen ihres Patienten mit der Stiko-Impfempfehlung."

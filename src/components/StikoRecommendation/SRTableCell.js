@@ -9,20 +9,18 @@ import StikoPopup from './StikoPopup';
  * some of which are clickable to view the stiko popup
  */
 const SrTableCell = ({ element, immunisation, colors, patient }) => {
-  const [showPopUp, setShowPopUp] = useState(false);
-  const switchPopUp = (e) => {
-    if (e === "close" || e.target.nodeName === "TD") setShowPopUp(s => !s);
-  };
+  const [showPopUp, switchPopUp] = useState(false);
 
-  return <td
-    colSpan={element.t_end - element.t_start}
-    className={"bg-" + colors} onClick={(e) => switchPopUp(e)}>
-    {element.name}
-    <span className="comment"> {element.desc}</span>
-    {showPopUp
-      ? <StikoPopup showPopUp={showPopUp} switchPopUp={(e) => switchPopUp(e)} infos={immunisation} colors={colors} element={element} patient={patient}/>
-      : null}
-  </td>
+  return <>{showPopUp
+    ? <StikoPopup showPopUp={showPopUp} switchPopUp={() => switchPopUp()} infos={immunisation} colors={colors} element={element} patient={patient}/>
+    : null}
+    <td
+        colSpan={element.t_end - element.t_start}
+        className={"bg-" + colors} onClick={(e) => switchPopUp(e)}>
+        {element.name}
+        <span className="comment"> {element.desc}</span>
+    </td>
+  </>
 }
 
 export default SrTableCell;
