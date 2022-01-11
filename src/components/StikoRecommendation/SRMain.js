@@ -4,6 +4,9 @@ import { ButtonGroup, Col, Container, Row, ToggleButton } from "react-bootstrap"
 import SRTable from "./SRTable";
 import SrTableDescription from "./SRTableDescription";
 import SR2021 from "./SR2021";
+import { motion } from "framer-motion";
+
+const MotionContainer = motion(Container);
 
 const SRMain = () => {
 
@@ -30,7 +33,11 @@ const SRMain = () => {
   }
 
   return (
-    <Container fluid="xl">
+    <MotionContainer fluid="xl" 
+        exit={{ x: '-100vw', transition: { ease: 'easeInOut' }}}
+        animate={{ x: '0', transition: { delay: 0.25, ease: 'easeInOut' }}}
+        initial={{ x: '-100vw' }}
+    >
       {/* <Row className="mt-5 bg-light">
         <Col className="ps-0">
           <h1>
@@ -80,7 +87,7 @@ const SRMain = () => {
         />
         <SrTableDescription />
       </Row>
-    </Container>
+    </MotionContainer>
   );
 };
 
