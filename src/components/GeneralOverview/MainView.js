@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
-import { Col, Container, Row, Card, Button, Form, InputGroup } from "react-bootstrap";
-import VaccinationTiles from "./VaccinationTiles";
-import PatientInformation from './PatientInformations';
-import AddImmunization from "../addImmunization/AddImmunization";
-import AddDisease from "./AddDisease";
-import AgeTileBoard from "./AgeTileBoard";
+import React, { useContext } from 'react'
+import { Container, Row } from "react-bootstrap";
 import { GlobalContext } from "../../context/GlobalState";
-import { getAgeDifference } from './helper/helper';
 import './GO.css';
-import { useSSRSafeId } from '@react-aria/ssr';
 import PatientView from './PatientView';
 import VaccinationView from './VaccinationView';
+// import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
+// import { Container, Row, Card, Button, Form, InputGroup, Col } from "react-bootstrap";
+// import VaccinationTiles from "./VaccinationTiles";
+// import PatientInformation from './PatientInformations';
+// import AddImmunization from "../addImmunization/AddImmunization";
+// import AddDisease from "./AddDisease";
+// import AgeTileBoard from "./AgeTileBoard";
+// import { getAgeDifference } from './helper/helper';
+// import { useSSRSafeId } from '@react-aria/ssr';
 
-const id = 2698452;
+//const id = 2698452;
 
 export default function MainView() {
   const { patientObject, immunizationList } = useContext(GlobalContext);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import {Link, useLocation} from "react-router-dom";
 import Searchbar from "./Searchbar";
-import { BsSearch } from 'react-icons/bs';
+// import { BsSearch } from 'react-icons/bs';
 
 const NavbarMain = () => {
   {/*const [searchButton, setSearchButton] = useState(false);*/}

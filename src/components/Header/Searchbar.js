@@ -1,20 +1,23 @@
 import { InputGroup, Button, Form } from "react-bootstrap";
 import { useState } from "react"
-import { Navigate } from "react-router-dom"
 import { BsSearch } from 'react-icons/bs';
 import './searchbar.css';
+// import { Navigate } from "react-router-dom"
 
 
 const Searchbar = (props) => {
     const [ value, setValue ] = useState("");
 
-  /*
-  const handleKeyPress = (e) => {
-      if (e.key === 'Enter') {
-        <Link to={"/search:" + value}/>
-      }
-   }
-   onKeyPress={handleKeyPress}
+    /*
+    const handleKeyPress = (e) => {
+        console.log("test");
+        if(e.charCode==13){
+            const { href } = window.location;
+            console.log("test:" + "${href}/search:" + value);
+            window.location.href = "${href}/search:" + value;
+        }
+    }
+  onKeyPress={handleKeyPress}
   */
 
 

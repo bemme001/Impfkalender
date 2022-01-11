@@ -15,7 +15,7 @@ const HomePageMain = () => {
                      variantStyle="btn-outline-primary" inputSize="lg"/>
         </Col>
       </Row>
-      <Row  style={{backgroundColor:"rgba(39,40,44,0.1)", height: "48vh"}}>
+      <Row  style={{backgroundColor:"rgba(39,40,44,0.1)", height: "45vh"}}>
         <Col md={6} className="px-5 py-5 d-flex h-30 w-40 justify-content-end">
           <HomePageCardElement
             extraInfo="Impfkalender 2020/2021"

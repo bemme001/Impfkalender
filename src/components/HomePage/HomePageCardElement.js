@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Card} from "react-bootstrap";
-import {Link, Navigate} from "react-router-dom";
+import {Card} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import { motion } from "framer-motion";
 import stikoImg from "./stiko-img.png";
 
@@ -13,8 +13,6 @@ const HomePageCardElement = ({ extraInfo = "---",
 
 
   //whileTap={{scale:0.9}}
-  // 'linear-gradient(135deg, #0d6efd 50%, #629df5 80%)'
-  // 'linear-gradient(135deg, #629df5 50%, #94bcf7 80%)'
   return (
     <Link to={link} style={{textDecoration: 'none'}}>
       <MotionCard whileHover={{scale:1.1}} className="text-center text-dark"

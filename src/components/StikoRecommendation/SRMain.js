@@ -38,7 +38,7 @@ const SRMain = () => {
           </h1>
         </Col>
       </Row> */}
-      <Row className="bg-light mt-4 mb-5 rounded-3 pb-4 pt-4">
+      <Row className="bg-light mt-4 rounded-3 pb-4 pt-4">
         <h1>
           <span className="ps-2 pe-3">STIKO Empfehlung 2020/2021</span>
         </h1>

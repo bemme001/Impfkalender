@@ -26,7 +26,7 @@ const PatientList = ({ patients }) => {
         <>
             {patients.total === 1
                 ? <Navigate to='/generelle-uebersicht' />
-                : <Container fluid="xl" className="rounded-2 mt-5">
+                : <Container fluid="xl" className="rounded-2 mt-5 d-flex flex-column min-vh-100">
                     <h1>
                         <span>Patientensuche</span>
                     </h1>
@@ -34,7 +34,7 @@ const PatientList = ({ patients }) => {
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th class="text-center">Geburtsdatum</th>
+                                <th className="text-center">Geburtsdatum</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,7 +54,7 @@ const PatientList = ({ patients }) => {
                                             </Button>
                                         </Link>
                                     </td>
-                                    <td class="col-lg-2 text-center">
+                                    <td className="col-lg-2 text-center">
                                         {date_toString(patient.resource.birthDate)}
                                     </td>
                                 </tr>
