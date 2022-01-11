@@ -111,8 +111,6 @@ export function NumberInput({ label, name, editable, value, onChange, placeholde
     if (error) {
         message = errors[name];
     }
-
-    console.log('value number', value);
     return (
         <FormularSpace label={label}>
             {editable

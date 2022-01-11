@@ -14,7 +14,7 @@ const Searchbar = () => {
                     placeholder="Name / ID"
                     aria-label="Name / ID"
                     aria-describedby="searchbar"
-                    type="input"
+                    type="search"
                     onChange={(e) => {
                         isNaN(e.target.value) 
                         ? setValue("name=" + e.target.value)

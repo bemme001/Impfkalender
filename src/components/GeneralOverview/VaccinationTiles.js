@@ -22,7 +22,6 @@ const vReasonDictionary = {
 
 // schöne Date-Ausgabe
 const date_toString = (date) => {
-  console.log('date', date);
   const temp = date.split('-');
   return [temp[2], temp[1], temp[0]].join(".");
 }
@@ -55,8 +54,8 @@ function VaccinationTiles({ patient, immunization }) {
         </Card.Header>
         <Card.Body>
           <Card.Title>{immun}</Card.Title>
-          <div>Datum: {date_toString(date)}</div>
-          <div>Alter {getAge()}</div>
+            <div>Datum: {date_toString(date)}</div>
+            <div>Alter {getAge()}</div>
           <Button variant="outline-info" onClick={switchPopUp} className="w-100">Öffnen</Button>
           {showPopUp && <InfoPopup showPopUp={showPopUp} switchPopUp={switchPopUp} infos={immunization} patient={patient} />}
         </Card.Body>

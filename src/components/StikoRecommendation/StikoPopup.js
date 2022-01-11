@@ -129,7 +129,7 @@ const StikoPopup = ({ showPopUp, switchPopUp, infos, colors, element, patient })
                                 Dosis in ml:
                             </Form.Label>
                             <Col sm={3} md={5} lg={5}>
-                                {infos.quantity}
+                                {infos.dose}
                             </Col>
                         </Form.Group>
 

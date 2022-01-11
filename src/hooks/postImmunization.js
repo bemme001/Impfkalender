@@ -7,6 +7,5 @@ export const postImmunization = async (json) => {
         })
         .catch(error => console.log(error))
         .then((res) => res.data)
-        .catch(error => console.log(error))
     return false;
 }

@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useState} from "react";
 import Patient from "../components/GeneralOverview/Patient";
 import Immunization from "../components/GeneralOverview/Immunization";
+import axios from "axios";
 
 const initialState = {
     patient : null,
@@ -17,9 +18,6 @@ export const GlobalProvider = ({ children }) => {
 
         let val1 = localStorage.getItem("b3b69232-601e-11ec-8607-0242ac130002");
         let val2 = localStorage.getItem("b3b69534-601e-11ec-8607-0242ac130002");
-
-        console.log(val1);
-        console.log(val2);
 
         if(val1 !== null && val2 !== null){
             setPatientObject(JSON.parse(val1));
@@ -40,12 +38,18 @@ export const GlobalProvider = ({ children }) => {
 
         let val1 = JSON.parse(localStorage.getItem("b3b69232-601e-11ec-8607-0242ac130002"));
         let val2 = JSON.parse(localStorage.getItem("b3b69534-601e-11ec-8607-0242ac130002"));
+    }
 
-        console.log(val1);
-        console.log(val2);
+    async function fetchPatient(patientID) {
+        return await axios
+            .get(`http://hapi.fhir.org/baseR4/Patient/${patientID}`, {
+                "ContentType": "application/fhir+json;charset=utf-8"
+            })
+    }
 
-        console.log(patient);
-        console.log(immunization);
+    async function reloadPatient(patientID) {
+        const patient = await fetchPatient(patientID);
+        fhirFetch(patient.data);
     }
 
     async function addImmunization(item) {
@@ -53,7 +57,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     return(
-        <GlobalContext.Provider value = {{patientObject,
+        <GlobalContext.Provider value = {{patientObject, reloadPatient,
             immunizationList, fhirFetch, addImmunization}}>
             {children}
         </GlobalContext.Provider>

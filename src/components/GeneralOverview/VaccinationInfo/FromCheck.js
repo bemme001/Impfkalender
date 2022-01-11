@@ -1,5 +1,4 @@
 export const checkForms = (immunization, patient) => {
-    console.log('checkForms');
     const newErrors = {};
     const regexDose = new RegExp('[0-9]+((.|,)[0-9]+)?');
     const now = new Date().getTime();

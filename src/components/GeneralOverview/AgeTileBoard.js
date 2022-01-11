@@ -12,7 +12,6 @@ export default function AgeTileBoard({ ageRanges, onFilterAge }) {
       {ageRanges.map((ageRange, i) => {
         return (
           <AgeTiles active={selected === i ? true : false} text={ageRange.text} key={i} onClick={() => {
-            console.log(ageRange.text);
             setSelected(i);
             onFilterAge(ageRange.start, ageRange.end);
           }} />
