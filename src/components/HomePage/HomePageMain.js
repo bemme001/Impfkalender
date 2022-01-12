@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import Searchbar from "../Header/Searchbar";
 import { motion } from "framer-motion";
 import HomePageCardElement from "./HomePageCardElement";
+
 const MotionContainer = motion(Container);
 //rgba(2, 117, 216, 0.1) für Card Background
 const HomePageMain = () => {

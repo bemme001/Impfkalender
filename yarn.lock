@@ -6485,11 +6485,6 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hashtable-js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/hashtable-js/-/hashtable-js-1.0.1.tgz"
-  integrity sha1-JeQHGF6LNmNFamvg/JfEZTWfDtc=
-
 he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
@@ -9446,11 +9441,6 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-hash@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/object-hash/-/object-hash-2.2.0.tgz#5ad518581eefc443bd763472b8ff2e9c2c0d54a5"
-  integrity sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==
-
 object-inspect@^1.11.0, object-inspect@^1.9.0:
   version "1.11.0"
   resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.11.0.tgz"
@@ -12341,11 +12331,6 @@ spdy@^4.0.2:
     http-deceiver "^1.2.7"
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
-
-spin-delay@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/spin-delay/-/spin-delay-1.1.0.tgz"
-  integrity sha512-sYq8OXe5jUgcbX5VReeW8IzF2jEx5fpatGreQQDlDVLTC3rA3tZIr7SGv0leCBYccRDES0ybjQaGS1bR42M0uQ==
 
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
