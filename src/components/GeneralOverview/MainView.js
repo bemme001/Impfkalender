@@ -4,6 +4,9 @@ import { GlobalContext } from "../../context/GlobalState";
 import './GO.css';
 import PatientView from './PatientView';
 import VaccinationView from './VaccinationView';
+import { motion } from "framer-motion";
+
+const MotionContainer = motion(Container);
 // import React, { useContext, useEffect, useState, Fragment, useRef } from 'react'
 // import { Container, Row, Card, Button, Form, InputGroup, Col } from "react-bootstrap";
 // import VaccinationTiles from "./VaccinationTiles";
@@ -24,7 +27,11 @@ export default function MainView() {
   }
 
   return (
-    <Container fluid="xl">
+    <MotionContainer fluid="xl" 
+        exit={{ x: '100vw', transition: {ease: 'easeInOut'}}}
+        animate={{ x: 0, transition: { delay: 0.25, ease: 'easeInOut' }}}
+        initial={{ x: '100vw'}}
+    >
       <Row className="mt-5 mb-4">
         <h1 className="bg-white ps-2 pe-3">Generelle Übersicht</h1>
       </Row>
@@ -34,7 +41,7 @@ export default function MainView() {
       <Row className="bg-light py-4 rounded-3 mt-4">
         <VaccinationView vaccinations={immunizationList} patient={patientObject} />
       </Row>
-    </Container>
+    </MotionContainer>
   );
 }
 
