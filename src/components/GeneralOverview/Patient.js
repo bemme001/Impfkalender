@@ -1,7 +1,3 @@
-import axios from "axios";
-
-var patientJson;
-
 export default class Patient {
 
     async fetchPatient(id) {

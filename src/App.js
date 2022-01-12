@@ -29,7 +29,11 @@ function App() {
                         <Route path="search::value" element={<PatientSearch />} />
                     </Routes>
                 </AnimatePresence>
-                <Footer/>
+              {location.pathname !== '/' &&
+              location.pathname !== '/stiko-empfehlungen' &&
+              location.pathname !== '/generelle-uebersicht' &&
+              !location.pathname.includes("search")
+                ? null : <Footer/>}
             </QueryClientProvider>
         </GlobalProvider>
     );

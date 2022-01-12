@@ -1,7 +1,5 @@
 export const checkForms = (immunization, patient) => {
-    console.log('checkForms');
     const newErrors = {};
-    const regexDose = new RegExp('[0-9]+((.|,)[0-9]+)?');
     const now = new Date().getTime();
     const immuDate = new Date(immunization.date).getTime();
     const birthday = new Date(patient.birthdate).getTime();

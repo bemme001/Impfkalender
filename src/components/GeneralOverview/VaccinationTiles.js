@@ -25,7 +25,6 @@ const vReasonDictionary = {
 
 // schöne Date-Ausgabe
 const date_toString = (date) => {
-  console.log('date', date);
   const temp = date.split('-');
   return [temp[2], temp[1], temp[0]].join(".");
 }

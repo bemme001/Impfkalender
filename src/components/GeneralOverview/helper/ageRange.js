@@ -1,5 +1,3 @@
-import { numberInBetween, numberIsBigger } from "./helper";
-
 const ranges = [
   [0, 1],
   [2, 4],

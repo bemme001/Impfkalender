@@ -27,8 +27,7 @@ export default class Immunization {
             .doseNumberString;                                                                  //Immunisierung
         this.date                       = immunizationJson[count].resource.occurrenceDateTime;  //Datum
         this.site                       = immunizationJson[count].resource.site.text;           //Impfstelle
-        this.quantity                   = immunizationJson[count].resource.doseQuantity.value
-            + " " + immunizationJson[count].resource.doseQuantity.code;                         //Dosis
+        this.quantity                   = immunizationJson[count].resource.doseQuantity.value   //Dosis
         this.reason                     = immunizationJson[count].resource.reasonCode ?
             immunizationJson[count].resource.reasonCode[0].text : "No Value";                   //Impfgrund
         this.note                       = immunizationJson[count].resource.note ?

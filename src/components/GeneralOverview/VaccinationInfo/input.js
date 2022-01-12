@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 
 const date_toString = (date) => {
     const temp = date.split('-');
@@ -111,8 +111,6 @@ export function NumberInput({ label, name, editable, value, onChange, placeholde
     if (error) {
         message = errors[name];
     }
-
-    console.log('value number', value);
     return (
         <FormularSpace label={label}>
             {editable

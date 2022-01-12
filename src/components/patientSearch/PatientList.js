@@ -26,7 +26,7 @@ const PatientList = ({ patients }) => {
         <>
             {patients.total === 1
                 ? <Navigate to='/generelle-uebersicht' />
-                : <Container fluid="xl" className="rounded-2 mt-5 d-flex flex-column min-vh-100">
+                : <Container fluid="xl" className="rounded-2 mt-5 " style={{height: "90vh"}}>
                     <h1>
                         <span>Patientensuche</span>
                     </h1>

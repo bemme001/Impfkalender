@@ -87,6 +87,7 @@ const Popup = (props) => {
       .catch(() =>
         setErrors({ ...errors, "diseaseErr": "Erreger konnten nicht geladen werden!" })
       )
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const create = () => {                  // returns: JSON gefühlt mit den Daten des Objektes

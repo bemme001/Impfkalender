@@ -2,12 +2,19 @@ import { InputGroup, Button, Form } from "react-bootstrap";
 import { useState } from "react"
 import { BsSearch } from 'react-icons/bs';
 import './searchbar.css';
+import { useEffect } from "react";
 // import { Navigate } from "react-router-dom"
 
 
 const Searchbar = (props) => {
     const [ value, setValue ] = useState("");
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        let v = document.getElementsByName("search-field")[0].value;
+        isNaN(v)
+            ? setValue("name=" + v)
+            : setValue("_id=" + v)
+    });
     /*
     const handleKeyPress = (e) => {
         console.log("test");
@@ -37,7 +44,8 @@ const Searchbar = (props) => {
                     placeholder="Name / ID des Patienten"
                     aria-label="Name / ID des Patienten"
                     aria-describedby="searchbar"
-                    type="search"
+                    name="search-field"
+                    type="input"
                     className={props.formStyleClass}
                     onChange={(e) => {
                         isNaN(e.target.value)

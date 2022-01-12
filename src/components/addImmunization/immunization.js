@@ -18,18 +18,4 @@ export default class ImmunizationJson {
           "Pneumokokken", "Poliomyelitis", "Rotaviren", "Tetanus", "Varizellen"
         ];
     };
-    toString = () => {
-      console.log(this.uuid)
-      console.log(this.pid)
-      console.log(this.vaccine)
-      console.log(this.status)
-      console.log(this.date)
-      console.log(this.site)
-      console.log(this.dose)
-      console.log(this.perf)
-      console.log(this.note)
-      console.log(this.reason)
-      console.log(this.disease)
-      console.log(this.immun)
-  };
 }

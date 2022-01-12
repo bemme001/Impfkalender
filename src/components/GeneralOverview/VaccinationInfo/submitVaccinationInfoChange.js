@@ -55,7 +55,6 @@ export async function submitVaccinationInfoChange(immunization, patient) {
             }
         ]
     }
-
     try {
         await putImmunization(data, immunization.id);
         return true;
