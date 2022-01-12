@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <Container fluid={true} className="mt-auto" style={{paddingRight: "15px", paddingLeft: "15px", marginRight: "auto", marginLeft: "auto"}}>
       <hr className="w-25 m-auto mb-2 bg-white"/>
-      <Row className="center" style={{backgroundColor:"rgba(39,40,44,0.05)", height: "8vh"}}>
+      <Row className="center align-items-center" style={{backgroundColor:"rgba(39,40,44,0.05)", height: "8vh"}}>
         <Col className="text-center px-2 py-2">
           2021/22 Wahlprojekt Impfkalender
           <hr className="w-50 m-auto"/>
