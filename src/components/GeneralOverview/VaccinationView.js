@@ -21,7 +21,7 @@ export default function VaccinationView({ vaccinations, patient }) {
         <>
             <Col md={2}>
                 <Card>
-                    <Card.Title>
+                    <Card.Title style={{ marginLeft: '15px' , marginTop: '25px'}}>
                         Altersfilter
                     </Card.Title>
                     <Card.Body>
