@@ -32,10 +32,10 @@ const HomePageMain = () => {
         <Col md={6} className="px-5 py-5 d-flex h-30 w-40 justify-content-start">
           <HomePageCardElement
             extraInfo="Extra information"
-            name="Generelle Übersicht"
+            name="Patientenübersicht"
             description="Alle Impfungen ihres Patienten auf einen Blick. Filtern Sie nach Altersstufen
               und fügen Sie neue Impfungen in den Kalender ein."
-            link="/generelle-uebersicht"
+            link="/patienten-uebersicht"
           />
         </Col>
       </Row>

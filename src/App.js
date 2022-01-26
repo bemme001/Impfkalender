@@ -25,13 +25,13 @@ function App() {
                     <Routes location={location} key={location.key}>
                         <Route path="/" element={<HomePageMain />} />
                         <Route path="stiko-empfehlungen" element={<SRMain />} />
-                        <Route path="generelle-uebersicht" element={<MainView />} />
+                        <Route path="patienten-uebersicht" element={<MainView />} />
                         <Route path="search::value" element={<PatientSearch />} />
                     </Routes>
                 </AnimatePresence>
               {location.pathname !== '/' &&
               location.pathname !== '/stiko-empfehlungen' &&
-              location.pathname !== '/generelle-uebersicht' &&
+              location.pathname !== '/patienten-uebersicht' &&
               !location.pathname.includes("search")
                 ? null : <Footer/>}
             </QueryClientProvider>

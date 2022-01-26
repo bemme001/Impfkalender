@@ -44,10 +44,10 @@ const NavbarMain = () => {
                         STIKO Impfempfehlung
                     </Link>
                     }
-                    {location.pathname === '/generelle-uebersicht' 
-                    ? <div className="text-white nav-link">Generelle Übersicht</div>
-                    : <Link to="/generelle-uebersicht" className="text-white nav-link">
-                        Generelle Übersicht
+                    {location.pathname === '/patienten-uebersicht' 
+                    ? <div className="text-white nav-link">Patientenübersicht</div>
+                    : <Link to="/patienten-uebersicht" className="text-white nav-link">
+                        Patientenübersicht
                     </Link>
                     }
                     </Nav>

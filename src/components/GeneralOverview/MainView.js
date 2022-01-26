@@ -33,7 +33,7 @@ export default function MainView() {
         initial={{ x: '100vw'}}
     >
       <Row className="mt-5 mb-4">
-        <h1 className="bg-white ps-2 pe-3">Generelle Übersicht</h1>
+        <h1 className="bg-white ps-2 pe-3">Patientenübersicht</h1>
       </Row>
       <Row className="bg-white py-3 rounded-3">
         <PatientView patient={patientObject} />

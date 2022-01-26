@@ -25,7 +25,7 @@ const PatientList = ({ patients }) => {
     return (
         <>
             {patients.total === 1
-                ? <Navigate to='/generelle-uebersicht' />
+                ? <Navigate to='/patienten-uebersicht' />
                 : <Container fluid="xl" className="rounded-2 mt-5 " style={{height: "90vh"}}>
                     <h1>
                         <span>Patientensuche</span>
@@ -42,7 +42,7 @@ const PatientList = ({ patients }) => {
                                 <tr key={key++}>
                                     <td>
                                         <Link
-                                            to="/generelle-uebersicht"
+                                            to="/patienten-uebersicht"
                                         >
                                             <Button
                                                 variant="light"
