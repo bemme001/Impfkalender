@@ -23,7 +23,7 @@ export default function AgeTileBoard({ ageRanges, onFilterAge }) {
         <div className="col-12 mt-4 h100">
           <MultiRangeSlider
             min={0}
-            max={60}
+            max={100}
             onChange={({ min, max }) => { setFrom(min); setTo(max) }}
           />
           {/* <input type="number" placeholder="Alter Min" onChange={(event) => {
